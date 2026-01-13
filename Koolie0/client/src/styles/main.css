@@ -3,3 +3,65 @@ body {
   margin: 0;
   background: #f5f7fb;
 }
+
+/* Styles for Why Choose ServicePro section */
+.why-choose-section {
+  padding: 4rem 1rem;
+}
+.why-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.why-title {
+  font-size: 2.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0 0 0.5rem 0;
+}
+.why-subtitle {
+  color: #6b7280;
+  margin: 0 0 1.75rem 0;
+  font-size: 1rem;
+}
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+.why-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border: 1px solid #eef2f7;
+  box-shadow: 0 1px 0 rgba(16,24,40,0.03);
+}
+.why-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ecf9ee;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+.why-card-title {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+.why-card-desc {
+  margin: 0.35rem 0 0 0;
+  color: #6b7280;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 700px) {
+  .why-grid {
+    grid-template-columns: 1fr;
+  }
+}

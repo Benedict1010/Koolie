@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="600" rx="14" fill="#fff"/>
+  <rect x="0" y="0" width="800" height="600" rx="14" fill="url(#g)" opacity="0.06"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0d6efd" />
+      <stop offset="100%" stop-color="#6c757d" />
+    </linearGradient>
+  </defs>
+
+  <!-- abstract shapes to resemble an illustrative placeholder -->
+  <circle cx="160" cy="140" r="72" fill="#e6f0ff" />
+  <rect x="260" y="220" width="360" height="220" rx="18" fill="#f3f6fb" />
+  <rect x="300" y="260" width="280" height="24" rx="12" fill="#e1e8f7" />
+  <rect x="300" y="300" width="240" height="16" rx="8" fill="#e9eef9" />
+  <rect x="300" y="330" width="200" height="16" rx="8" fill="#e9eef9" />
+  <circle cx="580" cy="120" r="44" fill="#dfeeff" />
+  <rect x="120" y="360" width="120" height="80" rx="12" fill="#eaf2ff" />
+  <rect x="260" y="80" width="360" height="120" rx="12" fill="#f6f8fb" />
+
+  <!-- small accent shapes -->
+  <circle cx="720" cy="520" r="28" fill="#e6f0ff" />
+  <circle cx="680" cy="460" r="16" fill="#f3f8ff" />
+
+</svg>
