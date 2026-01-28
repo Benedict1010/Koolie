@@ -6,6 +6,7 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [role, setRole] = useState("client");
 
   return (
     <div className="auth-page">
@@ -41,6 +42,42 @@ function Signup() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
+
+          <div className="auth-roles">
+            <span className="roles-label">Register as</span>
+            <label className="role-option">
+              <input
+                type="radio"
+                name="role"
+                value="client"
+                checked={role === "client"}
+                onChange={() => setRole("client")}
+              />
+              <span>Client</span>
+            </label>
+
+            <label className="role-option">
+              <input
+                type="radio"
+                name="role"
+                value="professional"
+                checked={role === "professional"}
+                onChange={() => setRole("professional")}
+              />
+              <span>Professional</span>
+            </label>
+
+            <label className="role-option">
+              <input
+                type="radio"
+                name="role"
+                value="both"
+                checked={role === "both"}
+                onChange={() => setRole("both")}
+              />
+              <span>Both</span>
+            </label>
+          </div>
 
           <button className="auth-submit">Signup</button>
 

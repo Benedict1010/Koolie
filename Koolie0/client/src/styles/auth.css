@@ -96,3 +96,33 @@
 }
 
 .auth-footer a{ color:#0f7bff; text-decoration:none }
+
+.auth-roles{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  margin-top:4px;
+}
+
+.roles-label{
+  font-size:13px;
+  color:#33475b;
+  margin-bottom:4px;
+}
+
+.role-option{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #e6eef8;
+  background:#fff;
+}
+
+.role-option input[type="radio"]{
+  width:16px;
+  height:16px;
+}
+
+.role-option span{ font-weight:600; color:#1f3a4a }
