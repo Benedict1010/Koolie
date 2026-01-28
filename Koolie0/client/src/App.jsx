@@ -3,12 +3,13 @@ import "./styles/hero.css";
 import Navbar from "./components/layout/Navbar";
 import Home from "./pages/Home";
 import HeroIll from "./assets/hero-illustration.svg";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-function App() {
+function HomePage() {
   return (
     <>
-      <Navbar />
-
       {/* keep spacing so content isn't hidden by fixed navbar */}
       <div style={{ paddingTop: "92px" }}>
         <section className="hero-section">
@@ -43,6 +44,19 @@ function App() {
         <Home />
       </div>
     </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+      </Routes>
+    </Router>
   );
 }
 

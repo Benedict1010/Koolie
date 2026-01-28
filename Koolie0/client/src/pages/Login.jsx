@@ -1,10 +1,9 @@
+import React from "react";
+
 function Login() {
   return (
-    <div>
-      <h2>Login</h2>
-      <input placeholder="Email" />
-      <input type="password" placeholder="Password" />
-      <button>Login</button>
+    <div style={{ paddingTop: "92px" }}>
+      <h2>Login Page</h2>
     </div>
   );
 }
