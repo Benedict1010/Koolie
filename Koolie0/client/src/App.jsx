@@ -1,6 +1,6 @@
 import "./App.css";
 import "./styles/hero.css";
-import Navbar from "./components/layout/Navbar";
+import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import HeroIll from "./assets/hero-illustration.svg";
 import Login from "./pages/Login";
