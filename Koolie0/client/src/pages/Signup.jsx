@@ -1,12 +1,62 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import "../styles/auth.css";
+import { auth, db } from "../services/firebase";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("client");
+  const [error, setError] = useState(null);
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    if (!email || !password) return setError("Provide email and password");
+    if (password !== confirmPassword) return setError("Passwords do not match");
+
+    try {
+      const userCred = await createUserWithEmailAndPassword(auth, email, password);
+      const uid = userCred.user.uid;
+
+      const roles = {
+        client: role === "client" || role === "both",
+        provider: role === "professional" || role === "both",
+      };
+
+      try {
+        await setDoc(doc(db, "users", uid), {
+          email,
+          roles,
+          profileCompleted: false,
+          clientProfile: {},
+          providerProfile: {},
+          skills: [],
+          createdAt: serverTimestamp(),
+        });
+      } catch (fsErr) {
+        console.error("Firestore write failed on signup:", fsErr);
+        setError(
+          (fsErr && fsErr.message) || "Failed to write user document. Check Firestore rules and network."
+        );
+        return;
+      }
+
+      navigate("/complete-profile");
+    } catch (err) {
+      // provide friendlier guidance for common errors
+      if (err.code === "auth/email-already-in-use") {
+        setError("Email already in use. Please login instead.");
+      } else {
+        setError(err.message);
+      }
+      console.error("Signup error:", err);
+    }
+  };
 
   return (
     <div className="auth-page">
@@ -18,7 +68,7 @@ function Signup() {
           <button className="tab tab-active" aria-selected="true">Signup</button>
         </div>
 
-        <form className="auth-form" onSubmit={(e) => e.preventDefault()}>
+        <form className="auth-form" onSubmit={handleSubmit}>
           <input
             className="auth-input"
             type="email"
@@ -78,6 +128,8 @@ function Signup() {
               <span>Both</span>
             </label>
           </div>
+
+          {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
 
           <button className="auth-submit">Signup</button>
 

@@ -5,6 +5,8 @@ import Home from "./pages/Home";
 import HeroIll from "./assets/hero-illustration.svg";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import CompleteProfile from "./pages/CompleteProfile";
+import RoleDashboard from "./pages/RoleDashboard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function HomePage() {
@@ -55,6 +57,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/complete-profile" element={<CompleteProfile />} />
+        <Route path="/role-dashboard" element={<RoleDashboard />} />
       </Routes>
     </Router>
   );
