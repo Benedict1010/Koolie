@@ -7,6 +7,8 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import CompleteProfile from "./pages/CompleteProfile";
 import RoleDashboard from "./pages/RoleDashboard";
+import ClientDashboard from "./pages/ClientDashboard";
+import ProviderDashboard from "./pages/ProviderDashboard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function HomePage() {
@@ -59,6 +61,8 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/complete-profile" element={<CompleteProfile />} />
         <Route path="/role-dashboard" element={<RoleDashboard />} />
+        <Route path="/client-dashboard" element={<ClientDashboard />} />
+        <Route path="/provider-dashboard" element={<ProviderDashboard />} />
       </Routes>
     </Router>
   );

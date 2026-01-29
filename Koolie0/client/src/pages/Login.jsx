@@ -44,10 +44,24 @@ function Login() {
       }
 
       const data = snap.data();
+      const roles = data?.roles || {};
+      const isClient = roles.client === true;
+      const isProvider = roles.provider === true;
+
       if (data.profileCompleted === false) {
         navigate("/complete-profile");
       } else {
-        navigate("/role-dashboard");
+        // If user has both roles, send them to the role toggle dashboard
+        if (isClient && isProvider) {
+          navigate("/role-dashboard");
+        } else if (isClient) {
+          navigate("/client-dashboard");
+        } else if (isProvider) {
+          navigate("/provider-dashboard");
+        } else {
+          // fallback to role dashboard if no explicit role set
+          navigate("/role-dashboard");
+        }
       }
     } catch (err) {
       setError(err.message);
