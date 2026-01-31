@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function ClientPanel() {
   const [activeTab, setActiveTab] = useState("request");
   const [selectedService, setSelectedService] = useState(null);
+  const navigate = useNavigate();
 
   const services = [
     "Electrician",
@@ -59,7 +61,10 @@ export default function ClientPanel() {
               {services.map((s) => (
                 <div
                   key={s}
-                  onClick={() => setSelectedService(s)}
+                  onClick={() => {
+                    setSelectedService(s);
+                    navigate("/request", { state: { service: s } });
+                  }}
                   role="button"
                   tabIndex={0}
                   style={{

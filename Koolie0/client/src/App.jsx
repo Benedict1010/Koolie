@@ -9,6 +9,7 @@ import CompleteProfile from "./pages/CompleteProfile";
 import RoleDashboard from "./pages/RoleDashboard";
 import ClientDashboard from "./pages/ClientDashboard";
 import ProviderDashboard from "./pages/ProviderDashboard";
+import RequestForm from "./pages/RequestForm";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function HomePage() {
@@ -62,6 +63,7 @@ function App() {
         <Route path="/complete-profile" element={<CompleteProfile />} />
         <Route path="/role-dashboard" element={<RoleDashboard />} />
         <Route path="/client-dashboard" element={<ClientDashboard />} />
+        <Route path="/request" element={<RequestForm />} />
         <Route path="/provider-dashboard" element={<ProviderDashboard />} />
       </Routes>
     </Router>
