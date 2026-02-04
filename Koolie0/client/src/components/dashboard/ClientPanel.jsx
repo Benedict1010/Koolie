@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../services/firebase";
 import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
+import { SERVICES } from "../../constants/services";
 
 export default function ClientPanel() {
   const [activeTab, setActiveTab] = useState("request");
@@ -10,14 +11,8 @@ export default function ClientPanel() {
   const [requests, setRequests] = useState([]);
   const navigate = useNavigate();
 
-  const services = [
-    "Electrician",
-    "Plumber",
-    "Carpenter",
-    "AC Repair",
-    "Painter",
-    "Cleaning",
-  ];
+  // services list moved to shared constant
+  const services = SERVICES;
 
   const tabBtnStyle = (active) => ({
     padding: "8px 14px",
