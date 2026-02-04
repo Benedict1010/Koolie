@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth, db } from "../../services/firebase";
+import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
+import { onAuthStateChanged } from "firebase/auth";
 
 export default function ClientPanel() {
   const [activeTab, setActiveTab] = useState("request");
   const [selectedService, setSelectedService] = useState(null);
+  const [requests, setRequests] = useState([]);
   const navigate = useNavigate();
 
   const services = [
@@ -23,6 +27,47 @@ export default function ClientPanel() {
     cursor: "pointer",
     fontWeight: 600,
   });
+
+  useEffect(() => {
+    let unsubSnapshot = null;
+    const unsubAuth = onAuthStateChanged(auth, (user) => {
+      console.debug("ClientPanel onAuthStateChanged user:", user && user.uid);
+      if (!user) {
+        console.debug("No authenticated user - clearing requests list");
+        setRequests([]);
+        if (unsubSnapshot) {
+          unsubSnapshot();
+          unsubSnapshot = null;
+        }
+        return;
+      }
+
+      const q = query(collection(db, "serviceRequests"), where("clientId", "==", user.uid));
+
+      unsubSnapshot = onSnapshot(
+        q,
+        (snap) => {
+          const items = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+          console.debug("serviceRequests snapshot count:", items.length, "for user", user.uid, items);
+          // sort by createdAt descending (handle missing or serverTimestamp placeholders)
+          items.sort((a, b) => {
+            const ta = a.createdAt && typeof a.createdAt.toMillis === "function" ? a.createdAt.toMillis() : (a.createdAt && a.createdAt.seconds ? a.createdAt.seconds * 1000 : 0);
+            const tb = b.createdAt && typeof b.createdAt.toMillis === "function" ? b.createdAt.toMillis() : (b.createdAt && b.createdAt.seconds ? b.createdAt.seconds * 1000 : 0);
+            return tb - ta;
+          });
+          setRequests(items);
+        },
+        (err) => {
+          console.error("serviceRequests listener error:", err);
+        }
+      );
+    });
+
+    return () => {
+      unsubAuth();
+      if (unsubSnapshot) unsubSnapshot();
+    };
+  }, []);
 
   return (
     <div>
@@ -106,7 +151,31 @@ export default function ClientPanel() {
         ) : (
           <div>
             <h4 style={{ marginBottom: 8 }}>My Requests</h4>
-            <p style={{ color: "#6b7280" }}>You have no requests yet.</p>
+            {requests.length === 0 ? (
+              <p style={{ color: "#6b7280" }}>You have no requests yet.</p>
+            ) : (
+              <div style={{ display: "grid", gap: 12 }}>
+                {requests.map((r) => (
+                  <div
+                    key={r.requestId || r.id}
+                    style={{
+                      border: "1px solid #e5e7eb",
+                      borderRadius: 8,
+                      padding: 12,
+                      background: "white",
+                    }}
+                  >
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <div style={{ fontWeight: 700 }}>{r.serviceType}</div>
+                      <div style={{ color: r.status === "open" ? "#059669" : "#6b7280", fontWeight: 700 }}>{r.status}</div>
+                    </div>
+
+                    <div style={{ marginTop: 8, color: "#374151" }}>{r.description}</div>
+                    <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>Location: {r.location}</div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </div>
