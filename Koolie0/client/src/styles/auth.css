@@ -4,7 +4,7 @@
   align-items:center;
   justify-content:center;
   padding:32px 16px;
-  background:linear-gradient(180deg,#f6f8fb, #ffffff);
+  
 }
 
 .auth-card{
@@ -64,7 +64,7 @@
   background:#fafbff;
   font-size:14px;
   outline:none;
-}
+  color: black;
 
 .auth-input:focus{
   border-color:#a6d1ff;

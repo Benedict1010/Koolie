@@ -1,98 +1,195 @@
-/* Hero section styles to match provided design and make responsive */
+/* Hero section styles - Blue and Yellow theme */
 
 :root{
-  --hero-bg: #f2f4f6; /* light card background */
-  --hero-max: 1100px;
+  --hero-primary-blue: #003DA5;
+  --hero-accent-yellow: #FFD700;
+  --hero-max: 1200px;
 }
 
 .hero-section{
   width: 100%;
-  background: transparent;
+  background: linear-gradient(135deg, var(--hero-primary-blue) 0%, #FFD700 150%);
+  padding: 64px 20px 0 20px;
+  margin-top: 64px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
-.hero-card{
-}
-
-.hero-inner{
+.hero-wrapper{
   max-width: var(--hero-max);
   margin: 0 auto;
+  position: relative;
+  padding-bottom: 80px;
+}
+
+.hero-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  padding: 40px 0;
+}
+
+.hero-left{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-illustration{
+  width: 100%;
+  max-width: 350px;
+  background: transparent;
+  border-radius: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+  overflow: hidden;
+}
+
+.hero-illustration img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   display: block;
-  background: var(--hero-bg);
-  padding: 60px 100px;
-  margin-bottom: 30px;
 }
 
-.hero-title{
-  margin: 0 0 20px 0;
-  /* responsive typography */
-  font-weight: 800;
-  line-height: 0.95;
-  color: #0b0b0b;
-  font-family: inherit;
-  font-size: clamp(36px, 7.5vw, 88px);
+.hero-right{
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.hero-sub{
-  margin: 10px 1px 28px 0;
-  color: #4b5563;
-  font-size: clamp(15px, 1.6vw, 18px);
-  max-width: 720px;
+.hero-heading{
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+  color: white;
+  letter-spacing: -0.5px;
+}
+
+.hero-description{
+  font-size: 16px;
   line-height: 1.6;
+  color: #ffffff;
+  margin: 0;
+  max-width: 520px;
 }
 
-.hero-actions{
+.hero-buttons{
   display: flex;
   gap: 16px;
-  align-items: center;
   margin-top: 8px;
+  flex-wrap: wrap;
 }
 
-.btn.large{
-  padding: 12px 20px;
+.btn{
+  padding: 12px 28px;
   font-size: 16px;
-  border-radius: 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
 }
 
-.hero-card, .hero-inner{ /* ensure the hero uses the same neutral spacing on very large screens */
-  box-sizing: border-box;
+.btn-light{
+  background: white;
+  color: var(--hero-primary-blue);
+  border: 2px solid white;
 }
 
-/* responsive layout: smaller screens reduce padding and scale text */
-@media (max-width: 880px){
-  .hero-card{ padding: 56px 18px; }
-  .hero-sub{ font-size: 15px; }
+.btn-light:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.3);
 }
 
-@media (max-width: 520px){
-  .hero-card{ padding: 40px 14px; }
-  .hero-actions{ flex-direction: column; align-items: flex-start; }
-  .btn.large{ width: 100%; }
+.btn-secondary{
+  background: transparent;
+  color: white;
+  border: 2px solid white;
 }
 
-/* two-column layout for larger screens */
-@media (min-width: 880px){
-  .hero-inner{ padding: 0 12px; }
+.btn-secondary:hover{
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Yellow diagonal wave */
+.hero-wave{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: var(--hero-accent-yellow);
+  clip-path: polygon(0 30%, 100% 0%, 100% 100%, 0% 100%);
+  z-index: -1;
+}
+
+/* Responsive design */
+@media (max-width: 1024px){
   .hero-grid{
-    display: grid;
-    grid-template-columns: 1.05fr 0.95fr; /* left heavy */
+    grid-template-columns: 1fr;
     gap: 40px;
-    align-items: center;
+    padding: 30px 0;
   }
-  .hero-left{ padding-right: 20px; }
-  .hero-right{ display: block; }
-  .hero-illustration-img{
+  
+  .hero-left{
+    order: 1;
+  }
+  
+  .hero-right{
+    order: 2;
+  }
+  
+  .hero-illustration{
+    max-width: 300px;
+    min-height: 300px;
+  }
+  
+  .hero-section{
+    padding: 64px 20px 40px 20px;
+  }
+  
+  .hero-buttons{
+    flex-direction: column;
+  }
+  
+  .btn{
     width: 100%;
-    height: auto;
-    display: block;
-    border-radius: 12px;
-    box-shadow: 0 8px 30px rgba(15,23,42,0.06);
+    text-align: center;
   }
 }
 
-@media (max-width: 879px){
-  /* stack and hide illustration on narrower screens to focus on text */
-  .hero-grid{ display: block; }
-  .hero-right{ display: none; }
+@media (max-width: 640px){
+  .hero-grid{
+    gap: 30px;
+  }
+  
+  .hero-heading{
+    font-size: 28px;
+  }
+  
+  .hero-description{
+    font-size: 14px;
+  }
+  
+  .hero-illustration{
+    max-width: 280px;
+    min-height: 280px;
+  }
+  
+  .hero-wave{
+    height: 100px;
+  }
 }
 
 /* ============================================

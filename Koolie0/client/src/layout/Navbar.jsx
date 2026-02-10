@@ -8,7 +8,7 @@ export default function Navbar() {
       <div className="site-navbar__inner">
         <div className="site-navbar__left">
           {/* Placeholder for logo image - replace the div below with an <img> when you have the logo */}
-          <div className="logo-placeholder" aria-hidden="true">SP</div>
+          <div className="logo-placeholder" aria-hidden="true">K</div>
           <div className="brand-name">KOOLIE</div>
         </div>
 

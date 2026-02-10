@@ -1,6 +1,8 @@
 /* Fixed top navbar styles */
 :root{
   --navbar-height: 64px;
+  --navbar-blue: #003DA5;
+  --navbar-yellow: #FFD700;
   --primary: #0d6efd;
   --muted: #6c757d;
 }
@@ -11,61 +13,72 @@
   left: 0;
   right: 0;
   height: var(--navbar-height);
-  background: #fff;
-  border-bottom: 1px solid #e6e9ee;
-  box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+  background: var(--navbar-blue);
+  border-bottom: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   z-index: 9999;
 }
 
 .site-navbar__inner{
-  max-width: 1100px;
+  max-width: 1200px;
   height: 100%;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 18px;
+  padding: 0 20px;
 }
 
 .site-navbar__left{
   display: flex;
   align-items: center;
   gap: 12px;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.5px;
 }
 
 .logo-placeholder{
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--primary);
-  color: #fff;
+  background: var(--navbar-yellow);
+  color: var(--navbar-blue);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .brand-name{
-  font-size: 18px;
-  font-weight: 600;
-  color: #222;
+  font-size: 22px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: 1px;
 }
 
 .site-navbar__nav{
   display: flex;
-  gap: 22px;
+  gap: 32px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-link{
-  color: var(--muted);
+  color: #FFFFFF;
   text-decoration: none;
+  font-size: 15px;
   font-weight: 500;
-  padding: 6px 8px;
+  padding: 8px 0;
+  transition: color 0.3s ease;
+  border-bottom: 2px solid transparent;
 }
 
 .nav-link:hover{
-  color: #111;
+  color: var(--navbar-yellow);
+  border-bottom-color: var(--navbar-yellow);
 }
 
 .site-navbar__actions{
@@ -76,27 +89,70 @@
 
 .btn{
   font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 8px;
+  padding: 10px 20px;
+  border-radius: 20px;
   cursor: pointer;
-  border: none;
+  border: 2px solid;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .btn-outline{
-  background: #fff;
-  color: #222;
-  border: 1px solid #e6e9ee;
+  background: transparent;
+  color: #FFFFFF;
+  border: 2px solid var(--navbar-yellow);
+}
+
+.btn-outline:hover{
+  background: var(--navbar-yellow);
+  color: var(--navbar-blue);
+  transform: translateY(-2px);
 }
 
 .btn-primary{
-  background: var(--primary);
-  color: #fff;
-  box-shadow: 0 2px 4px rgba(13,110,253,0.16);
+  color: var(--navbar-blue);
+  background: var(--navbar-yellow);
+  border: 2px solid var(--navbar-yellow);
+  font-weight: 600;
 }
 
-/* responsive: collapse nav links on narrow screens (basic) */
-@media (max-width: 760px){
+.btn-primary:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
+}
+
+/* responsive: collapse nav links on narrow screens */
+@media (max-width: 900px){
   .site-navbar__nav{
     display: none;
+  }
+  
+  .site-navbar__inner{
+    padding: 0 15px;
+  }
+  
+  .brand-name{
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 640px){
+  .site-navbar__actions{
+    gap: 8px;
+  }
+  
+  .btn{
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+  
+  .logo-placeholder{
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
   }
 }

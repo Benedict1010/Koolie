@@ -1,6 +1,32 @@
 function Home() {
   return (
     <>
+      {/* Hero Section */}
+      <section className="hero-section">
+        <div className="hero-wrapper">
+          <div className="hero-grid">
+            <div className="hero-left">
+              <div className="hero-illustration">
+                <img src="/doodle.png" alt="Service Professionals Illustration" />
+              </div>
+            </div>
+            <div className="hero-right">
+              <h1 className="hero-heading">
+                Find Trusted Local Service Professionals Near You
+              </h1>
+              <p className="hero-description">
+                Connect with verified electricians, plumbers, carpenters, and hundreds of other service professionals. Fast, reliable, and transparent.
+              </p>
+              <div className="hero-buttons">
+                <button className="btn btn-light">Book a service</button>
+                <button className="btn btn-secondary">Join as professional</button>
+              </div>
+            </div>
+          </div>
+          <div className="hero-wave"></div>
+        </div>
+      </section>
+
       {/* Why Choose ServicePro Section */}
       <section className="why-choose-section">
         <div className="why-container">
