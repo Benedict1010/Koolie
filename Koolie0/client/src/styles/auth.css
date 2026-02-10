@@ -65,7 +65,7 @@
   font-size:14px;
   outline:none;
   color: black;
-
+}
 .auth-input:focus{
   border-color:#a6d1ff;
   box-shadow:0 0 0 4px rgba(15,123,255,0.06);
@@ -90,12 +90,13 @@
 }
 
 .auth-footer{
+  color: #000000;
   margin-top:8px;
   text-align:center;
   font-size:13px;
 }
 
-.auth-footer a{ color:#0f7bff; text-decoration:none }
+.auth-footer a{ color:#000000; text-decoration:none }
 
 .auth-roles{
   display:flex;
