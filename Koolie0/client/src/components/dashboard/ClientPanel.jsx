@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../services/firebase";
-import { collection, query, where, onSnapshot, orderBy } from "firebase/firestore";
+import { collection, query, where, onSnapshot, orderBy, doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { SERVICES } from "../../constants/services";
 
@@ -63,6 +63,43 @@ export default function ClientPanel() {
       if (unsubSnapshot) unsubSnapshot();
     };
   }, []);
+
+  // fetch provider user docs for any assigned requests so client can see provider details
+  const [providerDetails, setProviderDetails] = useState({});
+  const [openProviderId, setOpenProviderId] = useState(null);
+
+  useEffect(() => {
+    let mounted = true;
+    const ids = Array.from(new Set(requests.filter((r) => r.providerId).map((r) => r.providerId)));
+    if (ids.length === 0) {
+      if (mounted) setProviderDetails({});
+      return () => (mounted = false);
+    }
+
+    const fetchProviders = async () => {
+      try {
+        const map = {};
+        await Promise.all(
+          ids.map(async (pid) => {
+            try {
+              const snap = await getDoc(doc(db, "users", pid));
+              if (snap.exists()) map[pid] = { id: snap.id, ...(snap.data() || {}) };
+            } catch (e) {
+              console.error("Failed to fetch provider doc", pid, e);
+            }
+          })
+        );
+        if (mounted) setProviderDetails(map);
+      } catch (err) {
+        console.error("Failed to load provider details:", err);
+      }
+    };
+
+    fetchProviders();
+    return () => {
+      mounted = false;
+    };
+  }, [requests]);
 
   return (
     <div>
@@ -167,6 +204,58 @@ export default function ClientPanel() {
 
                     <div style={{ marginTop: 8, color: "#374151" }}>{r.description}</div>
                     <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>Location: {r.location}</div>
+                    {r.status === "assigned" && r.providerId && (
+                      <div style={{ marginTop: 12 }}>
+                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+                          <div style={{ display: "flex", gap: 12, alignItems: "center", flex: 1 }}>
+                            <div style={{ width: 48, height: 48, borderRadius: 6, overflow: "hidden", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                              {providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.photoURL ? (
+                                <img src={providerDetails[r.providerId].providerProfile.photoURL} alt="provider" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                              ) : (
+                                <div style={{ color: "#6b7280", fontSize: 12 }}>No photo</div>
+                              )}
+                            </div>
+
+                            <div style={{ overflow: "hidden" }}>
+                              <div style={{ fontWeight: 700, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>{(providerDetails[r.providerId] && (providerDetails[r.providerId].displayName || providerDetails[r.providerId].email)) || "Provider"}</div>
+                              <div style={{ color: "#6b7280", fontSize: 13, marginTop: 4 }}>{(providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.location) || ""}</div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <button
+                              type="button"
+                              onClick={() => setOpenProviderId(openProviderId === r.providerId ? null : r.providerId)}
+                              style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #2563eb", background: openProviderId === r.providerId ? "#2563eb" : "white", color: openProviderId === r.providerId ? "white" : "#2563eb", cursor: "pointer", fontWeight: 700 }}
+                            >
+                              {openProviderId === r.providerId ? "Hide details" : "Show provider"}
+                            </button>
+                          </div>
+                        </div>
+
+                        {openProviderId === r.providerId && providerDetails[r.providerId] && (
+                          <div style={{ marginTop: 12, border: "1px solid #e5e7eb", borderRadius: 8, padding: 12, background: "#fafafa" }}>
+                            <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
+                              <div style={{ width: 96, height: 96, borderRadius: 8, overflow: "hidden", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                                {providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.photoURL ? (
+                                  <img src={providerDetails[r.providerId].providerProfile.photoURL} alt="provider photo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                ) : (
+                                  <div style={{ color: "#6b7280", fontSize: 12 }}>No photo</div>
+                                )}
+                              </div>
+
+                              <div style={{ flex: 1 }}>
+                                <div style={{ fontWeight: 800, fontSize: 16 }}>{(providerDetails[r.providerId].displayName) || providerDetails[r.providerId].email || "Provider"}</div>
+                                <div style={{ color: "#374151", marginTop: 8 }}>{(providerDetails[r.providerId].email) || ""}</div>
+                                <div style={{ color: "#374151", marginTop: 8 }}>Phone: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.phone) || "N/A"}</div>
+                                <div style={{ color: "#6b7280", marginTop: 6 }}>Location: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.location) || ""}</div>
+                                <div style={{ color: "#374151", marginTop: 6 }}>Experience: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.experience) || ""}</div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
