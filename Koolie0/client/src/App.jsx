@@ -9,6 +9,8 @@ import RoleDashboard from "./pages/RoleDashboard";
 import ClientDashboard from "./pages/ClientDashboard";
 import ProviderDashboard from "./pages/ProviderDashboard";
 import RequestForm from "./pages/RequestForm";
+import AdminLogin from "./pages/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function HomePage() {
@@ -36,6 +38,8 @@ function App() {
         <Route path="/client-dashboard" element={<ClientDashboard />} />
         <Route path="/request" element={<RequestForm />} />
         <Route path="/provider-dashboard" element={<ProviderDashboard />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminDashboard />} />
       </Routes>
     </Router>
   );
