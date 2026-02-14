@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import "../styles/auth.css";
 import { auth, db } from "../services/firebase";
@@ -11,11 +11,15 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [role, setRole] = useState("client");
   const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
+  const [verifying, setVerifying] = useState(false);
   const navigate = useNavigate();
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+    setSuccess(null);
     if (!email || !password) return setError("Provide email and password");
     if (password !== confirmPassword) return setError("Passwords do not match");
 
@@ -46,15 +50,26 @@ function Signup() {
         return;
       }
 
-      navigate("/complete-profile");
+      // Send verification email
+      setVerifying(true);
+      await sendEmailVerification(userCred.user);
+      setSuccess("Verification email sent. Please check your inbox.");
+
+      // Sign out user after sending verification
+      setTimeout(async () => {
+        await signOut(auth);
+        setVerifying(false);
+        // Wait for user to verify email and login again
+        navigate("/login");
+      }, 2000);
     } catch (err) {
-      // provide friendlier guidance for common errors
       if (err.code === "auth/email-already-in-use") {
         setError("Email already in use. Please login instead.");
       } else {
         setError(err.message);
       }
       console.error("Signup error:", err);
+      setVerifying(false);
     }
   };
 
@@ -129,7 +144,10 @@ function Signup() {
             </label>
           </div>
 
+
           {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
+          {success && <div style={{ color: "green", marginBottom: 8 }}>{success}</div>}
+          {verifying && <div style={{ color: "#555", marginBottom: 8 }}>Processing...</div>}
 
           <button className="auth-submit">Signup</button>
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/auth.css";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../services/firebase";
 
@@ -16,7 +16,13 @@ function Login() {
     setError(null);
     try {
       const cred = await signInWithEmailAndPassword(auth, email, password);
-      const uid = cred.user.uid;
+      const user = cred.user;
+      if (!user.emailVerified) {
+        setError("Please verify your email before logging in. Check your inbox for the verification email.");
+        await signOut(auth);
+        return;
+      }
+      const uid = user.uid;
 
       const userRef = doc(db, "users", uid);
       const snap = await getDoc(userRef);
@@ -24,7 +30,7 @@ function Login() {
         // create a minimal user doc for first-time sign-ins
         try {
           await setDoc(userRef, {
-            email: cred.user.email || email,
+            email: user.email || email,
             roles: { client: true, provider: false },
             profileCompleted: false,
             clientProfile: {},
