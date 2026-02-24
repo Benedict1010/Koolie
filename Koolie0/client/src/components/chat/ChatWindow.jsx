@@ -1,28 +1,68 @@
 import React, { useState, useRef, useEffect } from "react";
-import "./ChatWindow.css";
-
-const mockMessages = [
-  { id: 1, senderId: "client1", text: "Hi, I have a question about the job." },
-  { id: 2, senderId: "provider1", text: "Sure, how can I help you?" },
-  { id: 3, senderId: "client1", text: "What time will you arrive?" },
-  { id: 4, senderId: "provider1", text: "I will be there by 10 AM." },
-];
+import { db } from "../../services/firebase";
+import {
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  addDoc,
+  onSnapshot,
+  query,
+  orderBy,
+  serverTimestamp
+} from "firebase/firestore";
 
 export default function ChatWindow({ requestId, currentUserId, otherUserName, onClose }) {
-  const [messages, setMessages] = useState(mockMessages);
+  const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
+  const chatRef = doc(db, "chats", requestId);
+  const messagesRef = collection(chatRef, "messages");
+  const [loading, setLoading] = useState(true);
+  const unsubscribeRef = useRef(null);
+
+  // 1. Ensure chat document exists
+  useEffect(() => {
+    let isMounted = true;
+    async function ensureChatDoc() {
+      const chatSnap = await getDoc(chatRef);
+      if (!chatSnap.exists()) {
+        // You may want to pass clientId/providerId as props
+        await setDoc(chatRef, {
+          clientId: currentUserId, // Or pass as prop
+          providerId: otherUserName, // Or pass as prop
+          createdAt: serverTimestamp()
+        });
+      }
+    }
+    ensureChatDoc();
+    // 2. Real-time messages
+    const q = query(messagesRef, orderBy("timestamp", "asc"));
+    unsubscribeRef.current = onSnapshot(q, (snapshot) => {
+      if (!isMounted) return;
+      const msgs = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      setMessages(msgs);
+      setLoading(false);
+    });
+    return () => {
+      isMounted = false;
+      if (unsubscribeRef.current) unsubscribeRef.current();
+    };
+    // eslint-disable-next-line
+  }, [requestId]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  const handleSend = () => {
+  // 3. Send message
+  const handleSend = async () => {
     if (input.trim() === "") return;
-    setMessages([
-      ...messages,
-      { id: Date.now(), senderId: currentUserId, text: input },
-    ]);
+    await addDoc(messagesRef, {
+      senderId: currentUserId,
+      text: input,
+      timestamp: serverTimestamp()
+    });
     setInput("");
   };
 
@@ -35,18 +75,22 @@ export default function ChatWindow({ requestId, currentUserId, otherUserName, on
         )}
       </div>
       <div className="chat-messages">
-        {messages.map((msg) => (
-          <div
-            key={msg.id}
-            className={
-              msg.senderId === currentUserId
-                ? "chat-bubble chat-bubble-right"
-                : "chat-bubble chat-bubble-left"
-            }
-          >
-            {msg.text}
-          </div>
-        ))}
+        {loading ? (
+          <div className="chat-loading">Loading...</div>
+        ) : (
+          messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={
+                msg.senderId === currentUserId
+                  ? "chat-bubble chat-bubble-right"
+                  : "chat-bubble chat-bubble-left"
+              }
+            >
+              {msg.text}
+            </div>
+          ))
+        )}
         <div ref={messagesEndRef} />
       </div>
       <div className="chat-input-area">
