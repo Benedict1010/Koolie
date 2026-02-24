@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ChatWindow from "../chat/ChatWindow";
 import { auth, db } from "../../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, query, where, onSnapshot, doc, getDoc, updateDoc } from "firebase/firestore";
@@ -10,6 +11,9 @@ export default function ProviderPanel() {
   const [providerSkills, setProviderSkills] = useState([]);
 
   const [myJobs, setMyJobs] = useState([]);
+  const [chatRequestId, setChatRequestId] = useState(null);
+  const [chatOtherUser, setChatOtherUser] = useState("");
+  const [chatVisible, setChatVisible] = useState(false);
 
   const tabBtn = (active) => ({
     padding: "8px 14px",
@@ -164,9 +168,22 @@ export default function ProviderPanel() {
                       <div style={{ marginTop: 8, color: "#374151" }}>{m.description}</div>
                       <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>Location: {m.location}</div>
                     </div>
-                    <div style={{ textAlign: "right" }}>
+                    <div style={{ textAlign: "right", display: "flex", flexDirection: "column", gap: 6 }}>
                       <div style={{ fontWeight: 700, color: m.status === "completed" ? "#059669" : "#f59e0b" }}>{m.status}</div>
                       <button type="button" style={{ marginTop: 8, padding: "6px 10px", borderRadius: 6, border: "1px solid #e5e7eb", background: "white", cursor: "pointer" }}>View</button>
+                      {m.status === "assigned" && (
+                        <button
+                          type="button"
+                          style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #059669", background: "#059669", color: "white", cursor: "pointer", fontWeight: 700 }}
+                          onClick={() => {
+                            setChatRequestId(m.id);
+                            setChatOtherUser(m.clientName || m.clientEmail || "Client");
+                            setChatVisible(true);
+                          }}
+                        >
+                          Chat
+                        </button>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -175,6 +192,14 @@ export default function ProviderPanel() {
           </div>
         )}
       </div>
-    </div>
+    {chatVisible && (
+      <ChatWindow
+        requestId={chatRequestId}
+        currentUserId={auth.currentUser?.uid || "provider1"}
+        otherUserName={chatOtherUser}
+        onClose={() => setChatVisible(false)}
+      />
+    )}
+  </div>
   );
 }

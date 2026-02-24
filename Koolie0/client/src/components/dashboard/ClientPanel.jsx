@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import ChatWindow from "../chat/ChatWindow";
 import { useNavigate } from "react-router-dom";
 import { auth, db } from "../../services/firebase";
 import { collection, query, where, onSnapshot, orderBy, doc, getDoc } from "firebase/firestore";
@@ -67,6 +68,9 @@ export default function ClientPanel() {
   // fetch provider user docs for any assigned requests so client can see provider details
   const [providerDetails, setProviderDetails] = useState({});
   const [openProviderId, setOpenProviderId] = useState(null);
+  const [chatRequestId, setChatRequestId] = useState(null);
+  const [chatOtherUser, setChatOtherUser] = useState("");
+  const [chatVisible, setChatVisible] = useState(false);
 
   useEffect(() => {
     let mounted = true;
@@ -206,7 +210,7 @@ export default function ClientPanel() {
                     <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>Location: {r.location}</div>
                     {r.status === "assigned" && r.providerId && (
                       <div style={{ marginTop: 12 }}>
-                        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
                           <div style={{ display: "flex", gap: 12, alignItems: "center", flex: 1 }}>
                             <div style={{ width: 48, height: 48, borderRadius: 6, overflow: "hidden", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
                               {providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.photoURL ? (
@@ -222,13 +226,24 @@ export default function ClientPanel() {
                             </div>
                           </div>
 
-                          <div>
+                          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
                             <button
                               type="button"
                               onClick={() => setOpenProviderId(openProviderId === r.providerId ? null : r.providerId)}
-                              style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #2563eb", background: openProviderId === r.providerId ? "#2563eb" : "white", color: openProviderId === r.providerId ? "white" : "#2563eb", cursor: "pointer", fontWeight: 700 }}
+                              style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #2563eb", background: openProviderId === r.providerId ? "#2563eb" : "white", color: openProviderId === r.providerId ? "white" : "#2563eb", cursor: "pointer", fontWeight: 700, marginBottom: 4 }}
                             >
                               {openProviderId === r.providerId ? "Hide details" : "Show provider"}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setChatRequestId(r.id);
+                                setChatOtherUser((providerDetails[r.providerId] && (providerDetails[r.providerId].displayName || providerDetails[r.providerId].email)) || "Provider");
+                                setChatVisible(true);
+                              }}
+                              style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #059669", background: "#059669", color: "white", cursor: "pointer", fontWeight: 700 }}
+                            >
+                              Chat
                             </button>
                           </div>
                         </div>
@@ -263,6 +278,14 @@ export default function ClientPanel() {
           </div>
         )}
       </div>
-    </div>
+    {chatVisible && (
+      <ChatWindow
+        requestId={chatRequestId}
+        currentUserId={auth.currentUser?.uid || "client1"}
+        otherUserName={chatOtherUser}
+        onClose={() => setChatVisible(false)}
+      />
+    )}
+  </div>
   );
 }
