@@ -158,7 +158,12 @@ export default function ProviderPanel() {
                     <div>
                       <div style={{ fontWeight: 700 }}>{j.title || j.serviceType} <span style={{ fontWeight: 600, color: "#6b7280", fontSize: 13 }}>· {j.serviceType}</span></div>
                       <div style={{ marginTop: 6, color: "#374151" }}>{j.description}</div>
-                      <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>Location: {j.location}</div>
+                      <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
+                        Location: {typeof j.location === 'object' && j.location !== null ?
+                          [j.location.country, j.location.state, j.location.city, j.location.area, j.location.pincode, j.location.addressLine]
+                            .filter(Boolean)
+                            .join(', ') : (j.location || '')}
+                      </div>
                     </div>
 
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
@@ -185,7 +190,12 @@ export default function ProviderPanel() {
                     <div>
                       <div style={{ fontWeight: 700 }}>{m.serviceType} <span style={{ fontWeight: 600, color: "#6b7280", fontSize: 13 }}>· {m.serviceType}</span></div>
                       <div style={{ marginTop: 8, color: "#374151" }}>{m.description}</div>
-                      <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>Location: {m.location}</div>
+                      <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
+                        Location: {typeof m.location === 'object' && m.location !== null ?
+                          [m.location.country, m.location.state, m.location.city, m.location.area, m.location.pincode, m.location.addressLine]
+                            .filter(Boolean)
+                            .join(', ') : (m.location || '')}
+                      </div>
                     </div>
                     <div style={{ textAlign: "right", display: "flex", flexDirection: "column", gap: 6 }}>
                       <div style={{ fontWeight: 700, color: m.status === "completed" ? "#059669" : "#f59e0b" }}>{m.status}</div>
