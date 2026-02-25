@@ -22,6 +22,7 @@ export default function ClientPanel() {
     background: active ? "#eef2ff" : "white",
     cursor: "pointer",
     fontWeight: 600,
+    color: "#2563eb",
   });
 
   useEffect(() => {
@@ -173,7 +174,7 @@ export default function ClientPanel() {
                     }}
                   />
 
-                  <div style={{ fontWeight: 600 }}>{s}</div>
+                  <div style={{ fontWeight: 600, color: "#2563eb" }}>{s}</div>
                 </div>
               ))}
             </div>
