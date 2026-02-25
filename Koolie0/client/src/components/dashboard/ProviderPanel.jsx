@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ChatWindow from "../chat/ChatWindow";
 import { auth, db } from "../../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, query, where, onSnapshot, doc, getDoc, updateDoc } from "firebase/firestore";
+import { collection, query, where, onSnapshot, doc, getDoc, updateDoc, runTransaction } from "firebase/firestore";
 
 export default function ProviderPanel() {
   const [activeTab, setActiveTab] = useState("browse");
@@ -63,7 +63,11 @@ export default function ProviderPanel() {
               return tb - ta;
             });
 
-            const filtered = items.filter((it) => skills.includes(it.serviceType));
+            // Normalize skills and serviceType for robust matching
+            const normalizedSkills = skills.map(s => s.toLowerCase().trim());
+            const filtered = items.filter((it) =>
+              it.serviceType && normalizedSkills.includes(it.serviceType.toLowerCase().trim())
+            );
             setJobs(filtered);
           },
           (err) => {
@@ -105,13 +109,28 @@ export default function ProviderPanel() {
     if (!user) return alert("Please sign in to accept jobs.");
 
     try {
-      await updateDoc(doc(db, "serviceRequests", id), {
-        providerId: user.uid,
-        status: "assigned",
+      const ref = doc(db, "serviceRequests", id);
+      await runTransaction(db, async (tx) => {
+        const snap = await tx.get(ref);
+        if (!snap.exists()) throw new Error("Request not found");
+        const data = snap.data();
+        if (data.status && data.status !== "open") {
+          throw new Error("Request is no longer open");
+        }
+        tx.update(ref, { providerId: user.uid, status: "assigned" });
       });
+      alert("Job accepted successfully.");
     } catch (err) {
       console.error("Failed to accept job:", err);
-      alert((err && err.message) || "Failed to accept job. See console.");
+      // Detect permission errors and give actionable feedback
+      const msg = (err && err.message) || "Failed to accept job. See console.";
+      if (msg.toLowerCase().includes("permission") || msg.toLowerCase().includes("insufficient")) {
+        alert("Missing or insufficient permissions. Check Firestore rules to allow providers to accept jobs.");
+      } else if (msg === "Request is no longer open") {
+        alert("This request was already accepted or closed by someone else.");
+      } else {
+        alert(msg);
+      }
     }
   };
 
