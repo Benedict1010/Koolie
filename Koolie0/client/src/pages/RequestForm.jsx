@@ -43,11 +43,7 @@ const locationData = {
     "Lakshadweep": ["Lakshadweep"],
     "Puducherry": ["Karaikal", "Mahe", "Puducherry", "Yanam"]
   },
-  USA: {
-    California: ["Los Angeles", "San Francisco", "San Diego"],
-    Texas: ["Houston", "Dallas", "Austin"],
-    NewYork: ["New York City", "Buffalo", "Albany"],
-  },
+  
 };
 
 export default function RequestForm() {

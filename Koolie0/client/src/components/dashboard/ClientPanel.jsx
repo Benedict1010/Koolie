@@ -250,7 +250,11 @@ export default function ClientPanel() {
                     </div>
 
                     <div style={{ marginTop: 8, color: "#374151" }}>{r.description}</div>
-                    <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>Location: {r.location}</div>
+                    <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
+                      Location: {r.location && typeof r.location === 'object'
+                        ? `${r.location.addressLine || ''}${r.location.addressLine ? ', ' : ''}${r.location.area || ''}${r.location.area ? ', ' : ''}${r.location.city || ''}${r.location.city ? ', ' : ''}${r.location.state || ''}${r.location.state ? ', ' : ''}${r.location.country || ''}${r.location.pincode ? ' - ' + r.location.pincode : ''}`.replace(/(, )+/g, ', ').replace(/^, |, $/g, '')
+                        : (r.location || '')}
+                    </div>
                     {r.status === "assigned" && r.providerId && (
                       <div style={{ marginTop: 12 }}>
                           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>

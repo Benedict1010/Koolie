@@ -160,9 +160,8 @@ export default function ProviderPanel() {
                       <div style={{ marginTop: 6, color: "#374151" }}>{j.description}</div>
                       <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
                         Location: {typeof j.location === 'object' && j.location !== null ?
-                          [j.location.country, j.location.state, j.location.city, j.location.area, j.location.pincode, j.location.addressLine]
-                            .filter(Boolean)
-                            .join(', ') : (j.location || '')}
+                          `${j.location.addressLine || ''}, ${j.location.area || ''}, ${j.location.city || ''}, ${j.location.state || ''} - ${j.location.pincode || ''}, ${j.location.country || ''}`
+                            : (j.location || '')}
                       </div>
                     </div>
 
@@ -192,9 +191,8 @@ export default function ProviderPanel() {
                       <div style={{ marginTop: 8, color: "#374151" }}>{m.description}</div>
                       <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
                         Location: {typeof m.location === 'object' && m.location !== null ?
-                          [m.location.country, m.location.state, m.location.city, m.location.area, m.location.pincode, m.location.addressLine]
-                            .filter(Boolean)
-                            .join(', ') : (m.location || '')}
+                          `${m.location.addressLine || ''}, ${m.location.area || ''}, ${m.location.city || ''}, ${m.location.state || ''} - ${m.location.pincode || ''}, ${m.location.country || ''}`
+                            : (m.location || '')}
                       </div>
                     </div>
                     <div style={{ textAlign: "right", display: "flex", flexDirection: "column", gap: 6 }}>
