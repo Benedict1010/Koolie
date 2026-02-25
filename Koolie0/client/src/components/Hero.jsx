@@ -3,7 +3,7 @@ import '../styles/hero.css';
 
 export default function Hero() {
   return (
-    <section className="hero-section">
+    <section id="home" className="hero-section">
       <div className="hero-bg-slice" aria-hidden="true"></div>
 
       <div className="hero-card">

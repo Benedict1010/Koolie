@@ -14,8 +14,8 @@ export default function Navbar() {
 
         <nav className="site-navbar__nav" role="navigation" aria-label="Main navigation">
           <Link to="/" className="nav-link">Home</Link>
-          <a href="#" className="nav-link">Services</a>
-          <a href="#" className="nav-link">How it Works</a>
+          <a href="#services" className="nav-link">Services</a>
+          <a href="#how-it-works" className="nav-link">How it Works</a>
         </nav>
 
         <div className="site-navbar__actions">

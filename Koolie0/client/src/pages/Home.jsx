@@ -7,7 +7,7 @@ function Home() {
       <Hero />
 
       {/* Why Choose ServicePro Section */}
-      <section className="why-choose-section">
+      <section id="services" className="why-choose-section">
         <div className="why-container">
           <h2 className="why-title">Why Us?</h2>
           <p className="why-subtitle">We make finding and hiring service professionals simple and safe</p>
@@ -61,7 +61,7 @@ function Home() {
       </section>
 
       {/* How It Works Section */}
-      <section className="how-it-works-section">
+      <section id="how-it-works" className="how-it-works-section">
         <div className="how-it-works-container">
           <h2 className="how-it-works-title">How It Works</h2>
           <p className="how-it-works-subtitle">Get quality service in just three simple steps</p>
