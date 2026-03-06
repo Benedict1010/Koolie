@@ -10,10 +10,9 @@ export default function RoleDashboard() {
   return (
     <DashboardLayout>
       <div>
-        <h2>Role Dashboard</h2>
         <RoleToggle role={role} onChange={setRole} />
 
-        <div style={{ marginTop: 18 }}>
+        <div style={{ marginTop: 50 }}>
           {role === "client" ? <ClientPanel /> : <ProviderPanel />}
         </div>
       </div>
