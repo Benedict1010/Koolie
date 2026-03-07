@@ -10,6 +10,7 @@ function AdminDashboard() {
   const [tab, setTab] = useState("providers");
   const [providers, setProviders] = useState([]);
   const [requests, setRequests] = useState([]);
+    const [providerMap, setProviderMap] = useState({});
   const [error, setError] = useState(null);
 
   // verify admin access
@@ -48,6 +49,10 @@ function AdminDashboard() {
       const snap = await getDocs(q);
       const list = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       setProviders(list);
+        // Build a map for quick lookup
+        const map = {};
+        list.forEach(p => { map[p.id] = p; });
+        setProviderMap(map);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -61,6 +66,15 @@ function AdminDashboard() {
       const snap = await getDocs(collection(db, "serviceRequests"));
       const list = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
       setRequests(list);
+        // Optionally, update providerMap if not loaded
+        if (providers.length === 0) {
+          const q = query(collection(db, "users"), where("roles.provider", "==", true));
+          const snapProviders = await getDocs(q);
+          const listProviders = snapProviders.docs.map((d) => ({ id: d.id, ...d.data() }));
+          const map = {};
+          listProviders.forEach(p => { map[p.id] = p; });
+          setProviderMap(map);
+        }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -115,17 +129,21 @@ function AdminDashboard() {
                   <th>Experience</th>
                   <th>Location</th>
                   <th>Availability</th>
+                    <th>Name</th>
+                    <th>Address</th>
                 </tr>
               </thead>
               <tbody>
                 {providers.map((p) => (
                   <tr key={p.id}>
-                    <td>{p.email}</td>
-                    <td>{p.phone || "-"}</td>
-                    <td>{(p.skills || []).join(", ")}</td>
-                    <td>{p.providerProfile?.experience || "-"}</td>
-                    <td>{p.providerProfile?.location || "-"}</td>
-                    <td>{p.providerProfile?.availability || "-"}</td>
+                      <td>{p.email || '-'}</td>
+                      <td>{p.phone || '-'}</td>
+                      <td>{Array.isArray(p.providerProfile?.skills) ? p.providerProfile.skills.join(", ") : '-'}</td>
+                      <td>{p.providerProfile?.experience || '-'}</td>
+                      <td>{typeof p.providerProfile?.location === 'object' ? Object.values(p.providerProfile.location).join(", ") : p.providerProfile?.location || '-'}</td>
+                      <td>{p.providerProfile?.availability || '-'}</td>
+                      <td>{p.providerProfile?.name || '-'}</td>
+                      <td>{typeof p.providerProfile?.address === 'object' ? Object.values(p.providerProfile.address).join(", ") : p.providerProfile?.address || '-'}</td>
                   </tr>
                 ))}
               </tbody>
@@ -143,6 +161,7 @@ function AdminDashboard() {
                   <th>Service Type</th>
                   <th>Client ID</th>
                   <th>Provider ID</th>
+                    <th>Provider Details</th>
                   <th>Status</th>
                   <th>Created At</th>
                 </tr>
@@ -153,6 +172,16 @@ function AdminDashboard() {
                     <td>{r.serviceType}</td>
                     <td>{r.clientId}</td>
                     <td>{r.providerId || "-"}</td>
+                      <td>
+                        {r.providerId && providerMap[r.providerId] ? (
+                          <div>
+                            <strong>{providerMap[r.providerId].providerProfile?.name || providerMap[r.providerId].email}</strong><br />
+                            Skills: {Array.isArray(providerMap[r.providerId].providerProfile?.skills) ? providerMap[r.providerId].providerProfile.skills.join(", ") : '-'}<br />
+                            Phone: {providerMap[r.providerId].phone || '-'}<br />
+                            Location: {typeof providerMap[r.providerId].providerProfile?.location === 'object' ? Object.values(providerMap[r.providerId].providerProfile.location).join(", ") : providerMap[r.providerId].providerProfile?.location || '-'}
+                          </div>
+                        ) : '-'}
+                      </td>
                     <td>{r.status}</td>
                     <td>{r.createdAt?.toDate ? r.createdAt.toDate().toLocaleString() : "-"}</td>
                   </tr>
