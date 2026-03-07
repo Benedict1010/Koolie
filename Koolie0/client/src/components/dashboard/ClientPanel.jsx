@@ -58,13 +58,14 @@ export default function ClientPanel() {
   const services = SERVICES;
 
   const tabBtnStyle = (active) => ({
-    padding: "8px 14px",
+    padding: "10px 16px",
     borderRadius: 6,
-    border: active ? "2px solid #2563eb" : "1px solid #e5e7eb",
-    background: active ? "#eef2ff" : "white",
+    border: "none",
+    background: active ? "#FFD700" : "white",
     cursor: "pointer",
-    fontWeight: 600,
-    color: "#2563eb",
+    fontWeight: 700,
+    color: active ? "#2563eb" : "#6b7280",
+    fontSize: 14,
   });
 
   useEffect(() => {
@@ -152,11 +153,13 @@ export default function ClientPanel() {
     <div>
       <h3>Client Panel</h3>
 
-      <div style={{ display: "flex", gap: 8, marginTop: 8 }}>
+      <div style={{ display: "flex", gap: 80, marginTop: 8 }}>
         <button
           type="button"
           onClick={() => setActiveTab("request")}
-          style={tabBtnStyle(activeTab === "request")}
+          style={tabBtnStyle(activeTab === "request")
+            
+          }
         >
           REQUEST A SERVICE
         </button>
@@ -178,8 +181,8 @@ export default function ClientPanel() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))",
-                gap: 12,
+                gridTemplateColumns: "repeat(2, 1fr)",
+                gap: 16,
               }}
             >
               {services.map((s) => (
@@ -194,13 +197,13 @@ export default function ClientPanel() {
                   style={{
                     border:
                       selectedService === s ? "2px solid #2563eb" : "1px solid #e5e7eb",
-                    borderRadius: 8,
-                    padding: 12,
+                    borderRadius: 16,
+                    padding: "10px 200px",
                     cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: 10,
+                    gap: 200,
                     background: "white",
                   }}
                 >
