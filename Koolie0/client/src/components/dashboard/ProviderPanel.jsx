@@ -71,13 +71,17 @@ export default function ProviderPanel() {
               // Skill match
               const skillMatch = it.serviceType && normalizedSkills.includes(it.serviceType.toLowerCase().trim());
               // District-city match
-              let cityMatch = false;
-              if (it.location && typeof it.location === 'object' && it.location.city) {
-                cityMatch = providerDistrict && providerDistrict === it.location.city.toLowerCase().trim();
-              } else if (it.city) {
-                cityMatch = providerDistrict && providerDistrict === it.city.toLowerCase().trim();
-              }
-              return skillMatch && cityMatch;
+                let locationMatch = false;
+                if (it.location && typeof it.location === 'object') {
+                  const city = it.location.city ? it.location.city.toLowerCase().trim() : "";
+                  const district = it.location.district ? it.location.district.toLowerCase().trim() : "";
+                  locationMatch = providerDistrict && (providerDistrict === city || providerDistrict === district);
+                } else {
+                  const city = it.city ? it.city.toLowerCase().trim() : "";
+                  const district = it.district ? it.district.toLowerCase().trim() : "";
+                  locationMatch = providerDistrict && (providerDistrict === city || providerDistrict === district);
+                }
+                return skillMatch && locationMatch;
             });
             setJobs(filtered);
           },
