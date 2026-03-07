@@ -254,9 +254,29 @@ export default function ClientPanel() {
 
                     <div style={{ marginTop: 8, color: "#374151" }}>{r.description}</div>
                     <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
-                      Location: {r.location && typeof r.location === 'object'
-                        ? `${r.location.addressLine || ''}${r.location.addressLine ? ', ' : ''}${r.location.area || ''}${r.location.area ? ', ' : ''}${r.location.city || ''}${r.location.city ? ', ' : ''}${r.location.state || ''}${r.location.state ? ', ' : ''}${r.location.country || ''}${r.location.pincode ? ' - ' + r.location.pincode : ''}`.replace(/(, )+/g, ', ').replace(/^, |, $/g, '')
-                        : (r.location || '')}
+                      Location: {(() => {
+                        if (!r.location) return "";
+                        if (typeof r.location === "string") return r.location;
+                        if (typeof r.location === "object") {
+                          // Try to format known keys
+                          const {
+                            addressLine = "",
+                            area = "",
+                            city = "",
+                            state = "",
+                            country = "",
+                            pincode = "",
+                          } = r.location;
+                          const parts = [addressLine, area, city, state, country].filter(Boolean);
+                          let locStr = parts.join(", ");
+                          if (pincode) locStr += ` - ${pincode}`;
+                          // If all are empty, fallback to JSON
+                          if (!locStr.trim()) return JSON.stringify(r.location);
+                          return locStr;
+                        }
+                        // Fallback for unexpected types
+                        return String(r.location);
+                      })()}
                     </div>
                     {r.status === "assigned" && r.providerId && (
                       <div style={{ marginTop: 12 }}>
@@ -272,7 +292,29 @@ export default function ClientPanel() {
 
                             <div style={{ overflow: "hidden" }}>
                               <div style={{ fontWeight: 700, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>{(providerDetails[r.providerId] && (providerDetails[r.providerId].displayName || providerDetails[r.providerId].email)) || "Provider"}</div>
-                              <div style={{ color: "#6b7280", fontSize: 13, marginTop: 4 }}>{(providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.location) || ""}</div>
+                              <div style={{ color: "#6b7280", fontSize: 13, marginTop: 4 }}>
+                                {(() => {
+                                  const loc = providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.location;
+                                  if (!loc) return "";
+                                  if (typeof loc === "string") return loc;
+                                  if (typeof loc === "object") {
+                                    const {
+                                      addressLine = "",
+                                      area = "",
+                                      city = "",
+                                      state = "",
+                                      country = "",
+                                      pincode = "",
+                                    } = loc;
+                                    const parts = [addressLine, area, city, state, country].filter(Boolean);
+                                    let locStr = parts.join(", ");
+                                    if (pincode) locStr += ` - ${pincode}`;
+                                    if (!locStr.trim()) return JSON.stringify(loc);
+                                    return locStr;
+                                  }
+                                  return String(loc);
+                                })()}
+                              </div>
                             </div>
                           </div>
 
@@ -313,7 +355,29 @@ export default function ClientPanel() {
                                 <div style={{ fontWeight: 800, fontSize: 16 }}>{(providerDetails[r.providerId].displayName) || providerDetails[r.providerId].email || "Provider"}</div>
                                 <div style={{ color: "#374151", marginTop: 8 }}>{(providerDetails[r.providerId].email) || ""}</div>
                                 <div style={{ color: "#374151", marginTop: 8 }}>Phone: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.phone) || "N/A"}</div>
-                                <div style={{ color: "#6b7280", marginTop: 6 }}>Location: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.location) || ""}</div>
+                                <div style={{ color: "#6b7280", marginTop: 6 }}>
+                                  {(() => {
+                                    const loc = providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.location;
+                                    if (!loc) return "";
+                                    if (typeof loc === "string") return loc;
+                                    if (typeof loc === "object") {
+                                      const {
+                                        addressLine = "",
+                                        area = "",
+                                        city = "",
+                                        state = "",
+                                        country = "",
+                                        pincode = "",
+                                      } = loc;
+                                      const parts = [addressLine, area, city, state, country].filter(Boolean);
+                                      let locStr = parts.join(", ");
+                                      if (pincode) locStr += ` - ${pincode}`;
+                                      if (!locStr.trim()) return JSON.stringify(loc);
+                                      return locStr;
+                                    }
+                                    return String(loc);
+                                  })()}
+                                </div>
                                 <div style={{ color: "#374151", marginTop: 6 }}>Experience: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.experience) || ""}</div>
                               </div>
                             </div>
