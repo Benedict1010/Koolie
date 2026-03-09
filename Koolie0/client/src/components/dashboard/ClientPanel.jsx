@@ -57,6 +57,18 @@ export default function ClientPanel() {
   // services list moved to shared constant
   const services = SERVICES;
 
+  // lookup for service image – files live in public/ and are served from root
+  const serviceImages = {
+    "Electrician": "/electrician.jpeg",
+    "Plumber": "/plumber.jpeg",
+    "Carpenter": "/carpenter.jpeg",
+    "AC Repair": "/ac mechanic.jpeg",
+    "Painter": "/painter.jpeg",
+    "Cleaning": "/cleaner.jpeg",
+    // doodle is not part of SERVICES but available if needed elsewhere
+    "Doodle": "/doodle.png",
+  };
+
   const tabBtnStyle = (active) => ({
     padding: "10px 16px",
     borderRadius: 6,
@@ -198,12 +210,12 @@ export default function ClientPanel() {
                     border:
                       selectedService === s ? "2px solid #2563eb" : "1px solid #e5e7eb",
                     borderRadius: 16,
-                    padding: "10px 200px",
+                    padding: "10px 16px",
                     cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: 200,
+                    gap: 12,
                     background: "white",
                   }}
                 >
@@ -216,8 +228,21 @@ export default function ClientPanel() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      overflow: "hidden",
                     }}
-                  />
+                  >
+                    {serviceImages[s] && (
+                      <img
+                        src={serviceImages[s]}
+                        alt={s}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    )}
+                  </div>
 
                   <div style={{ fontWeight: 600, color: "#2563eb" }}>{s}</div>
                 </div>
