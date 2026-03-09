@@ -78,18 +78,31 @@ export default function ChatWindow({ requestId, currentUserId, otherUserName, on
         {loading ? (
           <div className="chat-loading">Loading...</div>
         ) : (
-          messages.map((msg) => (
-            <div
-              key={msg.id}
-              className={
-                msg.senderId === currentUserId
-                  ? "chat-bubble chat-bubble-right"
-                  : "chat-bubble chat-bubble-left"
-              }
-            >
-              {msg.text}
-            </div>
-          ))
+          messages.map((msg, idx) => {
+            // Format timestamp
+            let time = msg.timestamp && msg.timestamp.seconds
+              ? new Date(msg.timestamp.seconds * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+              : '';
+            // Determine sender label
+            const isSent = msg.senderId === currentUserId;
+            const senderLabel = isSent ? "You" : otherUserName;
+            return (
+              <div key={msg.id} style={{ display: 'flex', flexDirection: 'column', alignItems: isSent ? 'flex-end' : 'flex-start' }}>
+                <span style={{ fontSize: '0.85em', color: '#888', marginBottom: '2px', marginLeft: isSent ? '0' : '6px', marginRight: isSent ? '6px' : '0' }}>
+                  {senderLabel} {time && <span style={{ marginLeft: 6, color: '#bbb' }}>{time}</span>}
+                </span>
+                <div
+                  className={
+                    isSent
+                      ? "chat-bubble chat-bubble-right"
+                      : "chat-bubble chat-bubble-left"
+                  }
+                >
+                  {msg.text}
+                </div>
+              </div>
+            );
+          })
         )}
         <div ref={messagesEndRef} />
       </div>
