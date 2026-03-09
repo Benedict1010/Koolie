@@ -188,7 +188,7 @@ export default function ClientPanel() {
       <div style={{ marginTop: 16 }}>
         {activeTab === "request" ? (
           <div>
-            <h4 style={{ marginBottom: 12 }}>STEP 1: SERVICE SELECTION</h4>
+            
 
             <div
               style={{
@@ -208,14 +208,14 @@ export default function ClientPanel() {
                   tabIndex={0}
                   style={{
                     border:
-                      selectedService === s ? "2px solid #2563eb" : "1px solid #e5e7eb",
+                      selectedService === s ? "2px solid #194cb9" : "4px solid #5d84d0",
                     borderRadius: 16,
-                    padding: "10px 16px",
+                    padding: "80px 16px",
                     cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: 12,
+                    gap: 19,
                     background: "white",
                   }}
                 >

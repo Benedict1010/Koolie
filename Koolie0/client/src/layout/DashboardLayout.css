@@ -101,11 +101,12 @@
 
 .dashboard-main {
   flex: 1;
-  margin-left: 64px;
-  padding: 92px 24px 24px 24px;
+  margin-left: 0px;
+  padding: 92px 450px 80px 350px;
   box-sizing: border-box;
   transition: margin-left 0.18s ease, color 0.12s ease;
-  color: #ffffff; /* darker content color for readability */
+  background: #ffffff;
+  color: #1f2937;
 }
 
 /* When sidebar expands on hover, push main content to the right */
