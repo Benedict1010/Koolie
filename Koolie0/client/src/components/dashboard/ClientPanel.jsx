@@ -162,17 +162,20 @@ export default function ClientPanel() {
   }, [requests]);
 
   return (
-    <div style={{ background: "#fff", minHeight: "100vh", padding: "32px 0" }}>
-      <h3 style={{ color: "#003DA5", fontWeight: 700, marginBottom: 24 }}>Client Panel</h3>
+    <div>
+      <h3>Client Panel</h3>
 
-      <div style={{ display: "flex", gap: 32, marginTop: 8, justifyContent: "center" }}>
+      <div style={{ display: "flex", gap: 80, marginTop: 8 }}>
         <button
           type="button"
           onClick={() => setActiveTab("request")}
-          style={tabBtnStyle(activeTab === "request")}
+          style={tabBtnStyle(activeTab === "request")
+            
+          }
         >
           REQUEST A SERVICE
         </button>
+
         <button
           type="button"
           onClick={() => setActiveTab("myRequests")}
@@ -182,20 +185,19 @@ export default function ClientPanel() {
         </button>
       </div>
 
-      <div style={{ marginTop: 24, maxWidth: 1100, marginLeft: "auto", marginRight: "auto" }}>
+      <div style={{ marginTop: 16 }}>
         {activeTab === "request" ? (
           <div>
-            <h4 style={{ marginBottom: 18, color: "#003DA5", fontWeight: 700 }}>STEP 1: SERVICE SELECTION</h4>
+            <h4 style={{ marginBottom: 12 }}>STEP 1: SERVICE SELECTION</h4>
 
             <div
               style={{
                 display: "grid",
                 gridTemplateColumns: "repeat(2, 1fr)",
-                gap: 24,
-                justifyContent: "center",
+                gap: 16,
               }}
             >
-              {services.map((s, idx) => (
+              {services.map((s) => (
                 <div
                   key={s}
                   onClick={() => {
@@ -208,26 +210,39 @@ export default function ClientPanel() {
                     border:
                       selectedService === s ? "2px solid #2563eb" : "1px solid #e5e7eb",
                     borderRadius: 16,
-                    padding: "10px 200px",
+                    padding: "10px 16px",
                     cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    gap: 200,
+                    gap: 12,
                     background: "white",
                   }}
                 >
                   <div
                     style={{
-                      width: 96,
-                      height: 96,
-                      borderRadius: 12,
+                      width: 64,
+                      height: 64,
+                      borderRadius: 8,
                       background: "#f3f4f6",
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
+                      overflow: "hidden",
                     }}
-                  />
+                  >
+                    {serviceImages[s] && (
+                      <img
+                        src={serviceImages[s]}
+                        alt={s}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                        }}
+                      />
+                    )}
+                  </div>
 
                   <div style={{ fontWeight: 600, color: "#2563eb" }}>{s}</div>
                 </div>
@@ -235,14 +250,14 @@ export default function ClientPanel() {
             </div>
 
             {selectedService && (
-              <div style={{ marginTop: 18, color: "#003DA5" }}>
+              <div style={{ marginTop: 12 }}>
                 Selected service: <strong>{selectedService}</strong>
               </div>
             )}
           </div>
         ) : (
           <div>
-            <h4 style={{ marginBottom: 8, color: "#003DA5", fontWeight: 700 }}>My Requests</h4>
+            <h4 style={{ marginBottom: 8 }}>My Requests</h4>
             {requests.length === 0 ? (
               <p style={{ color: "#6b7280" }}>You have no requests yet.</p>
             ) : (
@@ -255,7 +270,6 @@ export default function ClientPanel() {
                       borderRadius: 8,
                       padding: 12,
                       background: "white",
-                      boxShadow: "0 1px 4px rgba(16,24,40,0.05)",
                     }}
                   >
                     <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
