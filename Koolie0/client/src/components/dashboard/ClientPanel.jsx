@@ -57,6 +57,18 @@ export default function ClientPanel() {
   // services list moved to shared constant
   const services = SERVICES;
 
+  // lookup for service image – files live in public/ and are served from root
+  const serviceImages = {
+    "Electrician": "/electrician.jpeg",
+    "Plumber": "/plumber.jpeg",
+    "Carpenter": "/carpenter.jpeg",
+    "AC Repair": "/ac mechanic.jpeg",
+    "Painter": "/painter.jpeg",
+    "Cleaning": "/cleaner.jpeg",
+    // doodle is not part of SERVICES but available if needed elsewhere
+    "Doodle": "/doodle.png",
+  };
+
   const tabBtnStyle = (active) => ({
     padding: "10px 16px",
     borderRadius: 6,
@@ -193,16 +205,16 @@ export default function ClientPanel() {
                   role="button"
                   tabIndex={0}
                   style={{
-                    border: `4 px solid #2563eb`,
-                    borderRadius: 26,
-                    padding: "32px 24px 24px 24px",
+                    border:
+                      selectedService === s ? "2px solid #2563eb" : "1px solid #e5e7eb",
+                    borderRadius: 16,
+                    padding: "10px 200px",
                     cursor: "pointer",
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "center",
-                    background: "#fff",
-                    boxShadow: "0 2px 8px rgba(16,24,40,0.08)",
-                    transition: "box-shadow 0.2s",
+                    gap: 200,
+                    background: "white",
                   }}
                 >
                   <div
@@ -214,13 +226,10 @@ export default function ClientPanel() {
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      marginBottom: 16,
                     }}
-                  >
-                    {/* You can add service icons here if available */}
-                  </div>
-                  <div style={{ fontWeight: 700, color: "#003DA5", fontSize: 18 }}>{s}</div>
-                  <div style={{ color: "#2563eb", fontSize: 14, marginTop: 4 }}>{s}</div>
+                  />
+
+                  <div style={{ fontWeight: 600, color: "#2563eb" }}>{s}</div>
                 </div>
               ))}
             </div>
