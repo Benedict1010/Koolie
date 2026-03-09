@@ -47,8 +47,6 @@ export default function ProviderPanel() {
         const userSnap = await getDoc(userRef);
         const skills = (userSnap.exists() && userSnap.data().providerProfile && Array.isArray(userSnap.data().providerProfile.skills)) ? userSnap.data().providerProfile.skills : [];
         setProviderSkills(skills);
-        // Get provider district
-        const providerDistrict = userSnap.exists() && userSnap.data().providerProfile && userSnap.data().providerProfile.district ? userSnap.data().providerProfile.district.toLowerCase().trim() : "";
 
         const q = query(collection(db, "serviceRequests"), where("status", "==", "open"));
 
@@ -67,22 +65,9 @@ export default function ProviderPanel() {
 
             // Normalize skills and serviceType for robust matching
             const normalizedSkills = skills.map(s => s.toLowerCase().trim());
-            const filtered = items.filter((it) => {
-              // Skill match
-              const skillMatch = it.serviceType && normalizedSkills.includes(it.serviceType.toLowerCase().trim());
-              // District-city match
-                let locationMatch = false;
-                if (it.location && typeof it.location === 'object') {
-                  const city = it.location.city ? it.location.city.toLowerCase().trim() : "";
-                  const district = it.location.district ? it.location.district.toLowerCase().trim() : "";
-                  locationMatch = providerDistrict && (providerDistrict === city || providerDistrict === district);
-                } else {
-                  const city = it.city ? it.city.toLowerCase().trim() : "";
-                  const district = it.district ? it.district.toLowerCase().trim() : "";
-                  locationMatch = providerDistrict && (providerDistrict === city || providerDistrict === district);
-                }
-                return skillMatch && locationMatch;
-            });
+            const filtered = items.filter((it) =>
+              it.serviceType && normalizedSkills.includes(it.serviceType.toLowerCase().trim())
+            );
             setJobs(filtered);
           },
           (err) => {
