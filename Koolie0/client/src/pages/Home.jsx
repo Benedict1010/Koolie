@@ -15,8 +15,8 @@ function Home() {
           <div className="why-grid">
             <div className="why-card">
               <div className="why-icon">
-                <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#1a9a2b" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" stroke="#dff7e6" fill="#eaf9ee" />
+                <svg viewBox="0 0 24 24" width="34" color="#0000" height="34" fill="none" stroke="#1a9a2b" strokeWidth="2">
+                  <circle cx="12" cy="12" r="10" stroke="#dff7e6" fill="#000000" />
                   <path d="M9 12l2 2 4-4" stroke="#118a2a" strokeWidth="2.5" fill="none" />
                 </svg>
               </div>

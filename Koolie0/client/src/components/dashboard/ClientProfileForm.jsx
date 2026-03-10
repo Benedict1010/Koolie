@@ -13,7 +13,7 @@ export default function ClientProfileForm({ initial = {}, onSave }) {
 	};
 
 	return (
-		<form onSubmit={submit} style={{ maxWidth: 520 }}>
+		<form onSubmit={submit} className="auth-form" style={{ maxWidth: 520, margin: "0 auto" }}>
 			<div style={{ marginBottom: 12 }}>
 				<label>Phone</label>
 				<input value={phone} onChange={(e) => setPhone(e.target.value)} className="auth-input" />

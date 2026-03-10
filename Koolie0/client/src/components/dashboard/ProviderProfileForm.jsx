@@ -81,11 +81,18 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 		setLocation({ ...location, area: e.target.value });
 	};
 	const handlePincodeChange = (e) => {
-		setLocation({ ...location, pincode: e.target.value.replace(/\D/g, '') });
+		// allow only digits and limit to 6 characters
+		const val = e.target.value.replace(/\D/g, '').slice(0, 6);
+		setLocation({ ...location, pincode: val });
 	};
 
 	const submit = async (e) => {
 		e.preventDefault();
+		// enforce 6-digit pincode
+		if (!location.pincode || location.pincode.length !== 6) {
+			alert("Pincode must be exactly 6 digits");
+			return;
+		}
 		setSaving(true);
 		const skills = Array.isArray(skillsSelected) ? skillsSelected : [];
 		await onSave({ phone, location, experience, available, photoURL, skills });
@@ -118,7 +125,7 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 	};
 
 	return (
-		<form onSubmit={submit} style={{ maxWidth: 520 }}>
+		<form onSubmit={submit} className="auth-form" style={{ maxWidth: 520, margin: "0 auto" }}>
 			<div style={{ marginBottom: 12 }}>
 				<label>Phone</label>
 				<input value={phone} onChange={(e) => setPhone(e.target.value)} className="auth-input" />
@@ -127,20 +134,29 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 			<div style={{ marginBottom: 12 }}>
 				<label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>Location</label>
 				<div style={{ display: 'grid', gap: 8 }}>
-					<select value={location.country} onChange={handleCountryChange} required style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
+					<select value={location.country} onChange={handleCountryChange} required style={{ width: "100%", padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
 						<option value="">Select Country</option>
 						{countryOptions.map(c => <option key={c} value={c}>{c}</option>)}
 					</select>
-					<select value={location.state} onChange={handleStateChange} required disabled={!location.country} style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
+					<select value={location.state} onChange={handleStateChange} required disabled={!location.country} style={{ width: "100%", padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
 						<option value="">Select State</option>
 						{stateOptions.map(s => <option key={s} value={s}>{s}</option>)}
 					</select>
-					<select value={location.district} onChange={handleDistrictChange} required disabled={!location.state} style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
+					<select value={location.district} onChange={handleDistrictChange} required disabled={!location.state} style={{ width: "100%", padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
 						<option value="">Select District</option>
 						{districtOptions.map(d => <option key={d} value={d}>{d}</option>)}
 					</select>
-					<input type="text" value={location.area} onChange={handleAreaChange} placeholder="Area" style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }} />
-					<input type="number" value={location.pincode} onChange={handlePincodeChange} placeholder="Pincode" required style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }} />
+					<input type="text" value={location.area} onChange={handleAreaChange} placeholder="Area" style={{ width: "100%", padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }} />
+					<input
+					type="text"
+					value={location.pincode}
+					onChange={handlePincodeChange}
+					placeholder="Pincode"
+					required
+					maxLength={6}
+					pattern="\d{6}"
+					style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}
+				/>
 				</div>
 			</div>
 

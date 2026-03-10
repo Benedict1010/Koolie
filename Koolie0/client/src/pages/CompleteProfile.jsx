@@ -71,12 +71,22 @@ export default function CompleteProfile() {
   const roles = userDoc?.roles || { client: true, provider: false };
 
   return (
-    <div style={{ padding: 24 }}>
-      <h2>Complete Your Profile</h2>
+    <div style={{ padding: 24, maxWidth: 700, margin: "0 auto" }}>
+      <h2 style={{ textAlign: "center" }}>Complete Your Profile</h2>
       <div style={{ marginTop: 16 }}>
-        {roles.client && <ClientProfileForm initial={userDoc.clientProfile} onSave={saveClient} />}
+        {roles.client && (
+          <section style={{ marginTop: 24, textAlign: "center" }}>
+            <h3>Client Profile</h3>
+            <ClientProfileForm initial={userDoc.clientProfile} onSave={saveClient} />
+          </section>
+        )}
 
-        {roles.provider && <ProviderProfileForm initial={userDoc.providerProfile} onSave={saveProvider} />}
+        {roles.provider && (
+          <section style={{ marginTop: 24, textAlign: "center" }}>
+            <h3>Professional Profile</h3>
+            <ProviderProfileForm initial={userDoc.providerProfile} onSave={saveProvider} />
+          </section>
+        )}
       </div>
     </div>
   );
