@@ -141,8 +141,8 @@ export default function ProviderPanel() {
       </div>
 
       <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-        <button type="button" onClick={() => setActiveTab("browse")} style={tabBtn(activeTab === "browse")}>BROWSE JOBS</button>
-        <button type="button" onClick={() => setActiveTab("myJobs")} style={tabBtn(activeTab === "myJobs")}>MY JOBS</button>
+        <button type="button" onClick={() => setActiveTab("browse")} style={{ ...tabBtn(activeTab === "browse"), color: "black" }}>BROWSE JOBS</button>
+        <button type="button" onClick={() => setActiveTab("myJobs")} style={{ ...tabBtn(activeTab === "myJobs"), color: "black" }}>MY JOBS</button>
       </div>
 
       <div style={{ marginTop: 16 }}>
@@ -151,10 +151,10 @@ export default function ProviderPanel() {
             <h4 style={{ marginBottom: 12 }}>Available Jobs</h4>
             <div style={{ display: "grid", gap: 12 }}>
               {jobs.length === 0 ? (
-                <div style={{ color: "#6b7280" }}>No open jobs available for your skills.</div>
+                <div style={{ color: "#6180bf" }}>No open jobs available for your skills.</div>
               ) : (
                 jobs.map((j) => (
-                  <div key={j.id} style={{ border: "1px solid #e5e7eb", borderRadius: 8, padding: 12, background: "white", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                  <div key={j.id} style={{ border: "1px solid #032a7f", borderRadius: 8, padding: 62, background: "white", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                     <div>
                       <div style={{ fontWeight: 700 }}>{j.title || j.serviceType} <span style={{ fontWeight: 600, color: "#6b7280", fontSize: 13 }}>· {j.serviceType}</span></div>
                       <div style={{ marginTop: 6, color: "#374151" }}>{j.description}</div>
