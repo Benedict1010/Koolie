@@ -5,6 +5,7 @@ import { auth, db } from "../../services/firebase";
 import { collection, query, where, onSnapshot, orderBy, doc, getDoc } from "firebase/firestore";
 import { onAuthStateChanged } from "firebase/auth";
 import { SERVICES } from "../../constants/services";
+import '../../styles/clientDashboard.css';
 // Static JSON for country/state/city
 const locationData = {
   India: {
@@ -162,128 +163,78 @@ export default function ClientPanel() {
   }, [requests]);
 
   return (
-    <div>
-      <h3>Client Panel</h3>
-
-      <div style={{ display: "flex", gap: 80, marginTop: 8 }}>
+    <div className="client-dashboard-modern">
+      <div className="dashboard-header">
+        <h2>Client Dashboard</h2>
+        <div className="dashboard-subtitle">Client Panel</div>
+      </div>
+      <div className="dashboard-tabs">
         <button
           type="button"
+          className={activeTab === "request" ? "tab-btn active" : "tab-btn"}
           onClick={() => setActiveTab("request")}
-          style={tabBtnStyle(activeTab === "request")
-            
-          }
         >
-          REQUEST A SERVICE
+          Request a Service
         </button>
-
         <button
           type="button"
+          className={activeTab === "myRequests" ? "tab-btn active" : "tab-btn"}
           onClick={() => setActiveTab("myRequests")}
-          style={tabBtnStyle(activeTab === "myRequests")}
         >
-          MY REQUESTS
+          My Requests
         </button>
       </div>
-
-      <div style={{ marginTop: 16 }}>
+      <div className="dashboard-content">
         {activeTab === "request" ? (
-          <div>
-            
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(2, 1fr)",
-                gap: 16,
-              }}
-            >
-              {services.map((s) => (
-                <div
-                  key={s}
-                  onClick={() => {
-                    setSelectedService(s);
-                    navigate("/request", { state: { service: s } });
-                  }}
-                  role="button"
-                  tabIndex={0}
-                  style={{
-                    border:
-                      selectedService === s ? "2px solid #194cb9" : "4px solid #5d84d0",
-                    borderRadius: 16,
-                    padding: "80px 16px",
-                    cursor: "pointer",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    gap: 19,
-                    background: "white",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: 64,
-                      height: 64,
-                      borderRadius: 8,
-                      background: "#f3f4f6",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      overflow: "hidden",
-                    }}
-                  >
-                    {serviceImages[s] && (
-                      <img
-                        src={serviceImages[s]}
-                        alt={s}
-                        style={{
-                          width: "100%",
-                          height: "100%",
-                          objectFit: "cover",
-                        }}
-                      />
-                    )}
-                  </div>
-
-                  <div style={{ fontWeight: 600, color: "#2563eb" }}>{s}</div>
+          <div className="service-card-grid">
+            {services.map((s) => (
+              <div
+                key={s}
+                className={selectedService === s ? "service-card selected" : "service-card"}
+                onClick={() => {
+                  setSelectedService(s);
+                  navigate("/request", { state: { service: s } });
+                }}
+                role="button"
+                tabIndex={0}
+              >
+                <div className="service-icon">
+                  {serviceImages[s] && (
+                    <img
+                      src={serviceImages[s]}
+                      alt={s}
+                      className="service-img"
+                    />
+                  )}
                 </div>
-              ))}
-            </div>
-
+                <div className="service-title">{s}</div>
+              </div>
+            ))}
             {selectedService && (
-              <div style={{ marginTop: 12 }}>
+              <div className="service-selected">
                 Selected service: <strong>{selectedService}</strong>
               </div>
             )}
           </div>
         ) : (
-          <div>
-            <h4 style={{ marginBottom: 8 }}>My Requests</h4>
+          <div className="my-requests-section">
+            <h4 className="my-requests-title">My Requests</h4>
             {requests.length === 0 ? (
-              <p style={{ color: "#6b7280" }}>You have no requests yet.</p>
+              <p className="no-requests">You have no requests yet.</p>
             ) : (
-              <div style={{ display: "grid", gap: 12 }}>
+              <div className="requests-list">
                 {requests.map((r) => (
-                  <div
-                    key={r.requestId || r.id}
-                    style={{
-                      border: "1px solid #e5e7eb",
-                      borderRadius: 8,
-                      padding: 12,
-                      background: "white",
-                    }}
-                  >
-                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                      <div style={{ fontWeight: 700 }}>{r.serviceType}</div>
-                      <div style={{ color: r.status === "open" ? "#059669" : "#6b7280", fontWeight: 700 }}>{r.status}</div>
+                  <div key={r.requestId || r.id} className="request-card">
+                    <div className="request-header">
+                      <div className="request-service">{r.serviceType}</div>
+                      <div className={r.status === "open" ? "request-status open" : "request-status"}>{r.status}</div>
                     </div>
-
-                    <div style={{ marginTop: 8, color: "#374151" }}>{r.description}</div>
-                    <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
+                    <div className="request-desc">{r.description}</div>
+                    <div className="request-location">
                       Location: {(() => {
                         if (!r.location) return "";
                         if (typeof r.location === "string") return r.location;
                         if (typeof r.location === "object") {
-                          // Try to format known keys
                           const {
                             addressLine = "",
                             area = "",
@@ -295,29 +246,26 @@ export default function ClientPanel() {
                           const parts = [addressLine, area, city, state, country].filter(Boolean);
                           let locStr = parts.join(", ");
                           if (pincode) locStr += ` - ${pincode}`;
-                          // If all are empty, fallback to JSON
                           if (!locStr.trim()) return JSON.stringify(r.location);
                           return locStr;
                         }
-                        // Fallback for unexpected types
                         return String(r.location);
                       })()}
                     </div>
                     {r.status === "assigned" && r.providerId && (
-                      <div style={{ marginTop: 12 }}>
-                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12 }}>
-                          <div style={{ display: "flex", gap: 12, alignItems: "center", flex: 1 }}>
-                            <div style={{ width: 48, height: 48, borderRadius: 6, overflow: "hidden", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                      <div className="provider-details-section">
+                        <div className="provider-details-header">
+                          <div className="provider-details-main">
+                            <div className="provider-photo">
                               {providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.photoURL ? (
-                                <img src={providerDetails[r.providerId].providerProfile.photoURL} alt="provider" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                <img src={providerDetails[r.providerId].providerProfile.photoURL} alt="provider" className="provider-img" />
                               ) : (
-                                <div style={{ color: "#6b7280", fontSize: 12 }}>No photo</div>
+                                <div className="provider-no-photo">No photo</div>
                               )}
                             </div>
-
-                            <div style={{ overflow: "hidden" }}>
-                              <div style={{ fontWeight: 700, whiteSpace: "nowrap", textOverflow: "ellipsis", overflow: "hidden" }}>{(providerDetails[r.providerId] && (providerDetails[r.providerId].displayName || providerDetails[r.providerId].email)) || "Provider"}</div>
-                              <div style={{ color: "#6b7280", fontSize: 13, marginTop: 4 }}>
+                            <div className="provider-info">
+                              <div className="provider-name">{(providerDetails[r.providerId] && (providerDetails[r.providerId].displayName || providerDetails[r.providerId].email)) || "Provider"}</div>
+                              <div className="provider-location">
                                 {(() => {
                                   const loc = providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.location;
                                   if (!loc) return "";
@@ -342,45 +290,42 @@ export default function ClientPanel() {
                               </div>
                             </div>
                           </div>
-
-                          <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+                          <div className="provider-actions">
                             <button
                               type="button"
+                              className={openProviderId === r.providerId ? "provider-btn active" : "provider-btn"}
                               onClick={() => setOpenProviderId(openProviderId === r.providerId ? null : r.providerId)}
-                              style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #2563eb", background: openProviderId === r.providerId ? "#2563eb" : "white", color: openProviderId === r.providerId ? "white" : "#2563eb", cursor: "pointer", fontWeight: 700, marginBottom: 4 }}
                             >
                               {openProviderId === r.providerId ? "Hide details" : "Show provider"}
                             </button>
                             <button
                               type="button"
+                              className="provider-btn chat"
                               onClick={() => {
                                 setChatRequestId(r.id);
                                 setChatOtherUser((providerDetails[r.providerId] && (providerDetails[r.providerId].displayName || providerDetails[r.providerId].email)) || "Provider");
                                 setChatVisible(true);
                               }}
-                              style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #059669", background: "#059669", color: "white", cursor: "pointer", fontWeight: 700 }}
                             >
                               Chat
                             </button>
                           </div>
                         </div>
-
                         {openProviderId === r.providerId && providerDetails[r.providerId] && (
-                          <div style={{ marginTop: 12, border: "1px solid #e5e7eb", borderRadius: 8, padding: 12, background: "#fafafa" }}>
-                            <div style={{ display: "flex", gap: 12, alignItems: "flex-start" }}>
-                              <div style={{ width: 96, height: 96, borderRadius: 8, overflow: "hidden", background: "#f3f4f6", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                          <div className="provider-details-expanded">
+                            <div className="provider-details-flex">
+                              <div className="provider-photo-large">
                                 {providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.photoURL ? (
-                                  <img src={providerDetails[r.providerId].providerProfile.photoURL} alt="provider photo" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                                  <img src={providerDetails[r.providerId].providerProfile.photoURL} alt="provider photo" className="provider-img-large" />
                                 ) : (
-                                  <div style={{ color: "#6b7280", fontSize: 12 }}>No photo</div>
+                                  <div className="provider-no-photo">No photo</div>
                                 )}
                               </div>
-
-                              <div style={{ flex: 1 }}>
-                                <div style={{ fontWeight: 800, fontSize: 16 }}>{(providerDetails[r.providerId].displayName) || providerDetails[r.providerId].email || "Provider"}</div>
-                                <div style={{ color: "#374151", marginTop: 8 }}>{(providerDetails[r.providerId].email) || ""}</div>
-                                <div style={{ color: "#374151", marginTop: 8 }}>Phone: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.phone) || "N/A"}</div>
-                                <div style={{ color: "#6b7280", marginTop: 6 }}>
+                              <div className="provider-info-large">
+                                <div className="provider-name-large">{(providerDetails[r.providerId].displayName) || providerDetails[r.providerId].email || "Provider"}</div>
+                                <div className="provider-email">{(providerDetails[r.providerId].email) || ""}</div>
+                                <div className="provider-phone">Phone: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.phone) || "N/A"}</div>
+                                <div className="provider-location-large">
                                   {(() => {
                                     const loc = providerDetails[r.providerId] && providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.location;
                                     if (!loc) return "";
@@ -403,7 +348,7 @@ export default function ClientPanel() {
                                     return String(loc);
                                   })()}
                                 </div>
-                                <div style={{ color: "#374151", marginTop: 6 }}>Experience: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.experience) || ""}</div>
+                                <div className="provider-experience">Experience: {(providerDetails[r.providerId].providerProfile && providerDetails[r.providerId].providerProfile.experience) || ""}</div>
                               </div>
                             </div>
                           </div>
@@ -417,14 +362,14 @@ export default function ClientPanel() {
           </div>
         )}
       </div>
-    {chatVisible && (
-      <ChatWindow
-        requestId={chatRequestId}
-        currentUserId={auth.currentUser?.uid || "client1"}
-        otherUserName={chatOtherUser}
-        onClose={() => setChatVisible(false)}
-      />
-    )}
-  </div>
+      {chatVisible && (
+        <ChatWindow
+          requestId={chatRequestId}
+          currentUserId={auth.currentUser?.uid || "client1"}
+          otherUserName={chatOtherUser}
+          onClose={() => setChatVisible(false)}
+        />
+      )}
+    </div>
   );
 }
