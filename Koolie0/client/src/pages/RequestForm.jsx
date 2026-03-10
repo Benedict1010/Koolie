@@ -80,7 +80,7 @@ export default function RequestForm() {
     setLocation({ ...location, area: e.target.value });
   };
   const handlePincodeChange = (e) => {
-    setLocation({ ...location, pincode: e.target.value.replace(/\D/g, '') });
+    setLocation({ ...location, pincode: e.target.value.replace(/\D/g, '').slice(0, 6) });
   };
   const handleAddressLineChange = (e) => {
     setLocation({ ...location, addressLine: e.target.value });
