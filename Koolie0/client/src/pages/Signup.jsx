@@ -16,11 +16,20 @@ function Signup() {
   const navigate = useNavigate();
 
 
+  // simple regex requiring letters, numbers and special characters, min length 8
+  const isStrongPassword = (p) => {
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/.test(p);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
     if (!email || !password) return setError("Provide email and password");
+    if (!isStrongPassword(password))
+      return setError(
+        "Password must be at least 8 characters and include letters, numbers, and special characters."
+      );
     if (password !== confirmPassword) return setError("Passwords do not match");
 
     try {
@@ -99,6 +108,9 @@ function Signup() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <small style={{ display: "block", marginBottom: "8px", color: "#555" }}>
+            Must be 8+ characters and include letters, numbers &amp; special characters.
+          </small>
 
           <input
             className="auth-input"

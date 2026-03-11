@@ -11,6 +11,10 @@ function AdminLogin() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  const isStrongPassword = (p) => {
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/.test(p);
+  };
+
   // redirect if already authenticated as admin
   React.useEffect(() => {
     const user = auth.currentUser;
@@ -27,6 +31,12 @@ function AdminLogin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+    if (!isStrongPassword(password)) {
+      setError(
+        "Password must be at least 8 characters and include letters, numbers, and special characters."
+      );
+      return;
+    }
     try {
       const cred = await signInWithEmailAndPassword(auth, email, password);
       const uid = cred.user.uid;
@@ -71,6 +81,9 @@ function AdminLogin() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <small style={{ display: "block", marginBottom: "8px", color: "#555" }}>
+            Must be 8+ characters and include letters, numbers &amp; special characters.
+          </small>
 
           {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
 
