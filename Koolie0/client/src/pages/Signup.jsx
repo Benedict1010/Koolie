@@ -60,6 +60,7 @@ function Signup() {
       }
 
       // Send verification email
+      
       setVerifying(true);
       await sendEmailVerification(userCred.user);
       setSuccess("Verification email sent. Please check your inbox.");

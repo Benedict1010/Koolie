@@ -12,6 +12,7 @@ import RequestForm from "./pages/RequestForm";
 import AdminLogin from "./pages/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
 
 function HomePage() {
   return (
@@ -27,21 +28,23 @@ function HomePage() {
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/complete-profile" element={<CompleteProfile />} />
-        <Route path="/role-dashboard" element={<RoleDashboard />} />
-        <Route path="/client-dashboard" element={<ClientDashboard />} />
-        <Route path="/request" element={<RequestForm />} />
-        <Route path="/provider-dashboard" element={<ProviderDashboard />} />
-        <Route path="/admin-login" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminDashboard />} />
-      </Routes>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/complete-profile" element={<CompleteProfile />} />
+          <Route path="/role-dashboard" element={<RoleDashboard />} />
+          <Route path="/client-dashboard" element={<ClientDashboard />} />
+          <Route path="/request" element={<RequestForm />} />
+          <Route path="/provider-dashboard" element={<ProviderDashboard />} />
+          <Route path="/admin-login" element={<AdminLogin />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -91,6 +91,22 @@
   padding-right: 8px;
 }
 
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-email {
+  color: #FFFFFF;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
 .btn{
   font-weight: 700;
   padding: 12px 28px;
