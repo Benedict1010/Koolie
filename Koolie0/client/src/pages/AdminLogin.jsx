@@ -81,9 +81,7 @@ function AdminLogin() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <small style={{ display: "block", marginBottom: "8px", color: "#555" }}>
-            Must be 8+ characters and include letters, numbers &amp; special characters.
-          </small>
+          
 
           {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
 
