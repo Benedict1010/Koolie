@@ -1,7 +1,21 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import "./DashboardLayout.css";
 
 export default function DashboardLayout({ children }) {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate("/login");
+    } catch (err) {
+      console.error("Logout failed:", err);
+    }
+  };
+
   return (
     <div className="dashboard-root">
       <aside className="sidebar" aria-label="Sidebar">
@@ -20,7 +34,7 @@ export default function DashboardLayout({ children }) {
           </button>
           <button
             className="nav-item"
-            onClick={() => alert("Logout placeholder")}
+            onClick={handleLogout}
             title="Logout"
           >
             <span className="icon">🔒</span>
