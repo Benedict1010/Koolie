@@ -8,6 +8,7 @@ import { auth, db } from "../services/firebase";
 function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
@@ -74,14 +75,23 @@ function AdminLogin() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input
-            className="auth-input"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          
+          <div className="password-input-wrapper">
+            <input
+              className="auth-input"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword((prev) => !prev)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? "︶" : "👁"}
+            </button>
+          </div>
 
           {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
 

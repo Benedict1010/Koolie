@@ -13,6 +13,8 @@ function Signup() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const [verifying, setVerifying] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
 
 
@@ -102,24 +104,44 @@ function Signup() {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <input
-            className="auth-input"
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <div className="password-input-wrapper">
+            <input
+              className="auth-input"
+              type={showPassword ? "text" : "password"}
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowPassword((prev) => !prev)}
+              aria-label={showPassword ? "Hide password" : "Show password"}
+            >
+              {showPassword ? "︶" : "👁"}
+            </button>
+          </div>
           <small style={{ display: "block", marginBottom: "8px", color: "#555" }}>
-            Must be 8+ characters and include letters, numbers &amp; special characters.
+            Must be 8+ characters and include letters, numbers & special characters.
           </small>
 
-          <input
-            className="auth-input"
-            type="password"
-            placeholder="Confirm password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-          />
+          <div className="password-input-wrapper">
+            <input
+              className="auth-input"
+              type={showConfirmPassword ? "text" : "password"}
+              placeholder="Confirm password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+            />
+            <button
+              type="button"
+              className="password-toggle"
+              onClick={() => setShowConfirmPassword((prev) => !prev)}
+              aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+            >
+              {showConfirmPassword ? "︶" : "👁"}
+            </button>
+          </div>
 
           <div className="auth-roles">
             <span className="roles-label">Register as</span>

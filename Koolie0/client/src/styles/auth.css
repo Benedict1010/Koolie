@@ -57,6 +57,34 @@
   gap:12px;
 }
 
+.password-input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-input-wrapper .auth-input {
+  width: 80%;
+  padding-right: 42px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 4px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 18px;
+  color: #1f3a4a;
+}
+
+.password-toggle:focus {
+  outline: 2px solid #0f7bff;
+  outline-offset: 1px;
+}
+
 .auth-input{
   width:90%;
   padding:12px 14px;

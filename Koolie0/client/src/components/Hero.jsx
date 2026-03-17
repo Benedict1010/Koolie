@@ -11,7 +11,7 @@ export default function Hero() {
           <div className="left-inner">
             <div className="illustration-placeholder">{/* placeholder image */}</div>
             <div className="left-buttons">
-              <button className="btn btn-book"><a href="#">Book a service</a></button>
+              <button className="btn btn-book"><a href="">Book a service</a></button>
               <button className="btn btn-join"><a href="#">Join as professional</a></button>
             </div>
           </div>
