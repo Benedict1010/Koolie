@@ -11,9 +11,20 @@ function Login() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
+  // reuse same strength rule as signup
+  const isStrongPassword = (p) => {
+    return /^(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/.test(p);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
+    if (!isStrongPassword(password)) {
+      setError(
+        "Password must be at least 8 characters and include letters, numbers, and special characters."
+      );
+      return;
+    }
     try {
       const cred = await signInWithEmailAndPassword(auth, email, password);
       const user = cred.user;
@@ -100,6 +111,9 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <small style={{ display: "block", marginBottom: "8px", color: "#555" }}>
+            Must be 8+ characters and include letters, numbers &amp; special characters.
+          </small>
 
           <div className="auth-forgot">
             <a href="#">Forgot password?</a>

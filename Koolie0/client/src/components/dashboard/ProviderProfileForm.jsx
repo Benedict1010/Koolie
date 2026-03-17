@@ -3,6 +3,12 @@ import { SERVICES } from "../../constants/services";
 
 export default function ProviderProfileForm({ initial = {}, onSave }) {
 	const [phone, setPhone] = useState(initial.phone || "");
+
+	// digits only, max 10
+	const handlePhoneChange = (e) => {
+		const val = e.target.value.replace(/\D/g, '').slice(0, 10);
+		setPhone(val);
+	};
 	const locationData = {
   India: {
     "Andhra Pradesh": ["Anantapur", "Chittoor", "East Godavari", "Guntur", "Krishna", "Kurnool", "Prakasam", "Srikakulam", "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa"],
@@ -88,6 +94,11 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 
 	const submit = async (e) => {
 		e.preventDefault();
+		// enforce 10-digit phone if provided
+		if (phone && phone.length !== 10) {
+			alert("Phone number must be exactly 10 digits");
+			return;
+		}
 		// enforce 6-digit pincode
 		if (!location.pincode || location.pincode.length !== 6) {
 			alert("Pincode must be exactly 6 digits");
@@ -128,7 +139,14 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 		<form onSubmit={submit} className="auth-form" style={{ maxWidth: 520, margin: "0 auto" }}>
 			<div style={{ marginBottom: 12 }}>
 				<label>Phone</label>
-				<input value={phone} onChange={(e) => setPhone(e.target.value)} className="auth-input" />
+				<input
+					type="tel"
+					value={phone}
+					onChange={handlePhoneChange}
+					className="auth-input"
+					maxLength={10}
+					pattern="\d{10}"
+				/>
 			</div>
 
 			<div style={{ marginBottom: 12 }}>
