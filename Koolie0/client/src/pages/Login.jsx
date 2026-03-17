@@ -111,9 +111,7 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <small style={{ display: "block", marginBottom: "8px", color: "#555" }}>
-            Must be 8+ characters and include letters, numbers &amp; special characters.
-          </small>
+          
 
           <div className="auth-forgot">
             <a href="#">Forgot password?</a>
