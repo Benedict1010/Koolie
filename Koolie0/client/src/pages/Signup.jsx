@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword, sendEmailVerification, signOut, onAuthStateChanged } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification, signOut } from "firebase/auth";
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import "../styles/auth.css";
 import { auth, db } from "../services/firebase";
@@ -86,31 +86,56 @@ function Signup() {
   };
 
   return (
-    <div className="auth-page">
+    <main className="auth-page auth-page--split">
+      <aside className="auth-aside">
+        <div className="auth-aside-brand">
+          <span className="auth-aside-mark" aria-hidden="true">K</span>
+          <span className="auth-aside-name">KOOLIE</span>
+        </div>
+        <p className="section-eyebrow">One connected marketplace</p>
+        <h1>Make room for better home services.</h1>
+        <p className="auth-aside-copy">
+          Create an account to request services, manage your profile, or offer your professional skills.
+        </p>
+        <ul className="auth-benefits">
+          <li><span className="auth-benefit-icon" aria-hidden="true">✓</span><span>Choose a customer or professional profile.</span></li>
+          <li><span className="auth-benefit-icon" aria-hidden="true">⌁</span><span>Keep service requests and job updates together.</span></li>
+          <li><span className="auth-benefit-icon" aria-hidden="true">↗</span><span>Verify your email before signing in.</span></li>
+        </ul>
+      </aside>
       <div className="auth-card">
-        <h2 className="auth-title">Signup Form</h2>
+        <p className="section-eyebrow">Create account</p>
+        <h2 className="auth-title">Create your account</h2>
+        <p className="auth-subtitle">Choose how you want to use KOOLIE.</p>
 
         <div className="auth-tabs" role="tablist">
           <Link to="/login" className="tab tab-inactive">Login</Link>
-          <button className="tab tab-active" aria-selected="true">Signup</button>
+          <button type="button" className="tab tab-active" aria-selected="true">Sign up</button>
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
-          <input
-            className="auth-input"
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <div className="password-input-wrapper">
+          <label className="auth-field">
+            <span className="auth-field-label">Work or personal email</span>
             <input
               className="auth-input"
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+            />
+          </label>
+
+          <div className="password-input-wrapper">
+            <label className="auth-field-label" htmlFor="signup-password">Create password</label>
+            <input
+              id="signup-password"
+              className="auth-input"
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder="Enter a strong password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="new-password"
             />
             <button
               type="button"
@@ -121,17 +146,20 @@ function Signup() {
               {showPassword ? "︶" : "👁"}
             </button>
           </div>
-          <small style={{ display: "block", marginBottom: "8px", color: "#555" }}>
+          <small className="auth-help">
             Must be 8+ characters and include letters, numbers & special characters.
           </small>
 
           <div className="password-input-wrapper">
+            <label className="auth-field-label" htmlFor="signup-confirm-password">Confirm password</label>
             <input
+              id="signup-confirm-password"
               className="auth-input"
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
+              autoComplete="new-password"
             />
             <button
               type="button"
@@ -153,7 +181,7 @@ function Signup() {
                 checked={role === "client"}
                 onChange={() => setRole("client")}
               />
-              <span>Client</span>
+              <span><strong>Customer</strong><small>Request home services</small></span>
             </label>
 
             <label className="role-option">
@@ -164,7 +192,7 @@ function Signup() {
                 checked={role === "professional"}
                 onChange={() => setRole("professional")}
               />
-              <span>Professional</span>
+              <span><strong>Service professional</strong><small>Find available work</small></span>
             </label>
 
             <label className="role-option">
@@ -175,23 +203,22 @@ function Signup() {
                 checked={role === "both"}
                 onChange={() => setRole("both")}
               />
-              <span>Both</span>
+              <span><strong>Both</strong><small>Customer and professional</small></span>
             </label>
           </div>
 
+          {error && <div className="auth-message auth-message--error" role="alert">{error}</div>}
+          {success && <div className="auth-message auth-message--success" role="status">{success}</div>}
+          {verifying && <div className="auth-message auth-message--pending" role="status">Processing...</div>}
 
-          {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
-          {success && <div style={{ color: "green", marginBottom: 8 }}>{success}</div>}
-          {verifying && <div style={{ color: "#555", marginBottom: 8 }}>Processing...</div>}
-
-          <button className="auth-submit">Signup</button>
+          <button className="auth-submit" type="submit">Create account &amp; send verification email</button>
 
           <div className="auth-footer">
-            Already a member? <Link to="/login">Login</Link>
+            Already have an account? <Link to="/login">Sign in</Link>
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
 

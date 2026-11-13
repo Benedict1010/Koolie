@@ -110,13 +110,6 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 		setSaving(false);
 	};
 
-	const onSkillsChange = (e) => {
-		// not used in the new custom dropdown, kept for compatibility
-		const opts = Array.from(e.target.selectedOptions || []);
-		const vals = opts.map((o) => o.value);
-		setSkillsSelected(vals);
-	};
-
 	useEffect(() => {
 		function handleClickOutside(event) {
 			if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
@@ -136,9 +129,9 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 	};
 
 	return (
-		<form onSubmit={submit} className="auth-form" style={{ maxWidth: 520, margin: "0 auto" }}>
-			<div style={{ marginBottom: 12 }}>
-				<label>Phone</label>
+		<form onSubmit={submit} className="profile-form auth-form">
+			<label className="auth-field">
+				<span className="auth-field-label">Phone</span>
 				<input
 					type="tel"
 					value={phone}
@@ -147,118 +140,89 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 					maxLength={10}
 					pattern="\d{10}"
 				/>
-			</div>
+			</label>
 
-			<div style={{ marginBottom: 12 }}>
-				<label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>Location</label>
-				<div style={{ display: 'grid', gap: 8 }}>
-					<select value={location.country} onChange={handleCountryChange} required style={{ width: "100%", padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
-						<option value="">Select Country</option>
-						{countryOptions.map(c => <option key={c} value={c}>{c}</option>)}
-					</select>
-					<select value={location.state} onChange={handleStateChange} required disabled={!location.country} style={{ width: "100%", padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
-						<option value="">Select State</option>
-						{stateOptions.map(s => <option key={s} value={s}>{s}</option>)}
-					</select>
-					<select value={location.district} onChange={handleDistrictChange} required disabled={!location.state} style={{ width: "100%", padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
-						<option value="">Select District</option>
-						{districtOptions.map(d => <option key={d} value={d}>{d}</option>)}
-					</select>
-					<input type="text" value={location.area} onChange={handleAreaChange} placeholder="Area" style={{ width: "100%", padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }} />
-					<input
-					type="text"
-					value={location.pincode}
-					onChange={handlePincodeChange}
-					placeholder="Pincode"
-					required
-					maxLength={6}
-					pattern="\d{6}"
-					style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}
-				/>
+			<fieldset className="profile-fieldset">
+				<legend>Service location</legend>
+				<div className="profile-location-grid">
+					<label className="auth-field">
+						<span className="auth-field-label">Country</span>
+						<select value={location.country} onChange={handleCountryChange} required>
+							<option value="">Select country</option>
+							{countryOptions.map(c => <option key={c} value={c}>{c}</option>)}
+						</select>
+					</label>
+					<label className="auth-field">
+						<span className="auth-field-label">State</span>
+						<select value={location.state} onChange={handleStateChange} required disabled={!location.country}>
+							<option value="">Select state</option>
+							{stateOptions.map(s => <option key={s} value={s}>{s}</option>)}
+						</select>
+					</label>
+					<label className="auth-field">
+						<span className="auth-field-label">District</span>
+						<select value={location.district} onChange={handleDistrictChange} required disabled={!location.state}>
+							<option value="">Select district</option>
+							{districtOptions.map(d => <option key={d} value={d}>{d}</option>)}
+						</select>
+					</label>
+					<label className="auth-field">
+						<span className="auth-field-label">Area</span>
+						<input type="text" value={location.area} onChange={handleAreaChange} placeholder="Area or locality" />
+					</label>
+					<label className="auth-field profile-pincode-field">
+						<span className="auth-field-label">Pincode</span>
+						<input
+							type="text"
+							value={location.pincode}
+							onChange={handlePincodeChange}
+							placeholder="6-digit pincode"
+							required
+							maxLength={6}
+							pattern="\d{6}"
+						/>
+					</label>
 				</div>
-			</div>
+			</fieldset>
 
-			<div style={{ marginBottom: 12 }}>
-				<label>Experience (years or text)</label>
+			<label className="auth-field">
+				<span className="auth-field-label">Experience (years or text)</span>
 				<input value={experience} onChange={(e) => setExperience(e.target.value)} className="auth-input" />
-			</div>
+			</label>
 
-			<div style={{ marginBottom: 12 }}>
-				<label>
-					<input type="checkbox" checked={available} onChange={(e) => setAvailable(e.target.checked)} /> Available
-				</label>
-			</div>
+			<label className="profile-availability">
+				<input type="checkbox" checked={available} onChange={(e) => setAvailable(e.target.checked)} />
+				<span>Available for work</span>
+			</label>
 
-			<div style={{ marginBottom: 12 }}>
-				<label>Photo URL</label>
+			<label className="auth-field">
+				<span className="auth-field-label">Photo URL</span>
 				<input value={photoURL} onChange={(e) => setPhotoURL(e.target.value)} className="auth-input" />
-			</div>
+			</label>
 
-			<div style={{ marginBottom: 12 }} ref={wrapperRef}>
-				<label style={{ display: "block", marginBottom: 6 }}>Skills</label>
+			<div className="profile-skills" ref={wrapperRef}>
+				<span className="auth-field-label">Skills</span>
 				<button
 					type="button"
+					className="profile-skills-trigger"
 					onClick={() => setDropdownOpen((o) => !o)}
 					aria-expanded={dropdownOpen}
-					style={{
-						display: "flex",
-						alignItems: "center",
-						gap: 8,
-						padding: "8px 12px",
-						borderRadius: 8,
-						border: "1px solid #e5e7eb",
-						background: "white",
-						width: "100%",
-						justifyContent: "space-between",
-						cursor: "pointer",
-					}}
 				>
-					<div style={{ display: "flex", gap: 6, alignItems: "center", flexWrap: "wrap", maxWidth: "80%" }}>
+					<span className="profile-skills-selected">
 						{skillsSelected && skillsSelected.length > 0 ? (
-							skillsSelected.map((s) => (
-								<span
-									key={s}
-									style={{ background: "#eef2ff", color: "#0f172a", padding: "4px 8px", borderRadius: 999, fontSize: 13 }}
-								>
-									{s}
-
-								</span>
-							))
+							skillsSelected.map((s) => <span className="profile-skill-pill" key={s}>{s}</span>)
 						) : (
-							<span style={{ color: "#6b7280" }}>Select skills</span>
+							<span className="profile-skills-placeholder">Select skills</span>
 						)}
-					</div>
-					<div style={{ marginLeft: "auto", color: "#374151" }}>{dropdownOpen ? "▲" : "▼"}</div>
+					</span>
+					<span aria-hidden="true">{dropdownOpen ? "−" : "+"}</span>
 				</button>
 				{dropdownOpen && (
-					<div
-						role="menu"
-						style={{
-							position: "absolute",
-							background: "white",
-							border: "1px solid #e5e7eb",
-							marginTop: 8,
-							borderRadius: 8,
-							boxShadow: "0 6px 20px rgba(2,6,23,0.08)",
-							zIndex: 40,
-							maxHeight: 220,
-							overflow: "auto",
-							width: 360,
-						}}
-					>
+					<div className="profile-skills-menu" role="group" aria-label="Select professional skills">
 						{SERVICES.map((s) => (
-							<label
-								key={s}
-								style={{
-									display: "flex",
-									alignItems: "center",
-									gap: 8,
-									padding: "8px 12px",
-									cursor: "pointer",
-								}}
-							>
+							<label className="profile-skill-option" key={s}>
 								<input type="checkbox" checked={skillsSelected.includes(s)} onChange={() => toggleSkill(s)} />
-								<span style={{ marginLeft: 6 }}>{s}</span>
+								<span>{s}</span>
 							</label>
 						))}
 					</div>
@@ -266,7 +230,7 @@ export default function ProviderProfileForm({ initial = {}, onSave }) {
 			</div>
 
 			<button className="auth-submit" type="submit" disabled={saving}>
-				{saving ? "Saving..." : "Save Provider Profile"}
+				{saving ? "Saving..." : "Save professional profile"}
 			</button>
 		</form>
 	);

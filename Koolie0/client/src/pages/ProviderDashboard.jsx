@@ -5,10 +5,7 @@ import ProviderPanel from "../components/dashboard/ProviderPanel";
 export default function ProviderDashboard() {
   return (
     <DashboardLayout>
-      <div>
-        <h2>Professional Dashboard</h2>
-        <ProviderPanel />
-      </div>
+      <ProviderPanel />
     </DashboardLayout>
   );
 }

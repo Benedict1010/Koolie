@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-lowest": "#ffffff", "on-surface-variant": "#45464d", "surface-container-high": "#dce9ff", "on-primary-fixed-variant": "#3f465c", "on-secondary": "#ffffff", "surface-bright": "#f8f9ff", "error": "#ba1a1a", "on-primary-container": "#7c839b", "tertiary-fixed": "#85f8c4", "on-secondary-fixed": "#00174b", "inverse-on-surface": "#eaf1ff", "on-surface": "#0b1c30", "primary-fixed": "#dae2fd", "on-primary": "#ffffff", "surface-container-highest": "#d3e4fe", "surface-container": "#e5eeff", "background": "#f8f9ff", "on-tertiary-fixed": "#002114", "on-error-container": "#93000a", "secondary-fixed": "#dbe1ff", "secondary-fixed-dim": "#b4c5ff", "on-primary-fixed": "#131b2e", "outline-variant": "#c6c6cd", "secondary": "#0051d5", "inverse-primary": "#bec6e0", "on-error": "#ffffff", "tertiary-container": "#002114", "surface-dim": "#cbdbf5", "on-tertiary": "#ffffff", "surface": "#f8f9ff", "tertiary-fixed-dim": "#68dba9", "surface-container-low": "#eff4ff", "tertiary": "#000000", "surface-variant": "#d3e4fe", "primary": "#000000", "on-tertiary-container": "#069669", "on-secondary-container": "#fefcff", "surface-tint": "#565e74", "primary-container": "#131b2e", "primary-fixed-dim": "#bec6e0", "on-tertiary-fixed-variant": "#005137", "outline": "#76777d", "error-container": "#ffdad6", "inverse-surface": "#213145", "on-secondary-fixed-variant": "#003ea8", "secondary-container": "#316bf3", "on-background": "#0b1c30" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-mobile": "1rem", "space-sm": "0.75rem", "margin": "2rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-md": "1rem", "space-2xl": "3rem", "space-2xs": "0.25rem", "space-xs": "0.5rem", "gutter": "1.5rem", "margin-mobile": "1rem" }, "fontFamily": { "body-lg": [ "Inter" ], "body-sm": [ "Inter" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "display-mobile": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "display": [ "Plus Jakarta Sans" ], "title-md": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ], "label-lg": [ "Inter" ], "label-sm": [ "Inter" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "800" } ], "body-md": [ "14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" } ], "display": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "800" } ], "title-md": [ "16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-surface-container z-50 flex flex-col"><div class="h-16 px-space-md border-b border-surface-container flex items-center gap-space-xs"><img alt="KOOLIE Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrBwsHxC62qxfVgqnaQcgX3fkgzz7J6gDkFK6YQgMevNieK8rYFg7CAxjhtEA7qqIDT0VSnMuct7Ynq2Ii63prUl9lgkQwsvoITHPzCoswOnKLSTckGtclxbGQsanfon5V4faroaETfNSdSBNXgo3MqsEkWod1mB6GCrRQR7vr56pv15eRUCCN32fmwTsF1D1Ge8eX7RgFmSUclOF9S9sGcbUfWc8_Uady97JBwgOg0Hxw"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-extrabold">KOOLIE</span></div><div class="flex-1 px-space-sm py-space-md overflow-y-auto"><div class="px-space-xs mb-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Console Views</div><nav class="flex flex-col gap-space-2xs" data-active-classes="bg-surface-container-high text-on-surface font-title-md"><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg transition-all bg-surface-container-high text-on-surface font-title-md" data-path="client-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Client Overview</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="provider-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">engineering</span>Provider Hub</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="admin" href="#"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>Admin Console</a></nav><div class="mt-space-lg px-space-xs mb-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Operations</div><div class="flex flex-col gap-space-2xs"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="services" href="#"><span class="material-symbols-outlined text-[20px]">handyman</span>Service Catalog</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="how-it-works" href="#"><span class="material-symbols-outlined text-[20px]">help_center</span>Workflow Guide</a></div></div><div class="p-space-md border-t border-surface-container bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-container-highest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV4v9FDECr2NoaxL1EeoqYm_QnAzv91VX0FSghJ9gSEu3EdWNLbS3J9JosCOSi_T2g49x_b_QFswyWrEEKrMLsHml_h1H1PYRITmavFCxEQigyyraxJbpe2SUWPRwRcCOEpQMHEidR6gL4YVhvElIr8OaUQF8egncC86aa_0KpU0jwdDMQR3cXCnVSO2n7Yb3riSYWFu6yCJgz54caNzIagmfrkdmWS14cUeIXeb83"/><div class="flex flex-col leading-none"><span class="font-label-lg text-label-lg text-on-surface font-semibold truncate max-w-[100px]">Alex Morgan</span><span class="font-label-sm text-label-sm text-on-surface-variant">Active Pro</span></div></div><button aria-label="Logout" class="p-space-2xs text-on-surface-variant hover:text-error hover:bg-error-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">logout</span></button></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-surface-container z-40 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex items-center bg-surface-container-low p-space-2xs rounded-full border border-surface-container"><button class="px-space-sm py-space-2xs rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm shadow-[0_1px_2px_rgba(11,28,48,0.06)] transition-all" type="button">Customer View</button><button class="px-space-sm py-space-2xs rounded-full text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" type="button">Professional View</button></div></div><div class="flex items-center gap-space-md"><nav class="hidden lg:flex items-center gap-space-2xs p-space-2xs bg-surface-container-low rounded-lg" data-active-classes="bg-surface-container-high text-on-surface font-title-md"><a class="px-space-sm py-space-2xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="home" href="#">Home</a><a class="px-space-sm py-space-2xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="services" href="#">Services</a><a class="px-space-sm py-space-2xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="how-it-works" href="#">How It Works</a></nav><div class="flex items-center gap-space-sm pl-space-xs border-l border-surface-container"><button aria-label="Notifications" class="p-space-2xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="relative flex items-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-tertiary-fixed-dim" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV4v9FDECr2NoaxL1EeoqYm_QnAzv91VX0FSghJ9gSEu3EdWNLbS3J9JosCOSi_T2g49x_b_QFswyWrEEKrMLsHml_h1H1PYRITmavFCxEQigyyraxJbpe2SUWPRwRcCOEpQMHEidR6gL4YVhvElIr8OaUQF8egncC86aa_0KpU0jwdDMQR3cXCnVSO2n7Yb3riSYWFu6yCJgz54caNzIagmfrkdmWS14cUeIXeb83"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-on-tertiary-container rounded-full ring-2 ring-surface-container-lowest"></span></div><button aria-label="Logout" class="p-space-2xs rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors focus:outline-none" type="button"><span class="material-symbols-outlined text-[20px]">logout</span></button></div></div></header><main class="w-full pt-16 bg-surface flex-1 px-gutter py-space-lg"><div class="flex flex-col w-full gap-space-xl">
+<!-- Top Greeting & Live Metric KPI Strip -->
+<section class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-lg">
+<div class="flex flex-col gap-space-2xs max-w-2xl">
+<div class="inline-flex items-center gap-space-xs text-secondary font-label-md uppercase tracking-wider">
+<span class="w-2 h-2 rounded-full bg-on-tertiary-container animate-pulse"></span>
+        Verified Domestic Network
+      </div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Welcome back, Alex</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Manage your home services, active requests, and verified specialists across your properties.</p>
+</div>
+<!-- Quick Metric Strip -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm bg-surface-container-low p-space-xs rounded-xl shadow-sm">
+<div class="flex flex-col px-space-md py-space-xs bg-surface-container-lowest rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Total Requests</span>
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">3</span>
+</div>
+<div class="flex flex-col px-space-md py-space-xs bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Active</span>
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+</div>
+<span class="font-headline-md text-headline-md text-secondary font-bold tracking-tight">1</span>
+</div>
+<div class="flex flex-col px-space-md py-space-xs bg-surface-container-lowest rounded-lg shadow-sm">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">In-Progress</span>
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+</div>
+<span class="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">1</span>
+</div>
+<div class="flex flex-col px-space-md py-space-xs bg-surface-container-lowest rounded-lg shadow-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-medium">Completed</span>
+<span class="font-headline-md text-headline-md text-on-surface-variant font-bold tracking-tight">1</span>
+</div>
+</div>
+</section>
+<!-- Segmented Tab Navigation -->
+<div class="flex items-center justify-between">
+<div class="inline-flex p-space-2xs bg-surface-container rounded-xl shadow-sm gap-space-2xs" role="tablist">
+<button class="tab-trigger flex items-center gap-space-xs px-space-lg py-space-xs rounded-lg font-title-md text-title-md bg-surface-container-lowest text-on-surface shadow-sm transition-all duration-200" id="tab-btn-explore" onclick="switchDashboardTab('explore')">
+<span class="material-symbols-outlined text-[20px]">handyman</span>
+        Explore Services
+      </button>
+<button class="tab-trigger flex items-center gap-space-xs px-space-lg py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface transition-all duration-200" id="tab-btn-requests" onclick="switchDashboardTab('requests')">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+        My Requests
+        <span class="px-space-xs py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-sm text-label-sm font-semibold">2 Live</span>
+</button>
+</div>
+<!-- Quick Emergency Support Link -->
+<div class="hidden md:flex items-center gap-space-xs px-space-md py-space-xs bg-surface-container-low rounded-lg text-on-surface-variant font-body-sm text-body-sm">
+<span class="material-symbols-outlined text-secondary text-[18px]">verified_user</span>
+      100% Guaranteed &amp; Insured Fulfillment
+    </div>
+</div>
+<!-- TAB VIEW 1: Explore Services (Catalogue from constants/services.js) -->
+<div class="tab-content flex flex-col gap-space-xl" id="view-explore">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Service Catalogue</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Select an audited category to deploy licensed technicians immediately.</p>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span>Standard ETA:</span>
+<span class="font-bold text-on-surface bg-surface-container-high px-space-xs py-space-2xs rounded">25-45 mins</span>
+</div>
+</div>
+<!-- 6 Exact Service Categories Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- 1. Electrician -->
+<div class="group relative flex flex-col justify-between p-space-lg bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">bolt</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold px-space-xs py-space-2xs rounded-full bg-surface-container-low text-on-surface-variant">Standard $45/hr</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Electrician</h3>
+<p class="mt-space-2xs font-body-md text-body-md text-on-surface-variant">Diagnostics, wiring fixtures, breaker repairs, phase shifts, and high-voltage compliance checks.</p>
+</div>
+<div class="flex flex-wrap gap-space-2xs">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Short-Circuit</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">EV Charger</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Panel Overhaul</span>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">24 Verified Active</span>
+<a class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-on-surface-variant transition-colors flex items-center gap-space-2xs shadow-sm" data-path="request" href="#">
+            Book Service
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 2. Plumber -->
+<div class="group relative flex flex-col justify-between p-space-lg bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">water_drop</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold px-space-xs py-space-2xs rounded-full bg-surface-container-low text-on-surface-variant">Standard $40/hr</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Plumber</h3>
+<p class="mt-space-2xs font-body-md text-body-md text-on-surface-variant">Rapid leak isolation, pipe unclogging, water heaters, sanitary lines, and booster pump installations.</p>
+</div>
+<div class="flex flex-wrap gap-space-2xs">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Burst Pipes</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Drain Camera</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Pressure Valves</span>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">19 Verified Active</span>
+<a class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-on-surface-variant transition-colors flex items-center gap-space-2xs shadow-sm" data-path="request" href="#">
+            Book Service
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 3. Carpenter -->
+<div class="group relative flex flex-col justify-between p-space-lg bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">square_foot</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold px-space-xs py-space-2xs rounded-full bg-surface-container-low text-on-surface-variant">Standard $42/hr</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Carpenter</h3>
+<p class="mt-space-2xs font-body-md text-body-md text-on-surface-variant">Custom woodwork, cabinet restoration, door alignment, lock repairs, and structural framing.</p>
+</div>
+<div class="flex flex-wrap gap-space-2xs">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Custom Shelves</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Hardware Replacements</span>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">14 Verified Active</span>
+<a class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-on-surface-variant transition-colors flex items-center gap-space-2xs shadow-sm" data-path="request" href="#">
+            Book Service
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 4. AC Repair -->
+<div class="group relative flex flex-col justify-between p-space-lg bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">ac_unit</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold px-space-xs py-space-2xs rounded-full bg-surface-container-low text-on-surface-variant">Standard $50/hr</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">AC Repair</h3>
+<p class="mt-space-2xs font-body-md text-body-md text-on-surface-variant">Freon charging, condenser coil cleanup, compressor diagnostics, and high-efficiency HVAC servicing.</p>
+</div>
+<div class="flex flex-wrap gap-space-2xs">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Gas Leakage</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Thermostat Unit</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Deep Foam</span>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">31 Verified Active</span>
+<a class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-on-surface-variant transition-colors flex items-center gap-space-2xs shadow-sm" data-path="request" href="#">
+            Book Service
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 5. Painter -->
+<div class="group relative flex flex-col justify-between p-space-lg bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">format_paint</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold px-space-xs py-space-2xs rounded-full bg-surface-container-low text-on-surface-variant">Standard $38/hr</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Painter</h3>
+<p class="mt-space-2xs font-body-md text-body-md text-on-surface-variant">Interior &amp; exterior wall finishing, damp proofing, primer coating, and high-precision accent trim work.</p>
+</div>
+<div class="flex flex-wrap gap-space-2xs">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Wall Texture</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Waterproofing</span>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">11 Verified Active</span>
+<a class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-on-surface-variant transition-colors flex items-center gap-space-2xs shadow-sm" data-path="request" href="#">
+            Book Service
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- 6. Cleaning -->
+<div class="group relative flex flex-col justify-between p-space-lg bg-surface-container-lowest rounded-xl shadow-sm hover:shadow-md transition-all duration-300">
+<div class="flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-on-secondary transition-colors duration-200">
+<span class="material-symbols-outlined text-[26px]">cleaning_services</span>
+</div>
+<span class="font-label-sm text-label-sm font-semibold px-space-xs py-space-2xs rounded-full bg-surface-container-low text-on-surface-variant">Standard $32/hr</span>
+</div>
+<div>
+<h3 class="font-title-md text-title-md text-on-surface group-hover:text-secondary transition-colors">Cleaning</h3>
+<p class="mt-space-2xs font-body-md text-body-md text-on-surface-variant">Deep home sanitization, kitchen chimney degreasing, sofa upholstery extraction, and move-in prep.</p>
+</div>
+<div class="flex flex-wrap gap-space-2xs">
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Deep Scrub</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Sanitization</span>
+<span class="px-space-xs py-0.5 rounded font-label-sm text-label-sm bg-surface-container text-on-surface-variant">Upholstery</span>
+</div>
+</div>
+<div class="mt-space-lg pt-space-md flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">28 Verified Active</span>
+<a class="px-space-md py-space-xs rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-on-surface-variant transition-colors flex items-center gap-space-2xs shadow-sm" data-path="request" href="#">
+            Book Service
+            <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB VIEW 2: My Requests (Firestore Real-time Query Replica) -->
+<div class="tab-content flex flex-col gap-space-lg hidden" id="view-requests">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm">
+<div class="flex flex-col">
+<h2 class="font-headline-sm text-headline-sm text-on-surface">Service Requests</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Live updates from the dispatch stream across your connected units.</p>
+</div>
+<div class="flex items-center gap-space-xs">
+<span class="px-space-sm py-space-2xs rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+          Live Stream Connected
+        </span>
+</div>
+</div>
+<!-- Active Request List Container -->
+<div class="flex flex-col gap-space-lg">
+<!-- ITEM 1: Assigned Status with Full Dedicated Specialist Panel -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<!-- Top Status Bar & Request Meta -->
+<div class="p-space-lg flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">ac_unit</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">REQ-94821</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Today at 10:14 AM</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">AC Repair &amp; Coolant Leak Inspection</h3>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<!-- Assigned Pill Badge (Indigo/Blue) -->
+<span class="inline-flex items-center gap-1.5 px-space-md py-space-xs rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-lg text-label-lg font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+              Assigned
+            </span>
+</div>
+</div>
+<!-- Description & Location Details -->
+<div class="px-space-lg pb-space-md grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="md:col-span-2 flex flex-col gap-space-2xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Reported Issue</span>
+<p class="font-body-md text-body-md text-on-surface">Master bedroom split AC unit is blowing ambient temperature air and showing error code E4 intermittently on power startup.</p>
+</div>
+<div class="flex flex-col gap-space-2xs bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Dispatch Address</span>
+<div class="flex items-center gap-space-xs text-on-surface font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px] text-secondary">location_on</span>
+<span>742 Evergreen Terrace, Sector 4, 560034</span>
+</div>
+</div>
+</div>
+<!-- SPECIALIST ASSIGNED PANEL (Item 5) -->
+<div class="p-space-lg bg-surface-container-low flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-md">
+<div class="relative">
+<img alt="Rajesh Kumar Specialist Avatar" class="w-14 h-14 rounded-full object-cover shadow-sm ring-2 ring-tertiary-fixed-dim" data-alt="Professional Indian HVAC certified specialist wearing safety work vest, confident expression, outdoor daylight with tool belt in Bangalore residential backdrop, crisp lighting, high quality portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd2CXQmzg6492beBOi8W49TLtdFlkFQgGaPJX7JipZMh4f68I3bSVD5-Uj4SRadNV1R9IR13yOGX464exkm9sYZ1zSGY7rcNegj9fnBIGQoaQnVgVjmO3qxDzABFn5R_6J4UyMIiEglN2U2YDLsnLu98TRaMrLExBKeXTEWEdpHb83lqxFb4MYGM3c0JXnsdZSGmtv5MXVmTxihXgRsq1ccpiyO6y5b7CFKjWEsxOl"/>
+<span class="absolute bottom-0 right-0 w-3.5 h-3.5 bg-on-tertiary-container rounded-full ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-title-md text-title-md text-on-surface font-bold">Rajesh Kumar</span>
+<!-- Verified Badge -->
+<span class="inline-flex items-center gap-1 px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+                  Verified Specialist
+                </span>
+</div>
+<div class="flex items-center flex-wrap gap-space-sm mt-0.5 text-on-surface-variant font-label-md text-label-md">
+<span class="flex items-center text-on-surface font-semibold gap-1">
+<span class="material-symbols-outlined text-[16px] text-amber-500" style="font-variation-settings: 'FILL' 1;">star</span>
+                  4.9 <span class="text-on-surface-variant font-normal">(184 reviews)</span>
+</span>
+<span>•</span>
+<span>6 years experience</span>
+<span>•</span>
+<span class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">call</span>
+                  +91 98450 21980
+                </span>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-space-sm">
+<button class="w-full sm:w-auto px-space-lg py-space-xs rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg hover:bg-secondary-container transition-all flex items-center justify-center gap-space-xs shadow-sm" onclick="toggleChatOverlay()" type="button">
+<span class="material-symbols-outlined text-[18px]">chat</span>
+              Open Chat
+            </button>
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-lowest text-on-surface font-label-lg text-label-lg hover:bg-surface-container transition-colors flex items-center gap-space-xs shadow-sm" onclick="alert('Connecting phone call to Rajesh Kumar...')" type="button">
+<span class="material-symbols-outlined text-[18px]">phone_enabled</span>
+              Call
+            </button>
+</div>
+</div>
+</div>
+<!-- ITEM 2: Open Status (Amber Badge, Awaiting Technician) -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-lg">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[28px]">bolt</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">REQ-94819</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Yesterday at 6:40 PM</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Main Circuit Breaker Tripping Frequently</h3>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<!-- Open Pill Badge (Amber) -->
+<span class="inline-flex items-center gap-1.5 px-space-md py-space-xs rounded-full bg-amber-100 text-amber-900 font-label-lg text-label-lg font-semibold">
+<span class="w-2 h-2 rounded-full bg-amber-500 animate-ping"></span>
+              Open • Matching Provider
+            </span>
+</div>
+</div>
+<div class="mt-space-md pt-space-md grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="md:col-span-2 flex flex-col gap-space-2xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Reported Issue</span>
+<p class="font-body-md text-body-md text-on-surface">The 32-amp sub-panel trips whenever kitchen induction cooktop and geyser run synchronously. Require load-balancing consultation.</p>
+</div>
+<div class="flex flex-col gap-space-2xs bg-surface-container-low p-space-sm rounded-lg">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase font-semibold">Dispatch Address</span>
+<div class="flex items-center gap-space-xs text-on-surface font-body-md text-body-md">
+<span class="material-symbols-outlined text-[18px] text-secondary">location_on</span>
+<span>742 Evergreen Terrace, Sector 4, 560034</span>
+</div>
+</div>
+</div>
+<div class="mt-space-md flex flex-wrap items-center justify-between gap-space-sm pt-space-xs">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px] text-secondary">radar</span>
+            3 certified technicians currently assessing this dispatch request
+          </div>
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-lg text-label-lg transition-colors" onclick="alert('Request details opened')" type="button">
+            Modify Request
+          </button>
+</div>
+</div>
+<!-- ITEM 3: Completed Item Reference -->
+<div class="flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-lg opacity-80 hover:opacity-100 transition-opacity">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<div class="flex flex-col sm:flex-row sm:items-center gap-space-md">
+<div class="w-12 h-12 rounded-xl bg-surface-container-low flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-[28px]">cleaning_services</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm font-bold uppercase tracking-wider text-on-surface-variant">REQ-94102</span>
+<span class="text-outline-variant">•</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Nov 28, 2024</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface">Deep Kitchen Degreasing &amp; Sanitization</h3>
+</div>
+</div>
+<div class="flex items-center gap-space-sm">
+<span class="inline-flex items-center gap-1.5 px-space-md py-space-xs rounded-full bg-surface-container-high text-on-surface font-label-lg text-label-lg font-semibold">
+<span class="material-symbols-outlined text-[16px] text-on-tertiary-container">task_alt</span>
+              Completed
+            </span>
+</div>
+</div>
+</div>
+</div>
+<!-- Empty State Component (Available when filters zero out) -->
+<div class="hidden flex-col items-center justify-center p-space-2xl bg-surface-container-lowest rounded-xl shadow-sm text-center" id="requests-empty-preview">
+<div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-secondary mb-space-md">
+<span class="material-symbols-outlined text-[32px]">inventory_2</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">No Active Requests</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-sm mt-space-2xs">You currently do not have any open service tickets. Browse our catalogue to schedule work.</p>
+<button class="mt-space-lg px-space-lg py-space-xs bg-primary text-on-primary font-label-lg text-label-lg rounded-lg shadow-sm" onclick="switchDashboardTab('explore')">
+        Explore Services
+      </button>
+</div>
+</div>
+<!-- Real-time Request Dispatch Timeline & Property Snapshot -->
+<section class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg">
+<!-- Map & Dispatch Tracker -->
+<div class="lg:col-span-2 flex flex-col bg-surface-container-lowest rounded-xl shadow-sm p-space-lg gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-secondary uppercase font-bold tracking-wider">Live Telemetry</span>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Technician En Route (REQ-94821)</h3>
+</div>
+<span class="px-space-xs py-space-2xs bg-tertiary-fixed text-on-tertiary-fixed rounded font-label-sm text-label-sm font-semibold">ETA: 12 Mins</span>
+</div>
+<!-- Real Map Pipeline View -->
+<div class="w-full h-56 bg-surface-container-high rounded-xl bg-cover bg-center relative overflow-hidden flex items-end p-space-md" data-location="Indiranagar, Bangalore, Karnataka" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuCPpLJDVSOj1OSTdXaJYYOr060YwcI9gtBtXkUz95NjzuFSiNIvKzZM00xmSbXGCmr_K_ynFRNVOLXEuB9K6-Pgne14sMCXVsZGW8YcxeJ21TkJ_S0WopUl7pm6Rq5Q9RI_SNWBCUIQtiENXMv2w_oVFCrFOl0L8Ujyb07n87kmr-qrIkS2I9owvwhXUnYz1ZQSFPXasvxJfnpP8rpbCxILb2hxIdaZcxCFwIpfo7qS')">
+<div class="p-space-sm bg-surface-container-lowest/95 backdrop-blur-md rounded-lg shadow-md flex items-center gap-space-md max-w-xs">
+<span class="w-3 h-3 rounded-full bg-secondary animate-ping"></span>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Rajesh Kumar is at</span>
+<span class="font-body-sm text-body-sm text-on-surface font-bold truncate">100 Feet Rd, Indiranagar</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Emergency Direct Line & Security Guarantee -->
+<div class="flex flex-col justify-between p-space-lg bg-surface-container-low rounded-xl shadow-sm gap-space-md">
+<div class="flex flex-col gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest flex items-center justify-center text-error shadow-sm">
+<span class="material-symbols-outlined text-[24px]">crisis_alert</span>
+</div>
+<h3 class="font-title-md text-title-md text-on-surface font-bold">Domestic Emergency?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Gas leaks, active water flooding, or live spark hazards are escalated to high-priority rapid response in &lt; 15 minutes.</p>
+</div>
+<div class="flex flex-col gap-space-xs">
+<button class="w-full px-space-md py-space-xs rounded-lg bg-error text-on-error font-label-lg text-label-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-space-xs shadow-sm" onclick="alert('Initiating Priority Emergency Protocol...')" type="button">
+<span class="material-symbols-outlined text-[18px]">emergency</span>
+          Dispatch Emergency Unit
+        </button>
+<span class="text-center font-label-sm text-label-sm text-on-surface-variant">Zero cancellation penalty for urgent hazards</span>
+</div>
+</div>
+</section>
+<!-- FLOATING CONTEXTUAL CHAT OVERLAY (Item 6: chats/{requestId}/messages) -->
+<div class="fixed bottom-6 right-6 w-96 max-w-[calc(100vw-3rem)] bg-surface-container-lowest rounded-xl shadow-xl flex flex-col overflow-hidden z-50 transition-all duration-300 transform translate-y-4 opacity-0 pointer-events-none" id="koolie-chat-overlay">
+<!-- Chat Header -->
+<div class="p-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<div class="relative">
+<img alt="Rajesh Kumar" class="w-9 h-9 rounded-full object-cover shadow-sm ring-1 ring-tertiary-fixed-dim" data-alt="Professional portrait shot of certified technician Rajesh Kumar with safety gear smiling in workplace setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcMDapKtoyDcM_Z4RCJFYTHAhvgNgMkN-Pe1lJasBeiAIHnhasPDhoY3q_0zkwzz1fZueZ5TTqSnc8fE6dec_uDxjTABJLe79pf12b32-jq-Qc4K5bvFBChj-DcWMsosRnO_IdKjptdXBTD1BPSlbM35wGduRjs6t_Z3QnbJmfnS96rTr3ix7WLLkaUXknxZekKDTydNC-uOvBBZF5A1-kCAowNDtnlFGbnD-A2dDI"/>
+<span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-on-tertiary-container rounded-full ring-2 ring-surface-container-lowest"></span>
+</div>
+<div class="flex flex-col leading-tight">
+<span class="font-title-md text-title-md text-on-surface font-bold">Rajesh Kumar</span>
+<span class="font-label-sm text-label-sm text-secondary">AC Specialist • REQ-94821</span>
+</div>
+</div>
+<button aria-label="Close Chat" class="p-space-2xs text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container transition-colors" onclick="toggleChatOverlay()" type="button">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Messages Body (Strict shape replica) -->
+<div class="p-space-md flex flex-col gap-space-sm h-80 overflow-y-auto bg-surface" id="chat-messages-container">
+<!-- Timestamp divider -->
+<div class="text-center">
+<span class="font-label-sm text-label-sm px-space-xs py-0.5 rounded bg-surface-container-high text-on-surface-variant">Today, 10:20 AM</span>
+</div>
+<!-- Message from Specialist -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="p-space-sm rounded-xl rounded-tl-none bg-surface-container-low text-on-surface font-body-md text-body-md shadow-sm">
+          Hello Alex, I've received your ticket regarding the E4 cooling error. I have the replacement capacitor and manifold gauges ready in the truck.
+        </div>
+<span class="mt-1 font-label-sm text-label-sm text-on-surface-variant">Rajesh • 10:22 AM</span>
+</div>
+<!-- Message from Client (Alex) -->
+<div class="flex flex-col items-end self-end max-w-[85%]">
+<div class="p-space-sm rounded-xl rounded-tr-none bg-primary text-on-primary font-body-md text-body-md shadow-sm">
+          Thanks Rajesh! The gate security code is #4021. Please ring Flat 4B directly.
+        </div>
+<span class="mt-1 font-label-sm text-label-sm text-on-surface-variant">You • 10:24 AM</span>
+</div>
+<!-- Message from Specialist -->
+<div class="flex flex-col items-start max-w-[85%]">
+<div class="p-space-sm rounded-xl rounded-tl-none bg-surface-container-low text-on-surface font-body-md text-body-md shadow-sm">
+          Got it. Navigating through 100 Feet Road now, ETA is around 12 minutes.
+        </div>
+<span class="mt-1 font-label-sm text-label-sm text-on-surface-variant">Rajesh • 10:26 AM</span>
+</div>
+</div>
+<!-- Input Footer -->
+<form class="p-space-xs bg-surface-container-lowest flex items-center gap-space-xs" id="chat-input-form" onsubmit="sendDashboardMessage(event)">
+<input autocomplete="off" class="flex-1 px-space-sm py-space-xs rounded-lg bg-surface-container-low font-body-md text-body-md text-on-surface placeholder:text-outline focus:outline-none focus:bg-surface-container" id="chat-message-input" placeholder="Type a message to Rajesh..." type="text"/>
+<button class="w-10 h-10 rounded-lg bg-secondary text-on-secondary flex items-center justify-center hover:bg-secondary-container transition-colors shadow-sm" type="submit">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</form>
+</div>
+</div>
+<script>
+  // Tab Switching Logic for Explore Services vs My Requests
+  function switchDashboardTab(tabName) {
+    const exploreTab = document.getElementById('view-explore');
+    const requestsTab = document.getElementById('view-requests');
+    const btnExplore = document.getElementById('tab-btn-explore');
+    const btnRequests = document.getElementById('tab-btn-requests');
+
+    if (tabName === 'explore') {
+      exploreTab.classList.remove('hidden');
+      requestsTab.classList.add('hidden');
+      
+      btnExplore.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+      btnExplore.classList.remove('text-on-surface-variant');
+
+      btnRequests.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+      btnRequests.classList.add('text-on-surface-variant');
+    } else {
+      exploreTab.classList.add('hidden');
+      requestsTab.classList.remove('hidden');
+
+      btnRequests.classList.add('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+      btnRequests.classList.remove('text-on-surface-variant');
+
+      btnExplore.classList.remove('bg-surface-container-lowest', 'text-on-surface', 'shadow-sm');
+      btnExplore.classList.add('text-on-surface-variant');
+    }
+  }
+
+  // Real-time Chat Overlay Toggling
+  let chatVisible = false;
+  function toggleChatOverlay() {
+    const overlay = document.getElementById('koolie-chat-overlay');
+    chatVisible = !chatVisible;
+    if (chatVisible) {
+      overlay.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+      overlay.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      document.getElementById('chat-message-input').focus();
+    } else {
+      overlay.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+      overlay.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+    }
+  }
+
+  // Interactive message dispatch simulation
+  function sendDashboardMessage(event) {
+    event.preventDefault();
+    const input = document.getElementById('chat-message-input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    const container = document.getElementById('chat-messages-container');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'flex flex-col items-end self-end max-w-[85%]';
+    msgDiv.innerHTML = `
+      <div class="p-space-sm rounded-xl rounded-tr-none bg-primary text-on-primary font-body-md text-body-md shadow-sm">
+        ${escapeHtml(text)}
+      </div>
+      <span class="mt-1 font-label-sm text-label-sm text-on-surface-variant">You • Just now</span>
+    `;
+    container.appendChild(msgDiv);
+    input.value = '';
+    container.scrollTop = container.scrollHeight;
+  }
+
+  function escapeHtml(string) {
+    return String(string).replace(/[&<>"']/g, function(s) {
+      return ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      })[s];
+    });
+  }
+</script></main></div></body></html>

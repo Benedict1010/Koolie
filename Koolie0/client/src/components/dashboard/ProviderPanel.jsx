@@ -2,27 +2,20 @@ import React, { useState, useEffect } from "react";
 import ChatWindow from "../chat/ChatWindow";
 import { auth, db } from "../../services/firebase";
 import { onAuthStateChanged } from "firebase/auth";
-import { collection, query, where, onSnapshot, doc, getDoc, updateDoc, runTransaction } from "firebase/firestore";
+import { collection, query, where, onSnapshot, doc, getDoc, runTransaction } from "firebase/firestore";
+import "../../styles/clientDashboard.css";
 
 export default function ProviderPanel() {
   const [activeTab, setActiveTab] = useState("browse");
 
   const [jobs, setJobs] = useState([]);
-  const [providerSkills, setProviderSkills] = useState([]);
 
   const [myJobs, setMyJobs] = useState([]);
+  const [providerProfile, setProviderProfile] = useState(null);
+  const [providerEmail, setProviderEmail] = useState("");
   const [chatRequestId, setChatRequestId] = useState(null);
   const [chatOtherUser, setChatOtherUser] = useState("");
   const [chatVisible, setChatVisible] = useState(false);
-
-  const tabBtn = (active) => ({
-    padding: "8px 14px",
-    borderRadius: 6,
-    border: active ? "2px solid #2563eb" : "1px solid #e5e7eb",
-    background: active ? "#eef2ff" : "white",
-    cursor: "pointer",
-    fontWeight: 600,
-  });
 
   useEffect(() => {
     let unsubSnapshot = null;
@@ -30,7 +23,9 @@ export default function ProviderPanel() {
     const unsubAuth = onAuthStateChanged(auth, async (user) => {
       if (!user) {
         setJobs([]);
-        setProviderSkills([]);
+        setMyJobs([]);
+        setProviderProfile(null);
+        setProviderEmail("");
         if (unsubSnapshot) {
           unsubSnapshot();
           unsubSnapshot = null;
@@ -45,9 +40,10 @@ export default function ProviderPanel() {
       try {
         const userRef = doc(db, "users", user.uid);
         const userSnap = await getDoc(userRef);
-        const skills = (userSnap.exists() && userSnap.data().providerProfile && Array.isArray(userSnap.data().providerProfile.skills)) ? userSnap.data().providerProfile.skills : [];
-        setProviderSkills(skills);
-
+        const profile = userSnap.exists() ? userSnap.data().providerProfile || {} : {};
+        const skills = Array.isArray(profile.skills) ? profile.skills : [];
+        setProviderProfile({ ...profile, skills });
+        setProviderEmail(user.email || "");
         const q = query(collection(db, "serviceRequests"), where("status", "==", "open"));
 
         if (unsubSnapshot) unsubSnapshot();
@@ -135,73 +131,110 @@ export default function ProviderPanel() {
   };
 
   return (
-    <div>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <h3 style={{ margin: 0 }}>Provider Panel</h3>
+    <section className="provider-panel">
+      <div className="provider-overview">
+        <div className="provider-overview-copy">
+          <p className="section-eyebrow">Professional workspace</p>
+          <h1>{providerProfile?.name || providerEmail || "Your professional dashboard"}</h1>
+          <p className="dashboard-subtitle">
+            {providerProfile?.skills?.length
+              ? `Your selected skills: ${providerProfile.skills.join(", ")}`
+              : "Add skills to your profile to find matching requests."}
+          </p>
+        </div>
+        <div className="provider-overview-status">
+          <span className={providerProfile?.available ? "provider-status-dot is-available" : "provider-status-dot"} aria-hidden="true" />
+          {providerProfile?.available ? "Available" : "Not available"}
+        </div>
       </div>
 
-      <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-        <button type="button" onClick={() => setActiveTab("browse")} style={{ ...tabBtn(activeTab === "browse"), color: "black" }}>BROWSE JOBS</button>
-        <button type="button" onClick={() => setActiveTab("myJobs")} style={{ ...tabBtn(activeTab === "myJobs"), color: "black" }}>MY JOBS</button>
+      <div className="provider-request-metrics" aria-label="Job summary">
+        <div className="provider-metric"><span>Matching open jobs</span><strong>{jobs.length}</strong></div>
+        <div className="provider-metric"><span>Assigned jobs</span><strong>{myJobs.length}</strong></div>
+        <div className="provider-metric"><span>Selected skills</span><strong>{providerProfile?.skills?.length || 0}</strong></div>
       </div>
 
-      <div style={{ marginTop: 16 }}>
+      <header className="dashboard-header dashboard-header--left">
+        <div>
+          <h2>Available work</h2>
+          <p className="dashboard-subtitle">Browse open requests that match your selected skills.</p>
+        </div>
+      </header>
+
+      <div className="dashboard-tabs" role="tablist" aria-label="Professional jobs">
+        <button type="button" className={activeTab === "browse" ? "tab-btn active" : "tab-btn"} onClick={() => setActiveTab("browse")} role="tab" aria-selected={activeTab === "browse"}>
+          Available jobs <span className="tab-count">{jobs.length}</span>
+        </button>
+        <button type="button" className={activeTab === "myJobs" ? "tab-btn active" : "tab-btn"} onClick={() => setActiveTab("myJobs")} role="tab" aria-selected={activeTab === "myJobs"}>
+          My jobs <span className="tab-count">{myJobs.length}</span>
+        </button>
+      </div>
+
+      <div className="dashboard-content">
         {activeTab === "browse" ? (
-          <div>
-            <h4 style={{ marginBottom: 12 }}>Available Jobs</h4>
-            <div style={{ display: "grid", gap: 12 }}>
-              {jobs.length === 0 ? (
-                <div style={{ color: "#6180bf" }}>No open jobs available for your skills.</div>
-              ) : (
-                jobs.map((j) => (
-                  <div key={j.id} style={{ border: "1px solid #032a7f", borderRadius: 8, padding: 62, background: "white", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div>
-                      <div style={{ fontWeight: 700 }}>{j.title || j.serviceType} <span style={{ fontWeight: 600, color: "#6b7280", fontSize: 13 }}>· {j.serviceType}</span></div>
-                      <div style={{ marginTop: 6, color: "#374151" }}>{j.description}</div>
-                      <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
-                        Location: {typeof j.location === 'object' && j.location !== null ?
-                          `${j.location.addressLine || ''}, ${j.location.area || ''}, ${j.location.city || ''}, ${j.location.state || ''} - ${j.location.pincode || ''}, ${j.location.country || ''}`
-                            : (j.location || '')}
-                      </div>
-                    </div>
-
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 8 }}>
-                      <div style={{ fontWeight: 700 }}>{j.price || ""}</div>
-                      <div style={{ display: "flex", gap: 8 }}>
-                        <button type="button" style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #e5e7eb", background: "white", cursor: "pointer" }}>View</button>
-                        <button type="button" onClick={() => acceptJob(j.id)} style={{ padding: "6px 10px", borderRadius: 6, border: "none", background: "#2563eb", color: "white", cursor: "pointer" }}>Accept</button>
-                      </div>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
-          </div>
-        ) : (
-          <div>
-            <h4 style={{ marginBottom: 8 }}>My Jobs</h4>
-            {myJobs.length === 0 ? (
-              <p style={{ color: "#6b7280" }}>No active jobs yet.</p>
+          <section aria-label="Available jobs">
+            {jobs.length === 0 ? (
+              <div className="empty-state">
+                <span className="empty-state-icon" aria-hidden="true">⌕</span>
+                <h2>No open jobs for your skills</h2>
+                <p>New matching requests will appear here.</p>
+              </div>
             ) : (
-              <div style={{ display: "grid", gap: 12 }}>
-                {myJobs.map((m) => (
-                  <div key={m.id} style={{ border: "1px solid #e5e7eb", borderRadius: 8, padding: 12, background: "white", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <div>
-                      <div style={{ fontWeight: 700 }}>{m.serviceType} <span style={{ fontWeight: 600, color: "#6b7280", fontSize: 13 }}>· {m.serviceType}</span></div>
-                      <div style={{ marginTop: 8, color: "#374151" }}>{m.description}</div>
-                      <div style={{ marginTop: 8, color: "#6b7280", fontSize: 13 }}>
-                        Location: {typeof m.location === 'object' && m.location !== null ?
-                          `${m.location.addressLine || ''}, ${m.location.area || ''}, ${m.location.city || ''}, ${m.location.state || ''} - ${m.location.pincode || ''}, ${m.location.country || ''}`
-                            : (m.location || '')}
-                      </div>
+              <div className="job-card-grid">
+                {jobs.map((j) => (
+                  <article key={j.id} className="job-card">
+                    <div className="job-card-topline">
+                      <span className="job-trade">{j.serviceType}</span>
+                      <span className="status-pill status-pill--open">{j.status || "Open request"}</span>
                     </div>
-                    <div style={{ textAlign: "right", display: "flex", flexDirection: "column", gap: 6 }}>
-                      <div style={{ fontWeight: 700, color: m.status === "completed" ? "#059669" : "#f59e0b" }}>{m.status}</div>
-                      <button type="button" style={{ marginTop: 8, padding: "6px 10px", borderRadius: 6, border: "1px solid #e5e7eb", background: "white", cursor: "pointer" }}>View</button>
+                    <h2>{j.title || j.serviceType}</h2>
+                    <p className="job-description">{j.description}</p>
+                    <p className="job-location">
+                      <span aria-hidden="true">⌖</span>
+                      {typeof j.location === 'object' && j.location !== null
+                        ? `${j.location.addressLine || ''}, ${j.location.area || ''}, ${j.location.city || ''}, ${j.location.state || ''} - ${j.location.pincode || ''}, ${j.location.country || ''}`
+                        : (j.location || '')}
+                    </p>
+                    {j.price && <p className="job-price">{j.price}</p>}
+                    <div className="job-card-actions">
+                      <button type="button" className="button button--secondary">View</button>
+                      <button type="button" className="button button--primary" onClick={() => acceptJob(j.id)}>Accept job</button>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            )}
+          </section>
+        ) : (
+          <section aria-label="Assigned jobs">
+            {myJobs.length === 0 ? (
+              <div className="empty-state">
+                <span className="empty-state-icon" aria-hidden="true">▤</span>
+                <h2>No assigned jobs yet</h2>
+                <p>Accepted requests will be listed here.</p>
+              </div>
+            ) : (
+              <div className="job-card-grid">
+                {myJobs.map((m) => (
+                  <article key={m.id} className="job-card">
+                    <div className="job-card-topline">
+                      <span className="job-trade">{m.serviceType}</span>
+                      <span className={m.status === "completed" ? "status-pill status-pill--complete" : "status-pill status-pill--assigned"}>{m.status}</span>
+                    </div>
+                    <h2>{m.serviceType}</h2>
+                    <p className="job-description">{m.description}</p>
+                    <p className="job-location">
+                      <span aria-hidden="true">⌖</span>
+                      {typeof m.location === 'object' && m.location !== null
+                        ? `${m.location.addressLine || ''}, ${m.location.area || ''}, ${m.location.city || ''}, ${m.location.state || ''} - ${m.location.pincode || ''}, ${m.location.country || ''}`
+                        : (m.location || '')}
+                    </p>
+                    <div className="job-card-actions">
+                      <button type="button" className="button button--secondary">View</button>
                       {m.status === "assigned" && (
                         <button
                           type="button"
-                          style={{ padding: "6px 10px", borderRadius: 6, border: "1px solid #059669", background: "#059669", color: "white", cursor: "pointer", fontWeight: 700 }}
+                          className="button button--blue"
                           onClick={() => {
                             setChatRequestId(m.id);
                             setChatOtherUser(m.clientName || m.clientEmail || "Client");
@@ -212,21 +245,21 @@ export default function ProviderPanel() {
                         </button>
                       )}
                     </div>
-                  </div>
+                  </article>
                 ))}
               </div>
             )}
-          </div>
+          </section>
         )}
       </div>
-    {chatVisible && (
-      <ChatWindow
-        requestId={chatRequestId}
-        currentUserId={auth.currentUser?.uid || "provider1"}
-        otherUserName={chatOtherUser}
-        onClose={() => setChatVisible(false)}
-      />
-    )}
-  </div>
+      {chatVisible && (
+        <ChatWindow
+          requestId={chatRequestId}
+          currentUserId={auth.currentUser?.uid || "provider1"}
+          otherUserName={chatOtherUser}
+          onClose={() => setChatVisible(false)}
+        />
+      )}
+    </section>
   );
 }

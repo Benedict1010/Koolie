@@ -4,6 +4,7 @@ import { auth, db } from "../services/firebase";
 import { doc, getDoc, updateDoc, serverTimestamp } from "firebase/firestore";
 import ClientProfileForm from "../components/dashboard/ClientProfileForm";
 import ProviderProfileForm from "../components/dashboard/ProviderProfileForm";
+import DashboardLayout from "../layout/DashboardLayout";
 
 export default function CompleteProfile() {
   const [loading, setLoading] = useState(true);
@@ -66,28 +67,55 @@ export default function CompleteProfile() {
     }
   };
 
-  if (loading) return <div style={{ padding: 24 }}>Loading...</div>;
+  if (loading) {
+    return (
+      <DashboardLayout>
+        <div className="profile-loading" role="status">Loading your profile...</div>
+      </DashboardLayout>
+    );
+  }
 
   const roles = userDoc?.roles || { client: true, provider: false };
 
   return (
-    <div style={{ padding: 24, maxWidth: 700, margin: "0 auto" }}>
-      <h2 style={{ textAlign: "center" }}>Complete Your Profile</h2>
-      <div style={{ marginTop: 16 }}>
-        {roles.client && (
-          <section style={{ marginTop: 24, textAlign: "center" }}>
-            <h3>Client Profile</h3>
-            <ClientProfileForm initial={userDoc.clientProfile} onSave={saveClient} />
-          </section>
-        )}
+    <DashboardLayout>
+      <div className="profile-page">
+        <header className="profile-page-header">
+          <div>
+            <p className="section-eyebrow">Account setup</p>
+            <h1>Complete your KOOLIE profile</h1>
+            <p>Add the details needed to use your customer or professional account.</p>
+          </div>
+          <span className="profile-step">Profile details</span>
+        </header>
+        <div className="profile-sections">
+          {roles.client && (
+            <section className="profile-form-card">
+              <div className="profile-section-heading">
+                <span className="profile-section-icon" aria-hidden="true">⌂</span>
+                <div>
+                  <h2>Customer profile</h2>
+                  <p>Contact details for your service requests.</p>
+                </div>
+              </div>
+              <ClientProfileForm initial={userDoc.clientProfile} onSave={saveClient} />
+            </section>
+          )}
 
-        {roles.provider && (
-          <section style={{ marginTop: 24, textAlign: "center" }}>
-            <h3>Professional Profile</h3>
-            <ProviderProfileForm initial={userDoc.providerProfile} onSave={saveProvider} />
-          </section>
-        )}
+          {roles.provider && (
+            <section className="profile-form-card">
+              <div className="profile-section-heading">
+                <span className="profile-section-icon" aria-hidden="true">⚒</span>
+                <div>
+                  <h2>Professional profile</h2>
+                  <p>Set your trade skills and service area.</p>
+                </div>
+              </div>
+              <ProviderProfileForm initial={userDoc.providerProfile} onSave={saveProvider} />
+            </section>
+          )}
+        </div>
       </div>
-    </div>
+    </DashboardLayout>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/auth.css";
 import { signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { doc, getDoc } from "firebase/firestore";
@@ -64,24 +64,36 @@ function AdminLogin() {
   };
 
   return (
-    <div className="auth-page">
+    <main className="auth-page">
       <div className="auth-card">
-        <h2 className="auth-title">Admin Login</h2>
+        <div className="auth-admin-label">KOOLIE internal operations</div>
+        <h2 className="auth-title">Admin console sign in</h2>
+        <p className="auth-subtitle">Sign in with an account authorized for KOOLIE administration.</p>
+        <div className="auth-message auth-message--pending">
+          Admin access is checked against the role on your account.
+        </div>
         <form className="auth-form" onSubmit={handleSubmit}>
-          <input
-            className="auth-input"
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <div className="password-input-wrapper">
+          <label className="auth-field">
+            <span className="auth-field-label">Admin email</span>
             <input
               className="auth-input"
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="username"
+            />
+          </label>
+          <div className="password-input-wrapper">
+            <label className="auth-field-label" htmlFor="admin-password">Password</label>
+            <input
+              id="admin-password"
+              className="auth-input"
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
             />
             <button
               type="button"
@@ -93,12 +105,13 @@ function AdminLogin() {
             </button>
           </div>
 
-          {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
+          {error && <div className="auth-message auth-message--error" role="alert">{error}</div>}
 
-          <button className="auth-submit">Login</button>
+          <button className="auth-submit" type="submit">Authorize &amp; open console</button>
+          <div className="auth-footer"><Link to="/login">Standard user login</Link></div>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
 

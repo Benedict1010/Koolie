@@ -1,11 +1,22 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import "../styles/navbar.css";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const isAuthPage = ["/login", "/signup", "/admin-login"].includes(pathname);
+  const isDashboard = [
+    "/role-dashboard",
+    "/client-dashboard",
+    "/provider-dashboard",
+    "/request",
+    "/complete-profile",
+    "/admin",
+  ].includes(pathname);
 
   const handleLogout = async () => {
     try {
@@ -16,31 +27,37 @@ export default function Navbar() {
     }
   };
 
-  return (
-    <header className="site-navbar" role="banner">
-      <div className="site-navbar__inner">
-        <div className="site-navbar__left">
-          {/* Placeholder for logo image - replace the div below with an <img> when you have the logo */}
-          <div className="logo-placeholder" aria-hidden="true">K</div>
-          <div className="brand-name">KOOLIE</div>
-        </div>
+  if (isAuthPage) return null;
 
-        <nav className="site-navbar__nav" role="navigation" aria-label="Main navigation">
-          <Link to="/" className="nav-link">Home</Link>
-          <a href="#services" className="nav-link">Services</a>
-          <a href="#how-it-works" className="nav-link">How it Works</a>
-        </nav>
+  return (
+    <header className={isDashboard ? "site-navbar site-navbar--dashboard" : "site-navbar"} role="banner">
+      <div className="site-navbar__inner">
+        <Link to="/" className="site-brand" aria-label="KOOLIE home">
+          <span className="site-brand__mark" aria-hidden="true">K</span>
+          <span className="site-brand__name">KOOLIE</span>
+        </Link>
+
+        {!isDashboard && (
+          <nav className="site-navbar__nav" aria-label="Main navigation">
+            <Link to="/" className="nav-link">Home</Link>
+            <Link to="/#services" className="nav-link">Services</Link>
+            <Link to="/#how-it-works" className="nav-link">How it works</Link>
+          </nav>
+        )}
 
         <div className="site-navbar__actions">
           {user ? (
             <div className="user-info">
-              <span className="user-email">{user.email}</span>
-              <button onClick={handleLogout} className="btn btn-outline">Logout</button>
+              <span className="user-avatar" aria-hidden="true">{(user.email || "K").charAt(0).toUpperCase()}</span>
+              <span className="user-email" title={user.email}>{isDashboard ? (user.displayName || user.email) : user.email}</span>
+              {pathname !== "/admin" && (
+                <button onClick={handleLogout} className="navbar-logout" aria-label="Log out">⇥</button>
+              )}
             </div>
           ) : (
             <>
-              <Link to="/login" className="btn btn-outline">Login</Link>
-              <Link to="/signup" className="btn btn-primary">Sign Up</Link>
+              <Link to="/login" className="button button--secondary">Login</Link>
+              <Link to="/signup" className="button button--primary">Sign up</Link>
             </>
           )}
         </div>

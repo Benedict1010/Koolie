@@ -1,58 +1,70 @@
 import React from "react";
 import Hero from "../components/Hero";
+import { SERVICES } from "../constants/services";
+
+const serviceImages = {
+  Electrician: "/electrician.jpeg",
+  Plumber: "/plumber.jpeg",
+  Carpenter: "/carpenter.jpeg",
+  "AC Repair": "/ac mechanic.jpeg",
+  Painter: "/painter.jpeg",
+  Cleaning: "/cleaner.jpeg",
+};
 
 function Home() {
   return (
     <>
       <Hero />
 
-      {/* Why Choose ServicePro Section */}
-      <section id="services" className="why-choose-section">
+      <section id="services" className="home-services-section">
+        <div className="site-container">
+          <div className="home-section-heading">
+            <p className="section-eyebrow">Service categories</p>
+            <h2 className="home-services-title">Help for the work around your home.</h2>
+            <p className="home-services-subtitle">Explore the service categories currently available in KOOLIE.</p>
+          </div>
+          <div className="home-services-grid">
+            {SERVICES.map((service) => (
+              <article className="home-service-card" key={service}>
+                <img className="home-service-image" src={serviceImages[service]} alt="" />
+                <div>
+                  <h3>{service}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="why-koolie" className="why-choose-section">
         <div className="why-container">
-          <h2 className="why-title">Why Us?</h2>
-          <p className="why-subtitle">We make finding and hiring service professionals simple and safe</p>
+          <div className="home-section-heading">
+            <p className="section-eyebrow">Why KOOLIE</p>
+            <h2 className="why-title">Find help for the work that matters.</h2>
+            <p className="why-subtitle">We make finding and hiring service professionals simple and safe.</p>
+          </div>
 
           <div className="why-grid">
             <div className="why-card">
-              <div className="why-icon">
-                <svg viewBox="0 0 24 24" width="34" color="#0000" height="34" fill="none" stroke="#1a9a2b" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" stroke="#dff7e6" fill="#000000" />
-                  <path d="M9 12l2 2 4-4" stroke="#118a2a" strokeWidth="2.5" fill="none" />
-                </svg>
-              </div>
+              <div className="why-icon" aria-hidden="true">✓</div>
               <h3 className="why-card-title">Verified Professionals</h3>
               <p className="why-card-desc">All service providers are verified and background checked</p>
             </div>
 
             <div className="why-card">
-              <div className="why-icon">
-                <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#1a9a2b" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" stroke="#dff7e6" fill="#eaf9ee" />
-                  <path d="M9 12l2 2 4-4" stroke="#118a2a" strokeWidth="2.5" fill="none" />
-                </svg>
-              </div>
+              <div className="why-icon" aria-hidden="true">₹</div>
               <h3 className="why-card-title">Fair Pricing</h3>
               <p className="why-card-desc">Transparent pricing with no hidden fees or surprises</p>
             </div>
 
             <div className="why-card">
-              <div className="why-icon">
-                <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#1a9a2b" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" stroke="#dff7e6" fill="#eaf9ee" />
-                  <path d="M9 12l2 2 4-4" stroke="#118a2a" strokeWidth="2.5" fill="none" />
-                </svg>
-              </div>
+              <div className="why-icon" aria-hidden="true">24</div>
               <h3 className="why-card-title">24/7 Support</h3>
               <p className="why-card-desc">Our support team is always available to help</p>
             </div>
 
             <div className="why-card">
-              <div className="why-icon">
-                <svg viewBox="0 0 24 24" width="34" height="34" fill="none" stroke="#1a9a2b" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10" stroke="#dff7e6" fill="#eaf9ee" />
-                  <path d="M9 12l2 2 4-4" stroke="#118a2a" strokeWidth="2.5" fill="none" />
-                </svg>
-              </div>
+              <div className="why-icon" aria-hidden="true">★</div>
               <h3 className="why-card-title">Quality Guarantee</h3>
               <p className="why-card-desc">We guarantee satisfaction or your money back</p>
             </div>
@@ -63,6 +75,7 @@ function Home() {
       {/* How It Works Section */}
       <section id="how-it-works" className="how-it-works-section">
         <div className="how-it-works-container">
+          <p className="section-eyebrow">How it works</p>
           <h2 className="how-it-works-title">How It Works</h2>
           <p className="how-it-works-subtitle">Get quality service in just three simple steps</p>
           

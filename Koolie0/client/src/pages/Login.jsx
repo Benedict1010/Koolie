@@ -87,31 +87,56 @@ function Login() {
   };
 
   return (
-    <div className="auth-page">
+    <main className="auth-page auth-page--split">
+      <aside className="auth-aside">
+        <div className="auth-aside-brand">
+          <span className="auth-aside-mark" aria-hidden="true">K</span>
+          <span className="auth-aside-name">KOOLIE</span>
+        </div>
+        <p className="section-eyebrow">Welcome back</p>
+        <h1>Your home services, all in one place.</h1>
+        <p className="auth-aside-copy">
+          Sign in to manage your requests, professional jobs, and profile.
+        </p>
+        <ul className="auth-benefits">
+          <li><span className="auth-benefit-icon" aria-hidden="true">⌂</span><span>Return to your customer dashboard.</span></li>
+          <li><span className="auth-benefit-icon" aria-hidden="true">⚒</span><span>Review available work and assigned jobs.</span></li>
+          <li><span className="auth-benefit-icon" aria-hidden="true">✉</span><span>Email verification is required to sign in.</span></li>
+        </ul>
+      </aside>
       <div className="auth-card">
-        <h2 className="auth-title">Login Form</h2>
+        <p className="section-eyebrow">Account access</p>
+        <h2 className="auth-title">Sign in to KOOLIE</h2>
+        <p className="auth-subtitle">Use the email and password associated with your account.</p>
 
         <div className="auth-tabs" role="tablist">
-          <button className="tab tab-active" aria-selected="true">Login</button>
-          <Link to="/signup" className="tab tab-inactive">Signup</Link>
+          <button type="button" className="tab tab-active" aria-selected="true">Login</button>
+          <Link to="/signup" className="tab tab-inactive">Sign up</Link>
         </div>
 
         <form className="auth-form" onSubmit={handleSubmit}>
-          <input
-            className="auth-input"
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-
-          <div className="password-input-wrapper">
+          <label className="auth-field">
+            <span className="auth-field-label">Email address</span>
             <input
               className="auth-input"
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              autoComplete="email"
+            />
+          </label>
+
+          <div className="password-input-wrapper">
+            <label className="auth-field-label" htmlFor="login-password">Password</label>
+            <input
+              id="login-password"
+              className="auth-input"
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder="Enter your password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              autoComplete="current-password"
             />
             <button
               type="button"
@@ -127,16 +152,16 @@ function Login() {
             <a href="#">Forgot password?</a>
           </div>
 
-          {error && <div style={{ color: "red", marginBottom: 8 }}>{error}</div>}
+          {error && <div className="auth-message auth-message--error" role="alert">{error}</div>}
 
-          <button className="auth-submit">Login</button>
+          <button className="auth-submit" type="submit">Sign in</button>
         
           <div className="auth-footer">
-            Not a member? <Link to="/signup">Signup now</Link>
+            New to KOOLIE? <Link to="/signup">Create an account</Link>
           </div>
         </form>
       </div>
-    </div>
+    </main>
   );
 }
 

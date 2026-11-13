@@ -2,19 +2,25 @@ import React from "react";
 
 export default function RoleToggle({ role, onChange }) {
   return (
-    <div style={{ display: "flex", gap: 80, alignItems: "center" }}>
+    <div className="role-switch" role="tablist" aria-label="Dashboard role">
       <button
-        style={{ padding: "10px 130px", borderRadius: 40, background: role === "client" ? "#FFD700" : "#e5e7eb", color: role === "client" ? "#2563eb" : "#000000", border: "none", fontWeight: 700, cursor: "pointer", fontSize: 14 }}
+        type="button"
+        className={role === "client" ? "role-switch-button is-active" : "role-switch-button"}
         onClick={() => onChange("client")}
+        role="tab"
+        aria-selected={role === "client"}
       >
-        Client
+        <span aria-hidden="true">⌂</span> Customer view
       </button>
 
       <button
-        style={{ padding: "10px 100px", borderRadius: 40, background: role === "professional" ? "#FFD700" : "#e5e7eb", color: role === "professional" ? "#2563eb" : "#000000", border: "none", fontWeight: 600, cursor: "pointer", fontSize: 14 }}
+        type="button"
+        className={role === "professional" ? "role-switch-button is-active" : "role-switch-button"}
         onClick={() => onChange("professional")}
+        role="tab"
+        aria-selected={role === "professional"}
       >
-        Professional
+        <span aria-hidden="true">⚒</span> Professional view
       </button>
     </div>
   );

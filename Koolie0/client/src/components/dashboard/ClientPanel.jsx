@@ -69,17 +69,16 @@ export default function ClientPanel() {
     // doodle is not part of SERVICES but available if needed elsewhere
     "Doodle": "/doodle.png",
   };
-
-  const tabBtnStyle = (active) => ({
-    padding: "10px 16px",
-    borderRadius: 6,
-    border: "none",
-    background: active ? "#FFD700" : "white",
-    cursor: "pointer",
-    fontWeight: 700,
-    color: active ? "#2563eb" : "#6b7280",
-    fontSize: 14,
-  });
+  const requestCounts = requests.reduce(
+    (counts, request) => {
+      counts.total += 1;
+      if (request.status === "open") counts.open += 1;
+      if (request.status === "assigned") counts.assigned += 1;
+      if (request.status === "completed") counts.completed += 1;
+      return counts;
+    },
+    { total: 0, open: 0, assigned: 0, completed: 0 }
+  );
 
   useEffect(() => {
     let unsubSnapshot = null;
@@ -165,29 +164,51 @@ export default function ClientPanel() {
   return (
     <div className="client-dashboard-modern">
       <div className="dashboard-header">
-        <h2>Client Dashboard</h2>
-        <div className="dashboard-subtitle">Client Panel</div>
+        <div>
+          <p className="section-eyebrow">Verified domestic network</p>
+          <h1>Welcome back, {auth.currentUser?.displayName || auth.currentUser?.email?.split("@")[0] || "Customer"}</h1>
+          <p className="dashboard-subtitle">Explore home services and manage your existing requests.</p>
+        </div>
       </div>
-      <div className="dashboard-tabs">
+      <div className="client-request-metrics" aria-label="Request summary">
+        <div className="client-metric"><span>Total requests</span><strong>{requestCounts.total}</strong></div>
+        <div className="client-metric"><span>Open</span><strong>{requestCounts.open}</strong></div>
+        <div className="client-metric"><span>Assigned</span><strong>{requestCounts.assigned}</strong></div>
+        <div className="client-metric"><span>Completed</span><strong>{requestCounts.completed}</strong></div>
+      </div>
+      <div className="client-panel-toolbar">
+        <div className="dashboard-tabs" role="tablist" aria-label="Customer dashboard">
         <button
           type="button"
           className={activeTab === "request" ? "tab-btn active" : "tab-btn"}
           onClick={() => setActiveTab("request")}
+          role="tab"
+          aria-selected={activeTab === "request"}
         >
-          Request a Service
+          Explore services
         </button>
         <button
           type="button"
           className={activeTab === "myRequests" ? "tab-btn active" : "tab-btn"}
           onClick={() => setActiveTab("myRequests")}
+          role="tab"
+          aria-selected={activeTab === "myRequests"}
         >
-          My Requests
+          My requests <span className="tab-count">{requestCounts.total}</span>
         </button>
+        </div>
       </div>
       <div className="dashboard-content">
         {activeTab === "request" ? (
-          <div className="service-card-grid">
-            {services.map((s) => (
+          <section aria-label="Service catalogue">
+            <div className="client-section-heading">
+              <div>
+                <h2>Service catalogue</h2>
+                <p>Select a category to start a request.</p>
+              </div>
+            </div>
+            <div className="service-card-grid">
+              {services.map((s) => (
               <div
                 key={s}
                 className={selectedService === s ? "service-card selected" : "service-card"}
@@ -209,13 +230,9 @@ export default function ClientPanel() {
                 </div>
                 <div className="service-title">{s}</div>
               </div>
-            ))}
-            {selectedService && (
-              <div className="service-selected">
-                Selected service: <strong>{selectedService}</strong>
-              </div>
-            )}
-          </div>
+              ))}
+            </div>
+          </section>
         ) : (
           <div className="my-requests-section">
             <h4 className="my-requests-title">My Requests</h4>

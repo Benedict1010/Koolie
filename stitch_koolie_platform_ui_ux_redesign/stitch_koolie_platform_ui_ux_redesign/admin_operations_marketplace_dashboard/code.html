@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-lowest": "#ffffff", "on-surface-variant": "#45464d", "surface-container-high": "#dce9ff", "on-primary-fixed-variant": "#3f465c", "on-secondary": "#ffffff", "surface-bright": "#f8f9ff", "error": "#ba1a1a", "on-primary-container": "#7c839b", "tertiary-fixed": "#85f8c4", "on-secondary-fixed": "#00174b", "inverse-on-surface": "#eaf1ff", "on-surface": "#0b1c30", "primary-fixed": "#dae2fd", "on-primary": "#ffffff", "surface-container-highest": "#d3e4fe", "surface-container": "#e5eeff", "background": "#f8f9ff", "on-tertiary-fixed": "#002114", "on-error-container": "#93000a", "secondary-fixed": "#dbe1ff", "secondary-fixed-dim": "#b4c5ff", "on-primary-fixed": "#131b2e", "outline-variant": "#c6c6cd", "secondary": "#0051d5", "inverse-primary": "#bec6e0", "on-error": "#ffffff", "tertiary-container": "#002114", "surface-dim": "#cbdbf5", "on-tertiary": "#ffffff", "surface": "#f8f9ff", "tertiary-fixed-dim": "#68dba9", "surface-container-low": "#eff4ff", "tertiary": "#000000", "surface-variant": "#d3e4fe", "primary": "#000000", "on-tertiary-container": "#069669", "on-secondary-container": "#fefcff", "surface-tint": "#565e74", "primary-container": "#131b2e", "primary-fixed-dim": "#bec6e0", "on-tertiary-fixed-variant": "#005137", "outline": "#76777d", "error-container": "#ffdad6", "inverse-surface": "#213145", "on-secondary-fixed-variant": "#003ea8", "secondary-container": "#316bf3", "on-background": "#0b1c30" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-mobile": "1rem", "space-sm": "0.75rem", "margin": "2rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-md": "1rem", "space-2xl": "3rem", "space-2xs": "0.25rem", "space-xs": "0.5rem", "gutter": "1.5rem", "margin-mobile": "1rem" }, "fontFamily": { "body-lg": [ "Inter" ], "body-sm": [ "Inter" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "display-mobile": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "display": [ "Plus Jakarta Sans" ], "title-md": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ], "label-lg": [ "Inter" ], "label-sm": [ "Inter" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "800" } ], "body-md": [ "14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" } ], "display": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "800" } ], "title-md": [ "16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-lowest border-r border-surface-container z-50 flex flex-col"><div class="h-16 px-space-md border-b border-surface-container flex items-center gap-space-xs"><img alt="KOOLIE Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrBwsHxC62qxfVgqnaQcgX3fkgzz7J6gDkFK6YQgMevNieK8rYFg7CAxjhtEA7qqIDT0VSnMuct7Ynq2Ii63prUl9lgkQwsvoITHPzCoswOnKLSTckGtclxbGQsanfon5V4faroaETfNSdSBNXgo3MqsEkWod1mB6GCrRQR7vr56pv15eRUCCN32fmwTsF1D1Ge8eX7RgFmSUclOF9S9sGcbUfWc8_Uady97JBwgOg0Hxw"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-extrabold">KOOLIE</span></div><div class="flex-1 px-space-sm py-space-md overflow-y-auto"><div class="px-space-xs mb-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Console Views</div><nav class="flex flex-col gap-space-2xs" data-active-classes="bg-surface-container-high text-on-surface font-title-md"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="client-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">grid_view</span>Client Overview</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="provider-dashboard" href="#"><span class="material-symbols-outlined text-[20px]">engineering</span>Provider Hub</a><a aria-current="page" class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg transition-all bg-surface-container-high text-on-surface font-title-md" data-path="admin" href="#"><span class="material-symbols-outlined text-[20px]">admin_panel_settings</span>Admin Console</a></nav><div class="mt-space-lg px-space-xs mb-space-xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Operations</div><div class="flex flex-col gap-space-2xs"><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="services" href="#"><span class="material-symbols-outlined text-[20px]">handyman</span>Service Catalog</a><a class="flex items-center gap-space-sm px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="how-it-works" href="#"><span class="material-symbols-outlined text-[20px]">help_center</span>Workflow Guide</a></div></div><div class="p-space-md border-t border-surface-container bg-surface-container-low flex items-center justify-between"><div class="flex items-center gap-space-xs"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-surface-container-highest" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV4v9FDECr2NoaxL1EeoqYm_QnAzv91VX0FSghJ9gSEu3EdWNLbS3J9JosCOSi_T2g49x_b_QFswyWrEEKrMLsHml_h1H1PYRITmavFCxEQigyyraxJbpe2SUWPRwRcCOEpQMHEidR6gL4YVhvElIr8OaUQF8egncC86aa_0KpU0jwdDMQR3cXCnVSO2n7Yb3riSYWFu6yCJgz54caNzIagmfrkdmWS14cUeIXeb83"/><div class="flex flex-col leading-none"><span class="font-label-lg text-label-lg text-on-surface font-semibold truncate max-w-[100px]">Alex Morgan</span><span class="font-label-sm text-label-sm text-on-surface-variant">Active Pro</span></div></div><button aria-label="Logout" class="p-space-2xs text-on-surface-variant hover:text-error hover:bg-error-container rounded-lg transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">logout</span></button></div></aside><div class="pl-64 flex flex-col min-h-screen"><header class="fixed top-0 left-64 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-surface-container z-40 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><div class="flex items-center bg-surface-container-low p-space-2xs rounded-full border border-surface-container"><button class="px-space-sm py-space-2xs rounded-full bg-surface-container-lowest text-on-surface font-label-sm text-label-sm shadow-[0_1px_2px_rgba(11,28,48,0.06)] transition-all" type="button">Customer View</button><button class="px-space-sm py-space-2xs rounded-full text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" type="button">Professional View</button></div></div><div class="flex items-center gap-space-md"><nav class="hidden lg:flex items-center gap-space-2xs p-space-2xs bg-surface-container-low rounded-lg" data-active-classes="bg-surface-container-high text-on-surface font-title-md"><a class="px-space-sm py-space-2xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="home" href="#">Home</a><a class="px-space-sm py-space-2xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="services" href="#">Services</a><a class="px-space-sm py-space-2xs rounded text-on-surface-variant hover:bg-surface-container hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="how-it-works" href="#">How It Works</a></nav><div class="flex items-center gap-space-sm pl-space-xs border-l border-surface-container"><button aria-label="Notifications" class="p-space-2xs rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-low transition-colors" type="button"><span class="material-symbols-outlined text-[20px]">notifications</span></button><div class="relative flex items-center"><img alt="Profile" class="w-8 h-8 rounded-full object-cover ring-2 ring-tertiary-fixed-dim" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV4v9FDECr2NoaxL1EeoqYm_QnAzv91VX0FSghJ9gSEu3EdWNLbS3J9JosCOSi_T2g49x_b_QFswyWrEEKrMLsHml_h1H1PYRITmavFCxEQigyyraxJbpe2SUWPRwRcCOEpQMHEidR6gL4YVhvElIr8OaUQF8egncC86aa_0KpU0jwdDMQR3cXCnVSO2n7Yb3riSYWFu6yCJgz54caNzIagmfrkdmWS14cUeIXeb83"/><span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-on-tertiary-container rounded-full ring-2 ring-surface-container-lowest"></span></div><button aria-label="Logout" class="p-space-2xs rounded-lg text-on-surface-variant hover:text-error hover:bg-error-container transition-colors focus:outline-none" type="button"><span class="material-symbols-outlined text-[20px]">logout</span></button></div></div></header><main class="w-full pt-16 bg-surface flex-1 px-gutter py-space-lg"><div class="flex flex-col w-full pb-space-2xl">
+<!-- Top Superadmin Security & Pulse Strip -->
+<div class="flex flex-wrap items-center justify-between gap-space-sm mb-space-lg">
+<div class="flex items-center gap-space-sm">
+<div class="flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-surface-container-highest text-on-surface">
+<span class="material-symbols-outlined text-[16px] text-secondary">verified_user</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold">Superadmin Authorization</span>
+<span class="inline-block w-1.5 h-1.5 rounded-full bg-on-tertiary-container animate-pulse ml-space-2xs"></span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant hidden sm:inline">Audit Sync: Operational (Firestore Read-Only Replica)</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm">
+<span class="material-symbols-outlined text-[16px] text-on-tertiary-container">cloud_done</span>
+<span>Cluster: <strong class="text-on-surface">asia-south1 (Live)</strong></span>
+<span class="mx-space-2xs text-outline-variant">•</span>
+<span>Latency: <strong class="text-on-tertiary-container">24ms</strong></span>
+</div>
+</div>
+<!-- Hero Platform Health Metrics Bento Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-space-md mb-space-xl">
+<!-- Stat 1: Verified Pros -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Verified Pros</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[18px]">engineering</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-headline-lg font-extrabold text-on-surface tracking-tight">42</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-container font-semibold">+3 today</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-space-xs overflow-hidden">
+<div class="bg-on-tertiary-container h-full w-[84%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Stat 2: Active Service Requests -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Active Requests</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">inventory_2</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-headline-lg font-extrabold text-on-surface tracking-tight">128</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">100% indexed</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-space-xs overflow-hidden">
+<div class="bg-secondary h-full w-[72%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Stat 3: Open Requests -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">Unassigned / Open</span>
+<div class="w-8 h-8 rounded-lg bg-surface-container-highest flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[18px]">pending_actions</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-headline-lg font-extrabold text-on-surface tracking-tight">34</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Dispatch pending</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-space-xs overflow-hidden">
+<div class="bg-primary-container h-full w-[26%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Stat 4: Assigned Requests -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">In Progress</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-fixed flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[18px]">assignment_turned_in</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-headline-lg font-extrabold text-on-surface tracking-tight">94</span>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">Pro active</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-space-xs overflow-hidden">
+<div class="bg-secondary-container h-full w-[74%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Stat 5: Platform Health -->
+<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm flex flex-col justify-between">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant">System Uptime</span>
+<div class="w-8 h-8 rounded-lg bg-tertiary-fixed flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-[18px]">monitor_heart</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="flex items-baseline gap-space-xs">
+<span class="font-display text-headline-lg font-extrabold text-on-surface tracking-tight">99.9%</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-container font-semibold">No drift</span>
+</div>
+<div class="w-full bg-surface-container-low h-1 rounded-full mt-space-xs overflow-hidden">
+<div class="bg-on-tertiary-container h-full w-[99.9%] rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Primary Tab Switcher & Global Search Bar -->
+<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm mb-space-md flex flex-col lg:flex-row lg:items-center justify-between gap-space-md">
+<!-- Audit Segments -->
+<div class="inline-flex p-space-2xs bg-surface-container-low rounded-lg gap-space-2xs">
+<button class="tab-button flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-title-md bg-surface-container-lowest text-on-surface shadow-sm transition-all" id="tab-btn-providers" onclick="switchAdminTab('providers')">
+<span class="material-symbols-outlined text-[18px]">badge</span>
+<span>Service Providers</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">42</span>
+</button>
+<button class="tab-button flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface transition-all" id="tab-btn-requests" onclick="switchAdminTab('requests')">
+<span class="material-symbols-outlined text-[18px]">assignment</span>
+<span>Service Requests</span>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">128</span>
+</button>
+</div>
+<!-- Filter & Live Search Toolbar -->
+<div class="flex items-center gap-space-sm flex-1 max-w-xl justify-end">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[18px] text-on-surface-variant">search</span>
+<input class="w-full h-10 pl-9 pr-space-md rounded-lg bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-md text-body-md focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/20 transition-all outline-none" id="table-search-input" placeholder="Filter by hash, trade, name, district or phone..." type="text"/>
+</div>
+<button class="flex items-center gap-space-2xs px-space-sm h-10 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors whitespace-nowrap">
+<span class="material-symbols-outlined text-[18px]">tune</span>
+<span>Filters</span>
+</button>
+<button class="flex items-center gap-space-2xs px-space-sm h-10 rounded-lg bg-surface-container text-on-surface font-label-md text-label-md hover:bg-surface-container-high transition-colors whitespace-nowrap" onclick="exportSnapshot()" title="Export Schema Snapshot">
+<span class="material-symbols-outlined text-[18px]">file_download</span>
+<span class="hidden sm:inline">Export</span>
+</button>
+</div>
+</div>
+<!-- TAB VIEW 1: Service Providers (Firestore: users where roles.provider == true) -->
+<div class="tab-content flex flex-col" id="view-providers">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-md py-space-sm bg-surface-container-lowest flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-on-surface-variant">Collection:</span>
+<code class="px-space-xs py-0.5 rounded bg-surface-container font-mono text-[11px] text-on-surface">users.where('roles.provider', '==', true)</code>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Displaying 6 of 42 Registered Masters</span>
+</div>
+<!-- High Density Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md font-semibold">Provider Identity</th>
+<th class="py-space-sm px-space-md font-semibold">Verification</th>
+<th class="py-space-sm px-space-md font-semibold">Registered Skills</th>
+<th class="py-space-sm px-space-md font-semibold">Experience</th>
+<th class="py-space-sm px-space-md font-semibold">Jurisdiction (District, PIN)</th>
+<th class="py-space-sm px-space-md font-semibold">Direct Contact</th>
+<th class="py-space-sm px-space-md font-semibold">State</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Inspect</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm ring-2 ring-tertiary-fixed" data-alt="Portrait photo of a certified electrician contractor in uniform with hard hat and friendly smile, high fidelity profile photo, bright studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg0CQV8RvaD8QHQ9kf-LcI_mtq4Pw4y8Z721QsJZnhyx0uftiP8gd6E41OgjYewvE5IbG7e8SoBv3N36RFokHUL1dxnOfZ1Y8Jotf1ZnUeUSBgFzufuoX5KiR_hkQtxkTW0XVKf6MPjdaIw-k8vgA4NStt3hXtWFLsYaI9daTCN3tT6rx2KDeeO-Q6KaieJ5O_g53jWAaJahWJwrLkw-PZ0-_sUmXBvaIVcI3X997Q"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-secondary transition-colors">Rajesh K. Sharma</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #PRV-88219</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-tertiary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                  Verified
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-wrap gap-1 max-w-[200px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Electrician</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Solar PV</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-medium text-on-surface">
+                9 yrs 4 mos
+              </td>
+<td class="py-space-sm px-space-md text-on-surface-variant">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Bandra West, Mumbai</span>
+<span class="font-mono text-label-sm text-label-sm">MH • 400050</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-mono text-body-sm text-on-surface">
+                +91 98201 44102
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                  Active
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('provider', 'PRV-88219')" title="View Document JSON">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm ring-2 ring-tertiary-fixed" data-alt="Close up professional portrait of an HVAC specialist technician woman with safety goggles resting on cap, high detail editorial photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA61hNfW62FRNPgnnQ7_YtBXIsz7wKBNqj1-4t9133PcbyMKD4HLKsqN-l9V-8tsMAQ1J8z5m98EkpkBB9eISWLRLZdEOjizBbDXLcFn3zFUymVDxS3Exsq22vunOunj8SqZvZQ6VFQSJtagusHfdwbIfWggo3ivSc2oMTAvSNhlFfxvsX5URgcD1yZYhShvl37CnyEOZEUnntQV3Ff7mNSflqJcVVuECKG2b63u4Iv"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-secondary transition-colors">Pooja Venkatesh</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #PRV-71044</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-tertiary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                  Verified
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-wrap gap-1 max-w-[200px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">HVAC Chillers</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Heat Pumps</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-medium text-on-surface">
+                12 yrs
+              </td>
+<td class="py-space-sm px-space-md text-on-surface-variant">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Indiranagar, Bangalore</span>
+<span class="font-mono text-label-sm text-label-sm">KA • 560038</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-mono text-body-sm text-on-surface">
+                +91 94480 32190
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                  Active
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('provider', 'PRV-71044')" title="View Document JSON">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm ring-2 ring-tertiary-fixed" data-alt="Portrait of a seasoned master plumber holding pipe wrench, professional photography, natural lighting, trustworthy demeanor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC688BTPyRNPu31OZ9lXKTMoldra5PydtpDKd9H8SOZ-uC-BNz_VhqYda6HdZ_6PpAGu8WCfConRGkhAn7hN9iHgtW40f0IHTM1Flg4WtXIibaqfZRv1fD43DSAUdTu30AvrP4uHkP0BWhGg_8TX9cC_9RhSCW5KhXJHjXU_1-t2vAAFLh495uwe-nbv-ZhD0qbCeyDgOqtzV2eLO3C1HJbivxUU8PqZKFwPSPhgHG7"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-secondary transition-colors">Arunagiri M.</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #PRV-65902</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-tertiary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                  Verified
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-wrap gap-1 max-w-[200px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Plumbing</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Hydro-Jetting</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-medium text-on-surface">
+                15 yrs
+              </td>
+<td class="py-space-sm px-space-md text-on-surface-variant">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Anna Nagar, Chennai</span>
+<span class="font-mono text-label-sm text-label-sm">TN • 600040</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-mono text-body-sm text-on-surface">
+                +91 97109 88311
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                  Offline
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('provider', 'PRV-65902')" title="View Document JSON">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm ring-2 ring-tertiary-fixed" data-alt="Portrait of an experienced carpenter craftsman in workshop setting with clean woodworking apron, soft warm daylight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbeLhHa7g_XxWXHHsGGnwaT8YKkZ4seI_yNlzEjTr3dAkLghoorKsGATbHp7J9luS8eVLsOdHV1U4R9Uh1UHLi-5CwRo9l1ux3exbg42fm-7heDUAwRrGaInau2YEA0gGw6zX2x-5W971xbHt9-VN-95O0P-8RbICcF6coM0TRj-POD6K2At8T2_-FbfMLaRoi3O3Um6WUMQnFw70y2eXyiwFsIxBM-fdZGU6eHGZg"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-secondary transition-colors">Tariq Anwar</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #PRV-51290</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-tertiary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                  Verified
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-wrap gap-1 max-w-[200px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Carpentry</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Modular Fixtures</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-medium text-on-surface">
+                7 yrs
+              </td>
+<td class="py-space-sm px-space-md text-on-surface-variant">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Saket, New Delhi</span>
+<span class="font-mono text-label-sm text-label-sm">DL • 110017</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-mono text-body-sm text-on-surface">
+                +91 99112 00934
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                  Active
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('provider', 'PRV-51290')" title="View Document JSON">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm ring-2 ring-tertiary-fixed" data-alt="Portrait of an electronic appliance service technician holding multimeter with calm and focused expression, indoor workshop lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpYfkaOfEALrJtnlTw6sGDbOmQXMtsVsnAkH1jpNdxWq4DXzOIgOr_7_L6bS1DgtZjjXTgzeyXk9e-rTUdv4VoEurqjrjO047M4p8NjoTyNoFxgBrJ0_LOgWKW8Qtez9_GQp5_XSiOsUvaBvdTaWc3Ou0Dg3-NtBR7JihVXiIzWS-l55NENjaWMf7OQQjHA2Hvpf0D09eeCTNZzjr3cmcYVcgChuYfrv2u7Rav1_M6"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-secondary transition-colors">David Fernandez</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #PRV-43091</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-tertiary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                  Verified
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-wrap gap-1 max-w-[200px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Appliance Tech</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Inverters</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-medium text-on-surface">
+                11 yrs
+              </td>
+<td class="py-space-sm px-space-md text-on-surface-variant">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Panaji, Goa</span>
+<span class="font-mono text-label-sm text-label-sm">GA • 403001</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-mono text-body-sm text-on-surface">
+                +91 98221 67890
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-on-tertiary-container"></span>
+                  Active
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('provider', 'PRV-43091')" title="View Document JSON">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md">
+<div class="flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover shadow-sm ring-2 ring-tertiary-fixed" data-alt="Portrait of modern domestic paint and waterproof specialist smiling with clean painter overall, high contrast studio portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf_AoTT0eNvnTkIe-yfH1iWKj3Ur4-FYEir9aw4tgMo-uF850auJ9b_JKwnRvhhS3nr5jqaKlGa9O4f156vCtuaHUGh6oxyFJXcOSKPiVnf-dCOQBzdzcTWrdsbBNPFCGiO2eb_SZmk2ETFhMOCRH-_O4LP9lsuv4fWS61IqdfE-cvlZQqaL9UpyKWON51ZhmACYHBDmbnPQ_mCPHB2HHPmz38EtwO8H8ahx0DIY4D"/>
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface font-semibold group-hover:text-secondary transition-colors">Amitav Sen</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #PRV-39184</span>
+</div>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-tertiary-container font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+                  Verified
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-wrap gap-1 max-w-[200px]">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Waterproofing</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface font-label-sm text-label-sm">Wall Coating</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-medium text-on-surface">
+                6 yrs
+              </td>
+<td class="py-space-sm px-space-md text-on-surface-variant">
+<div class="flex flex-col">
+<span class="text-on-surface font-medium">Salt Lake, Kolkata</span>
+<span class="font-mono text-label-sm text-label-sm">WB • 700091</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md font-mono text-body-sm text-on-surface">
+                +91 93310 99401
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm font-semibold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                  Offline
+                </span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('provider', 'PRV-39184')" title="View Document JSON">
+<span class="material-symbols-outlined text-[20px]">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination bar -->
+<div class="px-space-md py-space-sm bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+          Showing <span class="font-semibold text-on-surface">1 - 6</span> of 42 Verified Providers
+        </div>
+<div class="flex items-center gap-space-xs">
+<button class="p-1 rounded-md bg-surface-container-lowest text-on-surface-variant hover:text-on-surface disabled:opacity-40 transition-colors shadow-sm" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<span class="px-3 py-1 rounded-md bg-primary text-on-primary font-label-sm text-label-sm font-bold">1</span>
+<button class="px-3 py-1 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors font-label-sm text-label-sm shadow-sm">2</button>
+<button class="px-3 py-1 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors font-label-sm text-label-sm shadow-sm">3</button>
+<span class="px-1 text-on-surface-variant font-label-sm text-label-sm">...</span>
+<button class="px-3 py-1 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors font-label-sm text-label-sm shadow-sm">7</button>
+<button class="p-1 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- TAB VIEW 2: Service Requests (Firestore: serviceRequests) -->
+<div class="tab-content hidden flex-col" id="view-requests">
+<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
+<div class="px-space-md py-space-sm bg-surface-container-lowest flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider font-bold text-on-surface-variant">Collection:</span>
+<code class="px-space-xs py-0.5 rounded bg-surface-container font-mono text-[11px] text-on-surface">serviceRequests.allDocs()</code>
+</div>
+<div class="flex items-center gap-space-sm font-body-sm text-body-sm">
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-error"></span> Open (34)
+          </span>
+<span class="inline-flex items-center gap-1 font-label-sm text-label-sm text-secondary">
+<span class="w-2 h-2 rounded-full bg-secondary"></span> Assigned (94)
+          </span>
+</div>
+</div>
+<!-- Service Requests Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left font-body-md text-body-md">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md font-semibold">Request Hash</th>
+<th class="py-space-sm px-space-md font-semibold">Service Domain</th>
+<th class="py-space-sm px-space-md font-semibold">Client Identity</th>
+<th class="py-space-sm px-space-md font-semibold">Geo Target</th>
+<th class="py-space-sm px-space-md font-semibold">Scope Preview</th>
+<th class="py-space-sm px-space-md font-semibold">Dispatch State</th>
+<th class="py-space-sm px-space-md font-semibold">Assigned Master</th>
+<th class="py-space-sm px-space-md font-semibold text-right">Raw Data</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Request 1: Open -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md font-mono text-body-sm font-semibold text-secondary">
+                #0x8f4c2e
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-title-md text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">bolt</span>
+                  Electrical
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Meera Kapoor</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #CLI-91024</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col text-on-surface-variant">
+<span class="text-on-surface font-medium">Bandra East, Mumbai</span>
+<span class="font-mono text-label-sm text-label-sm">400051</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md max-w-xs">
+<p class="truncate text-body-sm text-on-surface-variant" title="Main breaker tripping under 2.5 ton inverter AC surge load. Burning insulation odor detected.">
+                  Main breaker tripping under 2.5 ton inverter AC surge load. Burning odor...
+                </p>
+</td>
+<td class="py-space-sm px-space-md">
+<!-- Status Badge Open in Amber -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                  Open
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant italic">Unassigned (Awaiting Pro)</span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('request', '0x8f4c2e')" title="Inspect Document">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</button>
+</td>
+</tr>
+<!-- Request 2: Assigned -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md font-mono text-body-sm font-semibold text-secondary">
+                #0x3b119a
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-title-md text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">plumbing</span>
+                  Plumbing
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Vikramaditya Roy</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #CLI-70194</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col text-on-surface-variant">
+<span class="text-on-surface font-medium">HSR Layout, Bangalore</span>
+<span class="font-mono text-label-sm text-label-sm">560102</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md max-w-xs">
+<p class="truncate text-body-sm text-on-surface-variant" title="Under-slab master bath conduit puncture causing pressure drop across all upper floors.">
+                  Under-slab master bath conduit puncture causing severe pressure drop...
+                </p>
+</td>
+<td class="py-space-sm px-space-md">
+<!-- Status Badge Assigned in Indigo -->
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Assigned
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline" href="javascript:void(0)" onclick="openViewerModal('provider', 'PRV-71044')">
+<span>Pooja Venkatesh</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('request', '0x3b119a')" title="Inspect Document">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</button>
+</td>
+</tr>
+<!-- Request 3: Assigned -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md font-mono text-body-sm font-semibold text-secondary">
+                #0x9d0042
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-title-md text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">hvac</span>
+                  HVAC Systems
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Sanya Malhotra</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #CLI-55201</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col text-on-surface-variant">
+<span class="text-on-surface font-medium">Defence Colony, Delhi</span>
+<span class="font-mono text-label-sm text-label-sm">110024</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md max-w-xs">
+<p class="truncate text-body-sm text-on-surface-variant" title="Multi-split central condenser diagnostic: Compressor locked, fan motor noisy.">
+                  Multi-split central condenser diagnostic: Compressor locked, fan motor noisy...
+                </p>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Assigned
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline" href="javascript:void(0)" onclick="openViewerModal('provider', 'PRV-88219')">
+<span>Rajesh K. Sharma</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('request', '0x9d0042')" title="Inspect Document">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</button>
+</td>
+</tr>
+<!-- Request 4: Open -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md font-mono text-body-sm font-semibold text-secondary">
+                #0xfa1458
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-title-md text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">carpenter</span>
+                  Carpentry
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Karthik Narayanan</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #CLI-44199</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col text-on-surface-variant">
+<span class="text-on-surface font-medium">Mylapore, Chennai</span>
+<span class="font-mono text-label-sm text-label-sm">600004</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md max-w-xs">
+<p class="truncate text-body-sm text-on-surface-variant" title="Custom teak mainframe alignment and mortise lock retrofit after storm moisture expansion.">
+                  Custom teak mainframe alignment and mortise lock retrofit after moisture...
+                </p>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-outline"></span>
+                  Open
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="font-label-sm text-label-sm text-on-surface-variant italic">Unassigned (Awaiting Pro)</span>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('request', '0xfa1458')" title="Inspect Document">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</button>
+</td>
+</tr>
+<!-- Request 5: Assigned -->
+<tr class="hover:bg-surface-container-low/60 transition-colors group">
+<td class="py-space-sm px-space-md font-mono text-body-sm font-semibold text-secondary">
+                #0x228e01
+              </td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded bg-surface-container-high text-on-surface font-title-md text-body-sm">
+<span class="material-symbols-outlined text-[16px] text-secondary">handyman</span>
+                  Waterproofing
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md text-on-surface">Ananya Ghosh</span>
+<span class="font-mono text-label-sm text-label-sm text-on-surface-variant">UID: #CLI-29184</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md">
+<div class="flex flex-col text-on-surface-variant">
+<span class="text-on-surface font-medium">Ballygunge, Kolkata</span>
+<span class="font-mono text-label-sm text-label-sm">700019</span>
+</div>
+</td>
+<td class="py-space-sm px-space-md max-w-xs">
+<p class="truncate text-body-sm text-on-surface-variant" title="Terrace polyurethane injection seal requirement before monsoon intensification.">
+                  Terrace polyurethane injection seal requirement before monsoon...
+                </p>
+</td>
+<td class="py-space-sm px-space-md">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-secondary-fixed text-secondary font-label-sm text-label-sm font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                  Assigned
+                </span>
+</td>
+<td class="py-space-sm px-space-md">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:underline" href="javascript:void(0)" onclick="openViewerModal('provider', 'PRV-39184')">
+<span>Amitav Sen</span>
+<span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</td>
+<td class="py-space-sm px-space-md text-right">
+<button class="p-space-2xs text-on-surface-variant hover:text-secondary rounded-lg hover:bg-surface-container transition-colors" onclick="openViewerModal('request', '0x228e01')" title="Inspect Document">
+<span class="material-symbols-outlined text-[20px]">code</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination bar -->
+<div class="px-space-md py-space-sm bg-surface-container-low flex flex-col sm:flex-row items-center justify-between gap-space-sm">
+<div class="font-body-sm text-body-sm text-on-surface-variant">
+          Showing <span class="font-semibold text-on-surface">1 - 5</span> of 128 Active Firestore Records
+        </div>
+<div class="flex items-center gap-space-xs">
+<button class="p-1 rounded-md bg-surface-container-lowest text-on-surface-variant hover:text-on-surface disabled:opacity-40 transition-colors shadow-sm" disabled="">
+<span class="material-symbols-outlined text-[18px]">chevron_left</span>
+</button>
+<span class="px-3 py-1 rounded-md bg-primary text-on-primary font-label-sm text-label-sm font-bold">1</span>
+<button class="px-3 py-1 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors font-label-sm text-label-sm shadow-sm">2</button>
+<button class="px-3 py-1 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors font-label-sm text-label-sm shadow-sm">3</button>
+<span class="px-1 text-on-surface-variant font-label-sm text-label-sm">...</span>
+<button class="px-3 py-1 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors font-label-sm text-label-sm shadow-sm">26</button>
+<button class="p-1 rounded-md bg-surface-container-lowest text-on-surface hover:bg-surface-container transition-colors shadow-sm">
+<span class="material-symbols-outlined text-[18px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Read-Only Data Viewer Modal / Slide Drawer -->
+<div class="fixed inset-0 z-50 bg-on-surface/40 backdrop-blur-sm hidden flex items-center justify-center p-space-md transition-opacity" id="inspector-modal">
+<div class="bg-surface-container-lowest rounded-xl shadow-xl max-w-2xl w-full max-h-[921px] flex flex-col overflow-hidden transform transition-all">
+<div class="px-space-lg py-space-md bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="material-symbols-outlined text-secondary text-[24px]">terminal</span>
+<div class="flex flex-col">
+<h3 class="font-headline-sm text-headline-sm text-on-surface" id="modal-title">Document Inspection</h3>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider" id="modal-subtitle">Immutable Read-Only Payload</span>
+</div>
+</div>
+<button class="p-space-2xs text-on-surface-variant hover:text-on-surface rounded-lg hover:bg-surface-container transition-colors" onclick="closeViewerModal()">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-space-lg overflow-y-auto">
+<div class="mb-space-md p-space-sm bg-surface-container-high rounded-lg flex items-center gap-space-sm text-on-surface">
+<span class="material-symbols-outlined text-[20px] text-secondary">lock</span>
+<p class="font-body-sm text-body-sm">
+            Strict isolation enforced. Superadmin edits are restricted to migration scripts to preserve downstream provider-client SLA contracts.
+          </p>
+</div>
+<pre class="p-space-md bg-primary-container text-surface-bright rounded-lg font-mono text-body-sm overflow-x-auto leading-relaxed selection:bg-secondary" id="modal-json">        </pre>
+</div>
+<div class="px-space-lg py-space-md bg-surface-container-lowest flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Validated against schema: KOOLIE_SPEC_v2.4</span>
+<button class="px-space-md py-space-xs rounded-lg bg-surface-container text-on-surface font-title-md text-body-md hover:bg-surface-container-high transition-colors" onclick="closeViewerModal()">
+          Dismiss
+        </button>
+</div>
+</div>
+</div>
+</div>
+<script>
+  function switchAdminTab(targetTab) {
+    const providersBtn = document.getElementById('tab-btn-providers');
+    const requestsBtn = document.getElementById('tab-btn-requests');
+    const providersView = document.getElementById('view-providers');
+    const requestsView = document.getElementById('view-requests');
+
+    if (targetTab === 'providers') {
+      providersView.classList.remove('hidden');
+      requestsView.classList.add('hidden');
+
+      providersBtn.className = "tab-button flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-title-md bg-surface-container-lowest text-on-surface shadow-sm transition-all";
+      requestsBtn.className = "tab-button flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface transition-all";
+    } else {
+      requestsView.classList.remove('hidden');
+      providersView.classList.add('hidden');
+
+      requestsBtn.className = "tab-button flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-title-md bg-surface-container-lowest text-on-surface shadow-sm transition-all";
+      providersBtn.className = "tab-button flex items-center gap-space-xs px-space-md py-space-xs rounded-lg font-title-md text-title-md text-on-surface-variant hover:text-on-surface transition-all";
+    }
+  }
+
+  const MOCK_DOCS = {
+    'PRV-88219': {
+      _collection: "users",
+      id: "PRV-88219",
+      roles: { client: true, provider: true, admin: false },
+      profile: {
+        legalName: "Rajesh Kumar Sharma",
+        phone: "+919820144102",
+        rating: 4.92,
+        totalCompletedJobs: 418,
+        registeredSkills: ["Electrician", "Solar PV Install", "HVAC Inverters"],
+        experienceYears: 9.3,
+        jurisdiction: {
+          district: "Bandra West",
+          city: "Mumbai",
+          state: "Maharashtra",
+          postalCode: "400050"
+        }
+      },
+      status: {
+        isVerified: true,
+        verifiedAt: "2023-01-14T10:20:00Z",
+        verifiedBy: "SUPERADMIN_SYS_01",
+        isAvailableOnline: true,
+        activeDispatchJob: "0x9d0042"
+      }
+    },
+    'PRV-71044': {
+      _collection: "users",
+      id: "PRV-71044",
+      roles: { client: false, provider: true, admin: false },
+      profile: {
+        legalName: "Pooja Venkatesh",
+        phone: "+919448032190",
+        rating: 4.98,
+        totalCompletedJobs: 612,
+        registeredSkills: ["HVAC Chillers", "Heat Pumps", "Cold Storage Diagnostics"],
+        experienceYears: 12.0,
+        jurisdiction: {
+          district: "Indiranagar",
+          city: "Bangalore",
+          state: "Karnataka",
+          postalCode: "560038"
+        }
+      },
+      status: {
+        isVerified: true,
+        verifiedAt: "2022-09-01T15:45:00Z",
+        verifiedBy: "SUPERADMIN_SYS_01",
+        isAvailableOnline: true,
+        activeDispatchJob: "0x3b119a"
+      }
+    },
+    '0x8f4c2e': {
+      _collection: "serviceRequests",
+      id: "0x8f4c2e",
+      category: "Electrical",
+      clientUid: "CLI-91024",
+      clientName: "Meera Kapoor",
+      status: "open",
+      location: {
+        city: "Mumbai",
+        district: "Bandra East",
+        postalCode: "400051",
+        coordinates: { lat: 19.0607, lng: 72.8546 }
+      },
+      description: "Main breaker tripping under 2.5 ton inverter AC surge load. Burning insulation odor detected.",
+      assignedProviderUid: null,
+      createdAt: "2025-05-18T08:12:30Z",
+      slaUrgency: "HIGH_DOMESTIC_CRITICAL"
+    },
+    '0x3b119a': {
+      _collection: "serviceRequests",
+      id: "0x3b119a",
+      category: "Plumbing",
+      clientUid: "CLI-70194",
+      clientName: "Vikramaditya Roy",
+      status: "assigned",
+      location: {
+        city: "Bangalore",
+        district: "HSR Layout",
+        postalCode: "560102",
+        coordinates: { lat: 12.9121, lng: 77.6446 }
+      },
+      description: "Under-slab master bath conduit puncture causing pressure drop across all upper floors.",
+      assignedProviderUid: "PRV-71044",
+      assignedAt: "2025-05-18T09:00:15Z",
+      slaUrgency: "STANDARD"
+    }
+  };
+
+  function openViewerModal(type, id) {
+    const modal = document.getElementById('inspector-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSubtitle = document.getElementById('modal-subtitle');
+    const jsonPre = document.getElementById('modal-json');
+
+    const doc = MOCK_DOCS[id] || {
+      _collection: type === 'provider' ? 'users' : 'serviceRequests',
+      id: id,
+      note: "Standard Firestore JSON payload loaded directly from replica cluster."
+    };
+
+    modalTitle.textContent = `${type.toUpperCase()} // ${id}`;
+    modalSubtitle.textContent = `Firestore Immutable Path: /${doc._collection}/${id}`;
+    jsonPre.textContent = JSON.stringify(doc, null, 2);
+
+    modal.classList.remove('hidden');
+  }
+
+  function closeViewerModal() {
+    document.getElementById('inspector-modal').classList.add('hidden');
+  }
+
+  function exportSnapshot() {
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(MOCK_DOCS, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", `KOOLIE_ADMIN_SNAPSHOT_${Date.now()}.json`);
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+  }
+
+  // Live filter hook
+  document.getElementById('table-search-input').addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase().trim();
+    const rows = document.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      const text = row.innerText.toLowerCase();
+      row.style.display = text.includes(query) ? '' : 'none';
+    });
+  });
+</script></main></div></body></html>

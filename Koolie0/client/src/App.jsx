@@ -1,5 +1,4 @@
 import "./App.css";
-import "./styles/hero.css";
 import Navbar from "./layout/Navbar";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -16,13 +15,9 @@ import { AuthProvider } from "./contexts/AuthContext";
 
 function HomePage() {
   return (
-    <>
-      {/* keep spacing so content isn't hidden by fixed navbar */}
-      <div style={{ paddingTop: "92px" }}>
-        {/* Home component with hero and other sections */}
-        <Home />
-      </div>
-    </>
+    <main className="public-page">
+      <Home />
+    </main>
   );
 }
 

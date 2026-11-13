@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { auth, db } from "../services/firebase";
 import { collection, addDoc, serverTimestamp, updateDoc, doc } from "firebase/firestore";
+import DashboardLayout from "../layout/DashboardLayout";
 
 // Complete JSON for India - All States & UTs
 const locationData = {
@@ -124,53 +125,109 @@ export default function RequestForm() {
   };
 
   return (
-    <div style={{ padding: 24, background: "#1e3a8a", minHeight: "100vh", color: "white" }}>
-      <h3 style={{ color: "white" }}>Create Service Request</h3>
-      <p style={{ color: "#cbd5e1" }}>Service: <strong>{serviceType || "(none)"}</strong></p>
-
-      <form onSubmit={submit} style={{ marginTop: 12, maxWidth: 640 }}>
-        <div style={{ marginBottom: 12 }}>
-          <label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>Location</label>
-          <div style={{ display: 'grid', gap: 8 }}>
-            <select value={location.country} onChange={handleCountryChange} required style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
-              <option value="">Select Country</option>
-              {countryOptions.map(c => <option key={c} value={c}>{c}</option>)}
-            </select>
-            <select value={location.state} onChange={handleStateChange} required disabled={!location.country} style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
-              <option value="">Select State</option>
-              {stateOptions.map(s => <option key={s} value={s}>{s}</option>)}
-            </select>
-            <select value={location.city} onChange={handleCityChange} required disabled={!location.state} style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }}>
-              <option value="">Select City</option>
-              {cityOptions.map(city => <option key={city} value={city}>{city}</option>)}
-            </select>
-            <input type="text" value={location.area} onChange={handleAreaChange} placeholder="Area" style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }} />
-            <input type="number" value={location.pincode} onChange={handlePincodeChange} placeholder="Pincode" required style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }} />
-            <textarea value={location.addressLine} onChange={handleAddressLineChange} placeholder="Address Line" rows={2} style={{ padding: 8, borderRadius: 6, border: '1px solid #e5e7eb', background: "#334155", color: "white" }} />
+    <DashboardLayout>
+      <div className="request-page">
+        <header className="request-page-header">
+          <div>
+            <p className="section-eyebrow">New service request</p>
+            <h1>Book a service</h1>
+            <p>Share the work details and location so a professional can review your request.</p>
           </div>
-          {error && <div style={{ color: '#f87171', marginTop: 6 }}>{error}</div>}
-        </div>
+          <div className="request-service-chip">
+            <span>Selected service</span>
+            <strong>{serviceType || "(none)"}</strong>
+          </div>
+        </header>
 
-        <div style={{ marginBottom: 12 }}>
-          <label style={{ display: "block", fontWeight: 600, marginBottom: 6 }}>Description</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Describe the problem (required)"
-            required
-            style={{ width: "100%", padding: 8, borderRadius: 6, border: "1px solid #e5e7eb", minHeight: 120, background: "#334155", color: "white" }}
-          />
-        </div>
+        <form className="request-form" onSubmit={submit}>
+          <div className="request-form-grid">
+            <div className="request-form-sections">
+          <section className="request-form-section">
+            <div className="request-section-heading">
+              <span className="request-step">1</span>
+              <div>
+                <h2>Service location</h2>
+                <p>Enter the address where work is needed.</p>
+              </div>
+            </div>
+            <div className="request-location-grid">
+              <label className="request-field">
+                <span>Country <b>*</b></span>
+                <select value={location.country} onChange={handleCountryChange} required>
+                  <option value="">Select country</option>
+                  {countryOptions.map(c => <option key={c} value={c}>{c}</option>)}
+                </select>
+              </label>
+              <label className="request-field">
+                <span>State <b>*</b></span>
+                <select value={location.state} onChange={handleStateChange} required disabled={!location.country}>
+                  <option value="">Select state</option>
+                  {stateOptions.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+              </label>
+              <label className="request-field">
+                <span>City <b>*</b></span>
+                <select value={location.city} onChange={handleCityChange} required disabled={!location.state}>
+                  <option value="">Select city</option>
+                  {cityOptions.map(city => <option key={city} value={city}>{city}</option>)}
+                </select>
+              </label>
+              <label className="request-field">
+                <span>Area / locality</span>
+                <input type="text" value={location.area} onChange={handleAreaChange} placeholder="Area or locality" />
+              </label>
+              <label className="request-field">
+                <span>Pincode <b>*</b></span>
+                <input type="number" value={location.pincode} onChange={handlePincodeChange} placeholder="6-digit pincode" required />
+              </label>
+              <label className="request-field request-field--wide">
+                <span>Street address</span>
+                <textarea value={location.addressLine} onChange={handleAddressLineChange} placeholder="Building name, flat/house number, landmark" rows={2} />
+              </label>
+            </div>
+            {error && <div className="auth-message auth-message--error" role="alert">{error}</div>}
+          </section>
 
-        <div style={{ display: "flex", gap: 8 }}>
-          <button type="submit" style={{ padding: "10px 20px", background: "#facc15", color: "#1e3a8a", border: "none", borderRadius: 6, fontWeight: "bold", cursor: "pointer" }} disabled={loading}>
-            {loading ? "Creating..." : "Create Request"}
-          </button>
-          <button type="button" onClick={() => navigate(-1)} style={{ padding: "10px 20px", background: "transparent", color: "white", border: "1px solid white", borderRadius: 6, cursor: "pointer" }}>
-            Cancel
-          </button>
-        </div>
-      </form>
-    </div>
+          <section className="request-form-section">
+            <div className="request-section-heading">
+              <span className="request-step">2</span>
+              <div>
+                <h2>Describe the work</h2>
+                <p>Include the details that will help a professional understand your request.</p>
+              </div>
+            </div>
+            <label className="request-field">
+              <span>Description <b>*</b></span>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Describe the problem or service needed"
+                required
+                rows={5}
+              />
+            </label>
+          </section>
+            </div>
+
+            <aside className="request-process-card" aria-label="What happens next">
+              <p className="section-eyebrow">What happens next</p>
+              <h2>Your request, step by step</h2>
+              <ol>
+                <li><span>1</span><div><strong>Submit your details</strong><p>Your request is saved with the service and location you provide.</p></div></li>
+                <li><span>2</span><div><strong>Matching professionals review it</strong><p>Professionals with matching skills can browse open requests.</p></div></li>
+                <li><span>3</span><div><strong>Chat after assignment</strong><p>Once accepted, you can view the professional and open request-specific chat.</p></div></li>
+              </ol>
+            </aside>
+          </div>
+
+          <div className="request-form-actions">
+            <button type="button" className="button button--secondary" onClick={() => navigate(-1)}>Cancel and return</button>
+            <button type="submit" className="button button--primary" disabled={loading}>
+              {loading ? "Creating..." : "Submit service request"} <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </form>
+      </div>
+    </DashboardLayout>
   );
 }

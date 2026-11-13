@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "surface-container-lowest": "#ffffff", "on-surface-variant": "#45464d", "surface-container-high": "#dce9ff", "on-primary-fixed-variant": "#3f465c", "on-secondary": "#ffffff", "surface-bright": "#f8f9ff", "error": "#ba1a1a", "on-primary-container": "#7c839b", "tertiary-fixed": "#85f8c4", "on-secondary-fixed": "#00174b", "inverse-on-surface": "#eaf1ff", "on-surface": "#0b1c30", "primary-fixed": "#dae2fd", "on-primary": "#ffffff", "surface-container-highest": "#d3e4fe", "surface-container": "#e5eeff", "background": "#f8f9ff", "on-tertiary-fixed": "#002114", "on-error-container": "#93000a", "secondary-fixed": "#dbe1ff", "secondary-fixed-dim": "#b4c5ff", "on-primary-fixed": "#131b2e", "outline-variant": "#c6c6cd", "secondary": "#0051d5", "inverse-primary": "#bec6e0", "on-error": "#ffffff", "tertiary-container": "#002114", "surface-dim": "#cbdbf5", "on-tertiary": "#ffffff", "surface": "#f8f9ff", "tertiary-fixed-dim": "#68dba9", "surface-container-low": "#eff4ff", "tertiary": "#000000", "surface-variant": "#d3e4fe", "primary": "#000000", "on-tertiary-container": "#069669", "on-secondary-container": "#fefcff", "surface-tint": "#565e74", "primary-container": "#131b2e", "primary-fixed-dim": "#bec6e0", "on-tertiary-fixed-variant": "#005137", "outline": "#76777d", "error-container": "#ffdad6", "inverse-surface": "#213145", "on-secondary-fixed-variant": "#003ea8", "secondary-container": "#316bf3", "on-background": "#0b1c30" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "gutter-mobile": "1rem", "space-sm": "0.75rem", "margin": "2rem", "space-xl": "2rem", "space-lg": "1.5rem", "space-md": "1rem", "space-2xl": "3rem", "space-2xs": "0.25rem", "space-xs": "0.5rem", "gutter": "1.5rem", "margin-mobile": "1rem" }, "fontFamily": { "body-lg": [ "Inter" ], "body-sm": [ "Inter" ], "headline-lg-mobile": [ "Plus Jakarta Sans" ], "headline-sm": [ "Plus Jakarta Sans" ], "display-mobile": [ "Plus Jakarta Sans" ], "body-md": [ "Inter" ], "display": [ "Plus Jakarta Sans" ], "title-md": [ "Plus Jakarta Sans" ], "headline-md": [ "Plus Jakarta Sans" ], "headline-lg": [ "Plus Jakarta Sans" ], "label-md": [ "Inter" ], "label-lg": [ "Inter" ], "label-sm": [ "Inter" ] }, "fontSize": { "body-lg": [ "16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" } ], "body-sm": [ "12px", { "lineHeight": "18px", "letterSpacing": "0.005em", "fontWeight": "400" } ], "headline-lg-mobile": [ "26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" } ], "headline-sm": [ "20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" } ], "display-mobile": [ "36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "800" } ], "body-md": [ "14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" } ], "display": [ "48px", { "lineHeight": "56px", "letterSpacing": "-0.03em", "fontWeight": "800" } ], "title-md": [ "16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" } ], "headline-md": [ "24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" } ], "headline-lg": [ "32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" } ], "label-md": [ "12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" } ], "label-lg": [ "14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" } ], "label-sm": [ "10px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "700" } ] } } } };</script></head><body class="bg-surface font-body-md text-body-md text-on-surface antialiased min-h-screen flex flex-col"><header class="fixed top-0 left-0 right-0 h-16 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-surface-container z-50 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-lg"><a class="flex items-center gap-space-xs" data-path="landing-page" href="#"><img alt="KOOLIE Brand Mark" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrBwsHxC62qxfVgqnaQcgX3fkgzz7J6gDkFK6YQgMevNieK8rYFg7CAxjhtEA7qqIDT0VSnMuct7Ynq2Ii63prUl9lgkQwsvoITHPzCoswOnKLSTckGtclxbGQsanfon5V4faroaETfNSdSBNXgo3MqsEkWod1mB6GCrRQR7vr56pv15eRUCCN32fmwTsF1D1Ge8eX7RgFmSUclOF9S9sGcbUfWc8_Uady97JBwgOg0Hxw"/><span class="font-headline-sm text-headline-sm text-on-surface tracking-tight font-extrabold">KOOLIE</span></a><nav class="hidden md:flex items-center gap-space-xs" data-active-classes="text-primary font-title-md"><a aria-current="page" class="px-space-sm py-space-2xs transition-colors text-primary font-title-md" data-path="landing-page" href="#">Home</a><a class="px-space-sm py-space-2xs text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="service-request-creation-form" href="#">Services</a><a class="px-space-sm py-space-2xs text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="role-switcher-dashboard" href="#">How It Works</a><a class="px-space-sm py-space-2xs text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors" data-path="client-dashboard" href="#">App Portal</a></nav></div><div class="flex items-center gap-space-sm"><a class="px-space-sm py-space-2xs text-on-surface font-label-lg text-label-lg hover:text-primary transition-colors" data-path="login" href="#">Login</a><a class="px-space-sm py-space-2xs rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-colors" data-path="admin-login" href="#">Admin Access</a><a class="px-space-md py-space-2xs rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-neutral-800 transition-colors shadow-sm" data-path="sign-up" href="#">Sign Up</a></div></header><main class="w-full pt-16 bg-surface flex-1"><div class="flex flex-col w-full">
+<!-- HERO SECTION -->
+<section class="relative w-full bg-gradient-to-b from-surface to-surface-container-low pt-space-xl pb-space-2xl px-gutter overflow-hidden">
+<!-- Ambient Backdrop Depth Glows -->
+<div class="absolute -top-32 right-0 w-96 h-96 bg-secondary-fixed/30 rounded-full blur-3xl pointer-events-none -z-0"></div>
+<div class="absolute top-1/2 -left-20 w-80 h-80 bg-surface-container-high/40 rounded-full blur-3xl pointer-events-none -z-0"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<!-- Live Trust Flag Indicator -->
+<div class="inline-flex items-center gap-space-xs px-space-sm py-space-2xs rounded-full bg-surface-container-lowest shadow-sm mb-space-lg">
+<span class="inline-flex h-2.5 w-2.5 rounded-full bg-on-tertiary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-on-surface uppercase tracking-wider">India's Verified Trade Professional Network</span>
+<span class="font-label-sm text-label-sm text-on-tertiary-container font-semibold bg-tertiary-fixed/30 px-space-xs py-0.5 rounded-full">ISO Certified</span>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Hero Copy & Search Control -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<h1 class="font-display text-display text-on-surface tracking-tight leading-tight">
+            Verified Domestic Professionals <span class="text-secondary">On Demand.</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+            Connecting discerning homeowners with background-checked certified electricians, plumbers, HVAC technicians, and carpenters across India with instant dispatch and guaranteed upfront pricing.
+          </p>
+<!-- Interactive Fast-Book Filter Bar -->
+<div class="mt-space-sm p-space-xs bg-surface-container-lowest rounded-xl shadow-md flex flex-col sm:flex-row gap-space-xs items-center">
+<div class="relative flex-1 w-full flex items-center px-space-sm py-space-xs rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-secondary mr-space-xs text-lg">engineering</span>
+<select class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none cursor-pointer appearance-none">
+<option value="electrician">Electrical Repair &amp; Rewiring</option>
+<option value="plumber">Plumbing &amp; Water Line Fit</option>
+<option value="ac">AC Service, Gas &amp; Installation</option>
+<option value="carpenter">Carpentry &amp; Modular Fitments</option>
+<option value="cleaning">Deep Cleaning &amp; Sanitization</option>
+<option value="painter">Express Wall Painting</option>
+</select>
+<span class="material-symbols-outlined text-on-surface-variant pointer-events-none text-base">expand_more</span>
+</div>
+<div class="relative flex-1 w-full flex items-center px-space-sm py-space-xs rounded-lg bg-surface-container-low">
+<span class="material-symbols-outlined text-on-surface-variant mr-space-xs text-lg">location_on</span>
+<input class="w-full bg-transparent font-label-lg text-label-lg text-on-surface focus:outline-none placeholder:text-outline" placeholder="Enter locality or PIN" type="text" value="Indiranagar, Bengaluru"/>
+</div>
+<a class="w-full sm:w-auto px-space-lg py-space-sm rounded-lg bg-primary hover:bg-neutral-800 text-on-primary font-label-lg text-label-lg flex items-center justify-center gap-space-xs shadow transition-colors whitespace-nowrap" data-path="service-request-creation-form" href="#">
+<span>Find Pro</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Secondary Actions & Fast Paths -->
+<div class="flex flex-wrap items-center gap-space-md pt-space-xs">
+<a class="px-space-lg py-space-sm rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg hover:bg-secondary-container transition-all shadow-sm flex items-center gap-space-xs" data-path="service-request-creation-form" href="#">
+<span class="material-symbols-outlined text-lg">bolt</span>
+<span>Book Emergency Service</span>
+</a>
+<a class="px-space-md py-space-sm rounded-lg bg-surface-container text-on-surface font-label-lg text-label-lg hover:bg-surface-container-high transition-colors flex items-center gap-space-xs" data-path="sign-up" href="#">
+<span class="material-symbols-outlined text-lg">badge</span>
+<span>Register as Trade Pro</span>
+</a>
+</div>
+<!-- Live Metrics Ticker Strip -->
+<div class="grid grid-cols-3 gap-space-sm pt-space-md">
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">4.92<span class="text-secondary">/5</span></span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-secondary" style="font-variation-settings: 'FILL' 1;">star</span> 48,000+ Reviews
+              </span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">15,400+</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">Jobs Executed</span>
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-headline-md text-on-surface font-bold">100%</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-sm text-on-tertiary-container" style="font-variation-settings: 'FILL' 1;">verified</span> Police Verified
+              </span>
+</div>
+</div>
+</div>
+<!-- Hero Mosaic Imagery with Verified Dynamic Floating Badges -->
+<div class="lg:col-span-5 relative">
+<div class="relative mx-auto max-w-md rounded-2xl overflow-hidden shadow-xl bg-surface-container-lowest">
+<img class="w-full h-[440px] object-cover" data-alt="A certified HVAC professional in clean navy diagnostic gear holding precision digital manifold gauges inspecting a residential air conditioning unit in a well-lit Bengaluru home. Soft daylight, institutional quality, sharp contrast." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMdXSa0w54dXT_kdbMqMTUQSQFE7FpDhDcA4he1aCsQGLXkZXyT6r4Ci-Au-2NjOIVgNLB5o0W7b1yuF05WT3ioiEuIFQkieMpbpwCg_EQ81GWls6ShW596c_1icu_T97DmZscuU5MspQISb_XcH4djJ_60VbmrpdbR7HF7RWlL0qMQcV9KO15TLRs4NKoz2NrbJCu-TJnHgZDdj4W_gxUj3p4T6E-zwMbf9eTEJla"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-space-md left-space-md right-space-md text-on-primary">
+<div class="flex items-center gap-space-xs mb-1">
+<span class="px-space-xs py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-sm text-label-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">verified</span> Active Pro
+                </span>
+<span class="font-body-sm text-body-sm text-surface-variant">Arriving in 14 mins</span>
+</div>
+<p class="font-title-md text-title-md font-semibold">Rajesh K. • Senior Master HVAC</p>
+<p class="font-body-sm text-body-sm text-surface-container-highest">Govt. Certified • 1,280 repairs completed</p>
+</div>
+</div>
+<!-- Floating Micro Card: Insurance Coverage Stamp -->
+<div class="absolute -top-4 -left-6 bg-surface-container-lowest p-space-sm rounded-xl shadow-lg flex items-center gap-space-sm max-w-xs animate-bounce" style="animation-duration: 4s;">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">security</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">₹10,000 Guarantee</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Property protection covered</p>
+</div>
+</div>
+<!-- Floating Micro Card: Instant Match ETA -->
+<div class="absolute -bottom-6 -right-4 bg-surface-container-lowest p-space-sm rounded-xl shadow-lg flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed/30 text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined">timer</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-bold">Avg. 18 Min Match</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Zero dispatch delays</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CANONICAL SERVICES CATALOG -->
+<section class="w-full bg-surface-container-lowest py-space-2xl px-gutter">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+<div class="max-w-xl">
+<div class="flex items-center gap-space-2xs text-secondary font-label-md text-label-md uppercase tracking-wider mb-space-2xs">
+<span class="material-symbols-outlined text-sm">home_repair_service</span>
+<span>Audited Trade Disciplines</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-bold">
+            Transparent Pricing. Zero Estimator Guesswork.
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-2xs">
+            Every trade category features standardized line items, background-checked master tradespeople, and 30-day rework insurance.
+          </p>
+</div>
+<div class="mt-space-md md:mt-0 flex gap-space-xs">
+<a class="font-label-lg text-label-lg text-secondary hover:text-secondary-container inline-flex items-center gap-space-2xs" data-path="service-request-creation-form" href="#">
+<span>View All 24 Specializations</span>
+<span class="material-symbols-outlined text-base">east</span>
+</a>
+</div>
+</div>
+<!-- Services Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-lg">
+<!-- Service Card 1: Electrician -->
+<div class="bg-surface-bright rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">electrical_services</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-primary-container font-label-sm text-label-sm">
+                ~25 Min Arrival
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs group-hover:text-secondary transition-colors">
+              Electrician &amp; Wiring
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Circuit diagnostics, switchboard updates, short-circuit mitigation, and appliance cabling by licensed technicians.
+            </p>
+<div class="flex items-center gap-space-md mb-space-lg text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> Wire gauge audit</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> Genuine spares</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Starts from</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">₹399</span>
+</div>
+<a class="px-space-md py-space-xs rounded-lg bg-primary hover:bg-neutral-800 text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-1" data-path="service-request-creation-form" href="#">
+<span>Book Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service Card 2: Plumber -->
+<div class="bg-surface-bright rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl">plumbing</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-primary-container font-label-sm text-label-sm">
+                ~30 Min Arrival
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs group-hover:text-secondary transition-colors">
+              Plumbing &amp; Fixtures
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Rapid pipe leak repair, geyser installation, high-pressure booster pumps, sanitary fittings, and block removal.
+            </p>
+<div class="flex items-center gap-space-md mb-space-lg text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> Pressure testing</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> CPVC certs</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Starts from</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">₹449</span>
+</div>
+<a class="px-space-md py-space-xs rounded-lg bg-primary hover:bg-neutral-800 text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-1" data-path="service-request-creation-form" href="#">
+<span>Book Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service Card 3: HVAC / AC Repair -->
+<div class="bg-surface-bright rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">mode_fan</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-error-container text-on-error-container font-label-sm text-label-sm">
+                High Demand
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs group-hover:text-secondary transition-colors">
+              AC Maintenance &amp; Gas
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Deep foam jet cleaning, compressor diagnostics, refrigerant replenishment, PCB soldering, and duct servicing.
+            </p>
+<div class="flex items-center gap-space-md mb-space-lg text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> Anti-rust coat</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> 60-day warranty</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Starts from</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">₹699</span>
+</div>
+<a class="px-space-md py-space-xs rounded-lg bg-primary hover:bg-neutral-800 text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-1" data-path="service-request-creation-form" href="#">
+<span>Book Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service Card 4: Carpenter -->
+<div class="bg-surface-bright rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl">carpenter</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-primary-container font-label-sm text-label-sm">
+                Same Day Available
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs group-hover:text-secondary transition-colors">
+              Carpentry &amp; Furniture
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Hinge replacements, drawer alignment, bespoke modular assembly, lock fitting, and wooden architectural touch-ups.
+            </p>
+<div class="flex items-center gap-space-md mb-space-lg text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> Precision tools</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> Clean cleanup</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Starts from</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">₹499</span>
+</div>
+<a class="px-space-md py-space-xs rounded-lg bg-primary hover:bg-neutral-800 text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-1" data-path="service-request-creation-form" href="#">
+<span>Book Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service Card 5: Deep Cleaning -->
+<div class="bg-surface-bright rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">sanitizer</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-primary-container font-label-sm text-label-sm">
+                Pre-book Slot
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs group-hover:text-secondary transition-colors">
+              Intensive Deep Cleaning
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Industrial single-disc floor scrubbing, high-grade bathroom descaling, chimney degreasing, and upholstery suction.
+            </p>
+<div class="flex items-center gap-space-md mb-space-lg text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> Eco chemicals</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> 3-member team</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Starts from</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">₹1,199</span>
+</div>
+<a class="px-space-md py-space-xs rounded-lg bg-primary hover:bg-neutral-800 text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-1" data-path="service-request-creation-form" href="#">
+<span>Book Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+<!-- Service Card 6: Express Painting -->
+<div class="bg-surface-bright rounded-xl p-space-lg shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between group">
+<div>
+<div class="flex items-start justify-between mb-space-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl">format_paint</span>
+</div>
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-high text-on-primary-container font-label-sm text-label-sm">
+                Free Wall Audit
+              </span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs group-hover:text-secondary transition-colors">
+              Express Painting &amp; Waterproof
+            </h3>
+<p class="font-body-md text-body-md text-on-surface-variant mb-space-md">
+              Laser moisture testing, damp seal coats, accent wall designs, and zero-spill dust-free mechanized sanding.
+            </p>
+<div class="flex items-center gap-space-md mb-space-lg text-on-surface-variant font-body-sm text-body-sm">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> Moisture check</span>
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm text-on-tertiary-container">check_circle</span> 1-Year warranty</span>
+</div>
+</div>
+<div class="pt-space-md flex items-center justify-between">
+<div>
+<span class="font-body-sm text-body-sm text-on-surface-variant block">Starts from</span>
+<span class="font-headline-sm text-headline-sm text-on-surface font-extrabold">₹999</span>
+</div>
+<a class="px-space-md py-space-xs rounded-lg bg-primary hover:bg-neutral-800 text-on-primary font-label-md text-label-md shadow-sm transition-colors flex items-center gap-1" data-path="service-request-creation-form" href="#">
+<span>Book Now</span>
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- HOW IT WORKS SECTION -->
+<section class="w-full bg-surface py-space-2xl px-gutter relative">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-2xl mx-auto mb-space-2xl">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-space-2xs">The Koolie Dispatch Standard</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold">
+          Precision Fulfillment in 4 Controlled Steps
+        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-xs">
+          Built to eliminate contractor delays, ambiguous billing, and safety risks from home repairs.
+        </p>
+</div>
+<!-- Step Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-space-md relative">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative">
+<div class="flex items-center justify-between mb-space-lg">
+<span class="font-display text-display text-surface-container-highest font-extrabold leading-none">01</span>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">map</span>
+</div>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-xs">Select Service &amp; Location</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Specify your domestic issue, choose an appointment window or demand instantaneous emergency dispatch.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs text-on-surface-variant font-label-sm text-label-sm">
+            Instant flat quotes
+          </div>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative">
+<div class="flex items-center justify-between mb-space-lg">
+<span class="font-display text-display text-surface-container-highest font-extrabold leading-none">02</span>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-xl">person_search</span>
+</div>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-xs">Instant Pro Matching</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              System pairs you with the closest police-verified technician carrying a minimum 4.8 customer satisfaction score.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs text-on-surface-variant font-label-sm text-label-sm">
+            Background verified
+          </div>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative">
+<div class="flex items-center justify-between mb-space-lg">
+<span class="font-display text-display text-surface-container-highest font-extrabold leading-none">03</span>
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">near_me</span>
+</div>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-xs">Live Track &amp; Arrival</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              View technician live transit coordinates on an interactive GPS map and chat directly in-app without revealing numbers.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs text-on-surface-variant font-label-sm text-label-sm">
+            Masked call security
+          </div>
+</div>
+<!-- Step 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative">
+<div class="flex items-center justify-between mb-space-lg">
+<span class="font-display text-display text-surface-container-highest font-extrabold leading-none">04</span>
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed/30 flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-xl">verified_user</span>
+</div>
+</div>
+<div>
+<h4 class="font-title-md text-title-md text-on-surface font-bold mb-space-xs">Pay Via Completion OTP</h4>
+<p class="font-body-md text-body-md text-on-surface-variant">
+              Payment is only released from escrow once you inspect the workmanship and validate the secure completion code.
+            </p>
+</div>
+<div class="mt-space-md pt-space-xs text-on-tertiary-container font-label-sm text-label-sm font-semibold">
+            Zero upfront advance
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- WHY KOOLIE: TRUST & SECURITY ARCHITECTURE -->
+<section class="w-full bg-surface-container-low py-space-2xl px-gutter">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<div class="lg:col-span-5 flex flex-col gap-space-md">
+<div class="inline-flex items-center gap-space-2xs text-secondary font-label-md text-label-md uppercase tracking-wider">
+<span class="material-symbols-outlined text-sm">shield</span>
+<span>Institutional Reliability</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold">
+            Why Over 15,000 Homes Trust KOOLIE
+          </h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Unregulated domestic contracting causes over 60% of repair disputes in urban India. We inverted the model with strict technical governance, biometric verification, and automated financial safeguards.
+          </p>
+<div class="flex flex-col gap-space-sm pt-space-xs">
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">fingerprint</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Police &amp; Aadhaar Biometric Audits</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Every technician undergoes complete court records check, criminal database scans, and physical address validations.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">account_balance_wallet</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">Zero Cash Advance Risk</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Never pay upfront for labor or materials. Funds are settled electronically only upon total client satisfaction.</p>
+</div>
+</div>
+<div class="flex items-start gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-base">policy</span>
+</div>
+<div>
+<p class="font-title-md text-title-md text-on-surface font-semibold">₹10,000 Property Damage Guarantee</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Any accidental fixture breakage or household impact during servicing is automatically insured and refunded.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Trust Infographic Display -->
+<div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-3xl text-secondary mb-space-sm">psychology</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs">Trade Skill Benchmarking</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Candidates must pass our 40-point hands-on practical lab test conducted at our regional physical training hubs.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Pass rate</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Only 18% Accepted</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-3xl text-on-tertiary-container mb-space-sm">receipt_long</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs">Algorithmic Rate Cards</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                No on-site bargaining. Standardized line-item pricing calibrated directly to regional parts market indices.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Hidden fees</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">Strictly ₹0</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-3xl text-primary mb-space-sm">published_with_changes</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs">30-Day Rework Cover</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                If the resolved fault recurs within 30 days, we dispatch a senior auditor to rectify it completely free of charge.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Coverage</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">100% Complimentary</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<span class="material-symbols-outlined text-3xl text-secondary mb-space-sm">support_agent</span>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold mb-space-2xs">24/7 Rapid Resolution Desk</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                Dedicated incident escalation channels staffed by bilingual customer advocates ready to assist in real-time.
+              </p>
+</div>
+<div class="mt-space-md pt-space-xs flex items-center justify-between text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Support TAT</span>
+<span class="font-label-md text-label-md text-on-surface font-bold">&lt; 3 Min Pickup</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SOCIAL PROOF & VERIFIED REVIEWS -->
+<section class="w-full bg-surface py-space-2xl px-gutter">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-space-xl">
+<div>
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest block mb-space-2xs">Verified Feedback</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface font-extrabold">
+            Stories from Verified Residents
+          </h2>
+</div>
+<div class="mt-space-xs md:mt-0 flex items-center gap-space-xs">
+<span class="font-title-md text-title-md text-on-surface font-bold">4.9 / 5</span>
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<span class="font-body-sm text-body-sm text-on-surface-variant">(12,490+ verified ratings)</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+<!-- Review 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-2xs text-secondary mb-space-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-space-md italic">
+              "A high-voltage switchboard sparked at 11 PM on a Sunday. With Koolie, electrician Anup arrived within 24 minutes equipped with proper insulated gear and fixed the melted busbar with zero fuss."
+            </p>
+</div>
+<div class="pt-space-md flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A portrait of an Indian woman in her late 30s smiling gently in a clean modern living room setting with natural daylight. Neutral tones, clean professional headshot style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPmagmMN7rdWxPOFIsO2LVdINwtRBi5Xuu10VwGo0M0YfXD0SpfbBgkpWcxVurc5dZrHJeW6sAOG8fuJNEzwr9AelSoFPiIgTaw3e8xT_nVrl-rm5LTizoY7ige5ze5u6TSErQVMswHp1CDf1m6ZfID1mcNXr42LPAKN4NIN9JzzAGuVAFybJ2nDmPG4wtLdMZJgq-oqucvYH-ngoAvxyKVxOw2VGBgz7nXt0EW2Dw"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">Priya Sundaram</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Whitefield, Bengaluru • Emergency Electrical</p>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-2xs text-secondary mb-space-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-space-md italic">
+              "The OTP release model gives total peace of mind. The technician didn't ask for advance cash and thoroughly tested our pressure valves after installing the whole-house water filter."
+            </p>
+</div>
+<div class="pt-space-md flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional Indian man in his early 40s wearing smart casual attire in front of a contemporary architectural balcony. Natural warm lighting, high trust portrait." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA96kpPBGz56OuHrhHuheOUhkhWeMdDQ031nQlbiFhelQvmMf0xAEk2wdPc2k5FgkAoN6bemGJg13NdeR137VASAQ08xVEg99k9B1WiW_HrJMW5dbaeHuNP-rXush2bVwk72LdTouOXfdeMyunFtp_VhiVuAT37mRG0rLEueeDicExjYn98cySM3a_MLOga-tnNcUyXZsLvJO-83Rkg18OaQEEXmeOowxbPCmEW-Ymv"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">Vikramaditya Sen</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Bandra West, Mumbai • Plumbing Overhaul</p>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-space-2xs text-secondary mb-space-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface mb-space-md italic">
+              "Finally, a domestic service app that treats technicians with dignity and consumers with transparency. Standard billing, zero hidden transport charges, and spotless post-job cleanup."
+            </p>
+</div>
+<div class="pt-space-md flex items-center gap-space-sm">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A warm candid portrait of an Indian architect woman sitting at a modern sunlit desk with design drafts. High detail, trustworthy authentic aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6Xl88XWWLhOi4AcuWWsp7zfiLzV-oqA4NImNcK7SzIXFJOO0pmo9v1eVCWL9_y385NRUchyqS95kJeLGTa69DLuolQ7bDP-1rk1Vrep7_mqrJKCRb9kvQZdMCNQLs15zvFp7Ztokte85KfMv_YtEtoZWUTJ5IuvPXy8IDCiMfTuiTuWaOEVa4QIzx76NZbpV_OKPLs4zu4GU-gPv2gGk5YlQSHJdGYQJTWvph_hEN"/>
+<div>
+<p class="font-label-lg text-label-lg text-on-surface font-bold">Kavita Iyer</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Alwarpet, Chennai • Modular Carpentry</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DUAL CALL TO ACTION BANNER -->
+<section class="w-full bg-surface-container-lowest py-space-2xl px-gutter">
+<div class="max-w-7xl mx-auto rounded-2xl bg-primary text-on-primary p-space-xl lg:p-space-2xl relative overflow-hidden shadow-xl">
+<!-- Decorative Accent Rings -->
+<div class="absolute -right-20 -bottom-20 w-80 h-80 rounded-full bg-secondary/20 blur-2xl pointer-events-none"></div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
+<div class="lg:col-span-8">
+<span class="px-space-xs py-0.5 rounded-full bg-surface-container-highest text-on-surface font-label-sm text-label-sm inline-block mb-space-xs font-semibold">
+            Instant Match Guaranteed
+          </span>
+<h2 class="font-headline-lg text-headline-lg font-extrabold tracking-tight">
+            Fix your home issue right now with a verified master technician.
+          </h2>
+<p class="font-body-lg text-body-lg text-inverse-on-surface/80 mt-space-xs max-w-xl">
+            Book in less than 60 seconds. Guaranteed arrival, transparent upfront charges, and escrow payment protection.
+          </p>
+</div>
+<div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-space-xs">
+<a class="px-space-lg py-space-sm rounded-lg bg-surface-container-lowest text-on-surface font-label-lg text-label-lg hover:bg-surface-bright transition-colors text-center shadow" data-path="service-request-creation-form" href="#">
+            Book a Service Now
+          </a>
+<a class="px-space-lg py-space-sm rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg hover:bg-secondary-container transition-colors text-center" data-path="sign-up" href="#">
+            Join as Professional Partner
+          </a>
+</div>
+</div>
+</div>
+</section>
+<!-- COVERAGE CITIES DIRECTORY & METRO METRICS -->
+<section class="w-full bg-surface-bright py-space-xl px-gutter">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row md:items-center justify-between pb-space-lg mb-space-lg">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-bold">Active Metro Hubs</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Live dispatch operations running across 5 key urban clusters in India</p>
+</div>
+<div class="mt-space-xs md:mt-0 flex flex-wrap gap-space-xs">
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Bengaluru</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Mumbai MMR</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Delhi NCR</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Chennai</span>
+<span class="px-space-sm py-1 rounded-full bg-surface-container text-on-surface font-label-sm text-label-sm">Kolkata</span>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md text-on-surface-variant font-body-sm text-body-sm">
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold mb-space-2xs">Emergency Dispatches</p>
+<p>24/7 Electrical Tripping</p>
+<p>Burst Pipe Isolation</p>
+<p>Severe AC Water Leaks</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold mb-space-2xs">Scheduled Installations</p>
+<p>Inverter &amp; UPS Setup</p>
+<p>Bathroom Vanity &amp; Geysers</p>
+<p>Modular Kitchen Fixtures</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold mb-space-2xs">Compliance &amp; Trust</p>
+<p>Aadhaar Offline XML e-KYC</p>
+<p>Court Record Criminal Scan</p>
+<p>₹10,000 Transit Protection</p>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface font-semibold mb-space-2xs">Platform Governance</p>
+<p>Escrow OTP Settlement</p>
+<p>Zero Upfront Contractor Cash</p>
+<p>30-Day Free Rework Policy</p>
+</div>
+</div>
+</div>
+</section>
+</div></main><footer class="bg-surface-container-lowest border-t border-surface-container py-space-xl px-gutter"><div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-space-md"><div class="flex items-center gap-space-xs"><img alt="KOOLIE Brand Mark" class="h-6 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ALJJyrBwsHxC62qxfVgqnaQcgX3fkgzz7J6gDkFK6YQgMevNieK8rYFg7CAxjhtEA7qqIDT0VSnMuct7Ynq2Ii63prUl9lgkQwsvoITHPzCoswOnKLSTckGtclxbGQsanfon5V4faroaETfNSdSBNXgo3MqsEkWod1mB6GCrRQR7vr56pv15eRUCCN32fmwTsF1D1Ge8eX7RgFmSUclOF9S9sGcbUfWc8_Uady97JBwgOg0Hxw"/><span class="font-headline-sm text-headline-sm text-on-surface font-bold">KOOLIE</span><span class="font-body-sm text-body-sm text-on-surface-variant ml-space-xs">© 2025 KOOLIE Services Marketplace. All rights reserved.</span></div><nav class="flex items-center gap-space-md" data-active-classes="text-primary font-title-md"><a aria-current="page" class="transition-colors text-primary font-title-md" data-path="landing-page" href="#">Home</a><a class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" data-path="login" href="#">Login</a><a class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" data-path="admin-login" href="#">Admin Access</a><a class="text-on-surface-variant hover:text-on-surface font-label-sm text-label-sm transition-colors" data-path="profile-completion" href="#">Profile Setup</a></nav></div></footer></body></html>
